@@ -112,5 +112,7 @@ const runTests = () => {
 }
 console.log("in main.js: launching runTests()...");
 runTests();
+console.log("in main.js: launching listResources()...");
+listResources();
 document.getElementById('out').innerHTML = text;
 await dotnet.run();
