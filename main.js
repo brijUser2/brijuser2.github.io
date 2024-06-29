@@ -93,7 +93,7 @@ const runReqUrl2 = () => {
 
 const runImgAllJS = () => {
     console.log("in runImgAllJS");
-    const imgURL = "https://cdn62.picsart.com/182788826000202.jpg?type=webp&to=crop&r=256";
+    const imgURL = "https://trivedienterprisesinc.github.io/img/Getafix.png";
     fetch(imgURL)
     .then(response => response.blob())
     .then(blob => {
@@ -103,7 +103,7 @@ const runImgAllJS = () => {
 
 const runTests = () => {
     runImgAllJS();
-    listResources();
+    //listResources(); doesn't find the proc
     //runReqB(); //prob: fs tries to load local_resx_file instd of embedded one
     runReqBase();
     runReqUrl();
