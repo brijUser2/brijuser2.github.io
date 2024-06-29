@@ -24,7 +24,7 @@ console.log(text);
 
 const runReqB = () => {
     console.log("in fn main.imgTest() launching reqB('img')...");
-    var arrayBufferView = new Uint8Array( exports.MyClass.reqB("img") );
+    var arrayBufferView = new Uint8Array( exports.MyClass.reqB("https://trivedienterprisesinc.github.io/img/Getafix.png") );
     console.log("1. (no await) initArray.len = " + arrayBufferView.length);
 //    var arrayBufferViewAwait = new Uint8Array( await (exports.MyClass.reqB("img")) );
 //    console.log("2. (await) arrayBufferViewAwait.len = " + arrayBufferViewAwait.length);
@@ -44,7 +44,7 @@ const runReqB = () => {
 
 const runReqBase = () => {
     console.log("2-1. in fn main.imgTest() launching reqB('img') - resources...");
-    var arr21 = new Uint8Array( exports.MyClass.reqBase("img") );
+    var arr21 = new Uint8Array( exports.MyClass.reqBase("https://trivedienterprisesinc.github.io/img/Getafix.png") );
     console.log("2-2. (await) arr2.len = " + arr21.length);
     var blob21 = new Blob( [ arr21 ], { type: "image/png" } );
     var imageUrl21 = URL.createObjectURL( blob21 );
@@ -68,7 +68,7 @@ const runReqBase = () => {
 const runReqUrl = () => {
     console.log("8. in fn main.imgTest() launching reqUrl('img')...");
     //reserved word awaitvar arr3 = new Uint8Array( await (exports.MyClass.reqUrl("img")) );
-    var arr3 = new Uint8Array( exports.MyClass.reqUrl("img") );
+    var arr3 = new Uint8Array( exports.MyClass.reqUrl("https://trivedienterprisesinc.github.io/img/Getafix.png") );
     console.log("9. (await) arr3.len = " + arr.length);
     var blob3 = new Blob( [ arr3 ], { type: "image/png" } );
     var urlCreator3 = window.URL || window.webkitURL;
@@ -80,8 +80,9 @@ const runReqUrl = () => {
 
 const runReqUrl2 = () => {
     console.log("8. in fn main.imgTest() launching reqUrl2('img')...");
+    const imgURL = "https://trivedienterprisesinc.github.io/img/Getafix.png";
     //reserved word awaitvar arr3 = new Uint8Array( await (exports.MyClass.reqUrl("img")) );
-    var arr3 = new Uint8Array( exports.MyClass.reqUrl2("img") );
+    var arr3 = new Uint8Array( exports.MyClass.reqUrl2(imgURL) );
     console.log("9. (await) arr3.len = " + arr.length);
     var blob3 = new Blob( [ arr3 ], { type: "image/png" } );
     var urlCreator3 = window.URL || window.webkitURL;
