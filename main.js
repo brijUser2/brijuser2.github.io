@@ -1,8 +1,9 @@
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 
-    import { dotnet } from './_framework/dotnet.js'
-
+console.log("0. in main.js top b4 import...");
+import { dotnet } from './_framework/dotnet.js';
+console.log("0. in main.js top after import...");
 require(["dojo/query", "dojo/parser"], function(query, parser){
     
     const { setModuleImports, getAssemblyExports, getConfig } = await dotnet
