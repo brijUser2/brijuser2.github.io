@@ -1,9 +1,7 @@
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 
-console.log("0. in main.js top b4 import...");
 import { dotnet } from './_framework/dotnet.js'
-console.log("0. in main.js top after import...");
 
 const { setModuleImports, getAssemblyExports, getConfig } = await dotnet
     .withDiagnosticTracing(false)
@@ -21,24 +19,40 @@ setModuleImports('main.js', {
 const config = getConfig();
 const exports = await getAssemblyExports(config.mainAssemblyName);
 const text = exports.MyClass.Greeting();
+console.log("main.js:");
 console.log(text);
 
-const imgTest = () => {
-//img test
-/*
+const runReqB = () => {
     console.log("in fn main.imgTest() launching reqB('img')...");
     var arrayBufferView = new Uint8Array( exports.MyClass.reqB("img") );
     console.log("1. (no await) initArray.len = " + arrayBufferView.length);
 //    var arrayBufferViewAwait = new Uint8Array( await (exports.MyClass.reqB("img")) );
 //    console.log("2. (await) arrayBufferViewAwait.len = " + arrayBufferViewAwait.length);
 
+    console.log("2. reqB...");
     var blob = new Blob( [ arrayBufferView ], { type: "image/png" } );
+    console.log("3. reqB...");
     var urlCreator = window.URL || window.webkitURL;
+    console.log("4. reqB...");
     var imageUrl = urlCreator.createObjectURL( blob );
-    var img = document.querySelector( "#gfx" );
+    console.log("5. reqB...");
+    var img = document.querySelector( "#ReqB" );
+    console.log("6. reqB...");
     img.src = imageUrl;
-    console.log("3. img.src set...");
+    console.log("7. img.src set...");
+}
 
+const runReqBase = () => {
+    console.log("2-1. in fn main.imgTest() launching reqB('img') - resources...");
+    var arr21 = new Uint8Array( exports.MyClass.reqBase("img") );
+    console.log("2-2. (await) arr2.len = " + arr21.length);
+    var blob21 = new Blob( [ arr21 ], { type: "image/png" } );
+    var imageUrl21 = urlCreator.createObjectURL( blob21 );
+    var img21 = document.querySelector( "#ReqBase" );
+    img21.src = imageUrl21;
+    console.log("2-3. resource img.src set...");
+}
+/*
     console.log("4. in fn main.imgTest() launching reqBase('img')...");
     //var arr2 = new Uint8Array( await (exports.MyClass.reqBase("img")) );
     var arr2 = new Uint8Array( exports.MyClass.reqBase("img") );
@@ -51,20 +65,50 @@ const imgTest = () => {
     console.log("6. getafix img.src set...");
 */
 
-    console.log("7. in fn main.imgTest() launching reqUrl('img')...");
+const runReqUrl = () => {
+    console.log("8. in fn main.imgTest() launching reqUrl('img')...");
     //reserved word awaitvar arr3 = new Uint8Array( await (exports.MyClass.reqUrl("img")) );
     var arr3 = new Uint8Array( exports.MyClass.reqUrl("img") );
-    console.log("8. (await) arr3.len = " + arr.length);
+    console.log("9. (await) arr3.len = " + arr.length);
     var blob3 = new Blob( [ arr3 ], { type: "image/png" } );
     var urlCreator3 = window.URL || window.webkitURL;
     var imageUrl3 = urlCreator.createObjectURL( blob3 );
-    var img3 = document.querySelector( "#hulk" );
+    var img3 = document.querySelector( "#ReqUrl" );
     img3.src = imageUrl;
-    console.log("9. hulk img.src set...");
-};
+    console.log("10. hulk img.src set...");
+}
 
-console.log("in main.js: launching imgTest()...");
-imgTest();
+const runReqUrl2 = () => {
+    console.log("8. in fn main.imgTest() launching reqUrl2('img')...");
+    //reserved word awaitvar arr3 = new Uint8Array( await (exports.MyClass.reqUrl("img")) );
+    var arr3 = new Uint8Array( exports.MyClass.reqUrl2("img") );
+    console.log("9. (await) arr3.len = " + arr.length);
+    var blob3 = new Blob( [ arr3 ], { type: "image/png" } );
+    var urlCreator3 = window.URL || window.webkitURL;
+    var imageUrl3 = urlCreator.createObjectURL( blob3 );
+    var img3 = document.querySelector( "#ReqUrl2" );
+    img3.src = imageUrl;
+    console.log("10. hulk img.src set...");
+}
 
+const runImgAllJS = () => {
+    console.log("in runImgAllJS");
+    const imgURL = "https://cdn62.picsart.com/182788826000202.jpg?type=webp&to=crop&r=256";
+    fetch(imgURL)
+    .then(response => response.blob())
+    .then(blob => {
+        document.getElementById('AllJS').src = URL.createObjectURL(blob)
+    })
+}
+
+const runTests = () => {
+    runImgAllJS();
+    runReqB();
+    runReqBase();
+    runReqUrl();
+    runReqUrl2();
+}
+console.log("in main.js: launching runTests()...");
+runTests();
 document.getElementById('out').innerHTML = text;
 await dotnet.run();
