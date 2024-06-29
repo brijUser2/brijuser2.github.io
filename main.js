@@ -47,7 +47,7 @@ const runReqBase = () => {
     var arr21 = new Uint8Array( exports.MyClass.reqBase("img") );
     console.log("2-2. (await) arr2.len = " + arr21.length);
     var blob21 = new Blob( [ arr21 ], { type: "image/png" } );
-    var imageUrl21 = urlCreator.createObjectURL( blob21 );
+    var imageUrl21 = URL.createObjectURL( blob21 );
     var img21 = document.querySelector( "#ReqBase" );
     img21.src = imageUrl21;
     console.log("2-3. resource img.src set...");
@@ -85,7 +85,7 @@ const runReqUrl2 = () => {
     console.log("9. (await) arr3.len = " + arr.length);
     var blob3 = new Blob( [ arr3 ], { type: "image/png" } );
     var urlCreator3 = window.URL || window.webkitURL;
-    var imageUrl3 = urlCreator.createObjectURL( blob3 );
+    var imageUrl3 = urlCreator3.createObjectURL( blob3 );
     var img3 = document.querySelector( "#ReqUrl2" );
     img3.src = imageUrl;
     console.log("10. hulk img.src set...");
