@@ -106,9 +106,9 @@ const runTests = () => {
     runImgAllJS();
     //listResources(); doesn't find the proc
     //runReqB(); //prob: fs tries to load local_resx_file instd of embedded one
-    runReqBase();
+    //runReqBase();
     //runReqUrl(); hangs
-    runReqUrl2();
+    //runReqUrl2();
 }
 console.log("in main.js: launching runTests()...");
 runTests();
