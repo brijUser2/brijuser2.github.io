@@ -74,7 +74,7 @@ const runReqUrl = () => {
     var urlCreator3 = window.URL || window.webkitURL;
     var imageUrl3 = urlCreator.createObjectURL( blob3 );
     var img3 = document.querySelector( "#ReqUrl" );
-    img3.src = imageUrl;
+    img3.src = imageUrl3;
     console.log("10. hulk img.src set...");
 }
 
@@ -88,7 +88,7 @@ const runReqUrl2 = () => {
     var urlCreator3 = window.URL || window.webkitURL;
     var imageUrl3 = urlCreator3.createObjectURL( blob3 );
     var img3 = document.querySelector( "#ReqUrl2" );
-    img3.src = imageUrl;
+    img3.src = imageUrl3;
     console.log("10. hulk img.src set...");
 }
 
