@@ -1,9 +1,9 @@
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 
-require(["dojo/query", "dojo/parser"], function(query, parser){
-
     import { dotnet } from './_framework/dotnet.js'
+
+require(["dojo/query", "dojo/parser"], function(query, parser){
     
     const { setModuleImports, getAssemblyExports, getConfig } = await dotnet
         .withDiagnosticTracing(false)
