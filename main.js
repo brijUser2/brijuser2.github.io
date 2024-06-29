@@ -121,17 +121,24 @@ require(["dojo/query", "dojo/parser"], function(query, parser){
     //console.log("in main.js: launching listResources()...");
     //listResources();
     document.getElementById('out').innerHTML = text;
-   
-    query("runReqB_Btn").on("click", function(){
+
+    console.log("Now assigning btn handlers...");
+
+
+    query("runReqB_Btn").on("click", function(evt){
+        console.log("Clicked on node ", evt.target);
         runReqB();
     });
-    query("runReqBase_Btn").on("click", function(){
+    query("runReqBase_Btn").on("click", function(evt){
+        console.log("Clicked on node ", evt.target);
         runReqBase();
     });
-    query("runReqUrl_Btn").on("click", function(){
+    query("runReqUrl_Btn").on("click", function(evt){
+        console.log("Clicked on node ", evt.target);
         runReqUrl();
     });
-    query("runReqUrl2_Btn").on("click", function(){
+    query("runReqUrl2_Btn").on("click", function(evt){
+        console.log("Clicked on node ", evt.target);
         runReqUrl2();
     });
 });
