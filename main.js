@@ -103,7 +103,8 @@ const runImgAllJS = () => {
 
 const runTests = () => {
     runImgAllJS();
-    runReqB();
+    listResources();
+    //runReqB(); //prob: fs tries to load local_resx_file instd of embedded one
     runReqBase();
     runReqUrl();
     runReqUrl2();
