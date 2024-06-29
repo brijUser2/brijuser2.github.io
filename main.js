@@ -4,26 +4,29 @@
 console.log("0. in main.js top b4 import...");
 import { dotnet } from './_framework/dotnet.js';
 console.log("0. in main.js top after import...");
-require(["dojo/query", "dojo/parser"], function(query, parser){
+
     
-    const { setModuleImports, getAssemblyExports, getConfig } = await dotnet
-        .withDiagnosticTracing(false)
-        .withApplicationArgumentsFromQuery()
-        .create();
-    
-    setModuleImports('main.js', {
-        window: {
-            location: {
-                href: () => globalThis.window.location.href
-            }
+const { setModuleImports, getAssemblyExports, getConfig } = await dotnet
+    .withDiagnosticTracing(false)
+    .withApplicationArgumentsFromQuery()
+    .create();
+
+setModuleImports('main.js', {
+    window: {
+        location: {
+            href: () => globalThis.window.location.href
         }
-    });
-    
-    const config = getConfig();
-    const exports = await getAssemblyExports(config.mainAssemblyName);
-    const text = exports.MyClass.Greeting();
-    console.log("main.js:");
-    console.log(text);
+    }
+});
+
+const config = getConfig();
+const exports = await getAssemblyExports(config.mainAssemblyName);
+const text = exports.MyClass.Greeting();
+console.log("main.js:");
+console.log(text);
+await dotnet.run();
+
+require(["dojo/query", "dojo/parser"], function(query, parser){
     
     const runReqB = () => {
         console.log("in fn main.imgTest() launching reqB('img')...");
@@ -118,8 +121,7 @@ require(["dojo/query", "dojo/parser"], function(query, parser){
     //console.log("in main.js: launching listResources()...");
     //listResources();
     document.getElementById('out').innerHTML = text;
-    await dotnet.run();
-    
+   
     query("runReqB_Btn").on("click", function(){
         runReqB();
     });
