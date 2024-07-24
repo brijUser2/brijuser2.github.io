@@ -7,27 +7,38 @@
   <title>Idx file in mike\wwwroot</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type='module' src="./main.js"></script>
 
 <link href="https://ajax.googleapis.com/ajax/libs/dojo/1.13.2/dijit/themes/claro/claro.css" media="screen" rel="stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/dojo/1.13.2/dojo/dojo.js" data-dojo-config="isDebug: 1, async: 1, parseOnLoad: 1"></script>
-<script type='module' src="./main.js"></script>
-  
-<!--script>
+
+<script>
 require(["dojo/parser", "dijit/form/Button"]);
-</script-->
+</script>
 </head>
 
-<body>
-<button id="runReqB_Btn" data-dojo-type="dijit/form/Button" type="button">runReqB</button>
-<button id="runReqBase_Btn" data-dojo-type="dijit/form/Button" type="button">runReqBase</button>
-<button id="runReqUrl_Btn" data-dojo-type="dijit/form/Button" type="button">runReqUrl</button>
-<button id="runReqUrl2_Btn" data-dojo-type="dijit/form/Button" type="button">runReqUrl2</button>
-<button id="runImgAllJS_Btn" data-dojo-type="dijit/form/Button" type="button">runImgAllJS</button>
+<body class="claro">
+<!--button id="runReqB" data-dojo-type="dijit/form/Button" type="button">runReqB</button-->
+<button id="runReqBase" data-dojo-type="dijit/form/Button" type="button">runReqBase</button>
+<!--button id="runReqUrl" data-dojo-type="dijit/form/Button" type="button">runReqUrl</button>
+<button id="runReqUrl2" data-dojo-type="dijit/form/Button" type="button">runReqUrl2</button-->
+<button id="runListRes" data-dojo-type="dijit/form/Button" type="button">listRes</button>
+<button id="runListResItms" data-dojo-type="dijit/form/Button" type="button">listResItms</button>
+<button id="loadResItm" data-dojo-type="dijit/form/Button" type="button">loadResItm</button>
+<button id="runReqUrlTask" data-dojo-type="dijit/form/Button" type="button">runReqUrlTask</button>
+<button id="runReqUrlTask2" data-dojo-type="dijit/form/Button" type="button">runReqUrlTask2</button><br>
+<button id="downloadBytes" data-dojo-type="dijit/form/Button" type="button">downloadBytes</button>
+<button id="loadTree1" data-dojo-type="dijit/form/Button" type="button">loadTree1</button>
+<button id="loadTree2" data-dojo-type="dijit/form/Button" type="button">loadTree2</button>
 <hr>
 
   <span id="out"></span>
   <hr><br>
-  Image id ReqB: <img id="ReqB" src="">
+  Image from runReqUrlTask: <img id="ReqUrlTaskImg" src="">
+  <hr><br>
+  Image from runReqUrlTask2: <img id="ReqUrlTask2Img" src="">
+  <hr><br>
+  Image from Resource: <img id="ResImg" src="">
   <hr><br>
   Image id ReqBase: <img id="ReqBase" src="">
 <hr><br>
@@ -36,6 +47,8 @@ require(["dojo/parser", "dijit/form/Button"]);
   Image id ReqUrl2: <img id="ReqUrl2" src="">
 <hr><br>  
   Image id runImgAllJS: <img id="AllJS" src="">
+<hr><br>  
+Tree: <div id='treeDiv'></div>
 
 </body>
 
