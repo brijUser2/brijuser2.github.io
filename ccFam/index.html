@@ -101,6 +101,7 @@ erDiagram
     FACILITY ||--o{ CHILD : contains
     FACILITY ||--o{ CAREGIVER : contains
     FACILITY {
+        string facilityID
         string name
         string addressSt1
         string addressSt2
@@ -109,8 +110,11 @@ erDiagram
         string addressZip
         geo locationGeoCode
 	int capacity
+	action lookupOnMap
     }
     CHILD {
+        string childID
+	bytes photo
         string firstName
         string middleName
         string lastName
@@ -133,9 +137,12 @@ erDiagram
 	string doctorName
 	phone doctorPhone
 	string notes
+	action register
+	action scheduleAbsence
     }
-    CAREGIVER ||--o{ FACILITY : contains
+    FACILITY ||--o{ CAREGIVER : contains
     CAREGIVER {
+        string caregiverID
         string firstName
         string middleName
         string lastName
@@ -151,6 +158,7 @@ erDiagram
     }
     ADMIN ||--o{ FACILITY : assigns
     ADMIN {
+        string adminID
         string firstName
         string middleName
         string lastName
@@ -163,8 +171,17 @@ erDiagram
 	phone  phone
 	string  otherContactInfo
 	action  addChild
+	action  addCaregiver
 	action  addFacility
+	action sendMails
 	action setDefaults(expYrs)
+    }
+    LOGENTRY {
+        string logId
+        date eventDate
+        time eventTime
+        string facilityID
+        string personID
     }
 </pre>
      
