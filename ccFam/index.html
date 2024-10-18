@@ -192,7 +192,39 @@ erDiagram
 <ul>
 <li><p><strong>Content Summary</strong>: Provide a high-level timeline for the project, outlining major milestones and deadlines. Include key activities for each phase (e.g., requirements gathering, design, implementation, testing).</p>
 </li>
-<li><p>Gantt-ish Chart</p>
+<li>
+
+<pre class="mermaid">
+gantt
+    title A Gantt Diagram
+    dateFormat YYYY-MM-DD
+    section Phase1
+	    A task           :a1, 2014-01-01, 30d
+	    Another task     :a2, after a1, 30d
+	    Another one      :a3, after a2, 30d
+    section Phase2
+	    A task           :a4, after a3, 30d
+	    Another task     :a5, after a4, 30d
+	    Another one      :a6, after a5, 30d
+    section Phase3
+	    A task           :a7, after a6, 30d
+	    Another task     :a8, after a7, 30d
+	    Another one      :a9, after a8, 30d
+    section Phase4
+	    A task           :a10, after a9, 30d
+	    Another task     :a11, after a10, 30d
+	    Another one      :a12, after a11, 30d
+    section Phase5
+	    A task           :a13, after a12, 30d
+	    Another task     :a14, after a13, 30d
+	    Another one      :a15, after a14, 30d
+    section Phase6
+	    A task           :a16, after a15, 30d
+	    Another task     :a17, after a16, 30d
+	    Another one      :a18, after a17, 30d
+</pre>
+
+
 </li>
 <li><p>note re subContr. affecting timeline</p>
 </li>
