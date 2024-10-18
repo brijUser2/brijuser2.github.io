@@ -62,8 +62,36 @@ Table of Contents
 <li><p>Data import/dump/scanning</p>
 </li>
 </ul>
+
 <br>
-     
+<pre class="mermaid">
+flowchart TD
+    A[Add'l CG<br>Needed] -->|Admin Sends<br>invite| B(CG recieves<br>notice)
+    B --> C{Shall I accept?}
+    C -->|Yes| D[CG Assigned]
+    C -->|No| E[Dashboard Updated]
+</pre>
+<br>
+
+<hr>
+Child wrkfl -> Key Device: ccFam sticker (Desc, pic)
+<br>arrives @ fac -> scan -> dlgBox snap/Nm + chkIn/(out disabled)/View/EditInfo
+<br>
+<br>CG -> same as above but dshbd live upd8
+<br>
+<br>FacAdmin -> login allows reset of Fac
+<br>
+<br>Adm wrkfl -> Dashbd FacNm, icons/nums, bkColor (Red/Grn/Yel) button for chkNotifications
+<br>DblClick on FacCard -> availCGs sorted by Exp (pulldown 2 upd8)
+<br>rtClick on CG -> send Invite -> CG gets sms w/2 links (can lookup map etc)
+<br>notificationsBtn displays invites sent/status (accepted/rejected/unanswered)
+<br>
+<br>Child emerg? scan -> details
+<br>Itm leftBh? ditto
+<br>	
+<hr>
+
+	
      <h4>Handling Outside Cases/Eventualities</h4>
 
 The business logic for the System will handle all unexpected/outside eventualities arising from each the workflows in the system.  The approach used will depend upon directions provided.  Some questions to consider are listed here; we anticipate further issues to crop up during the process of development:
@@ -82,8 +110,14 @@ The business logic for the System will handle all unexpected/outside eventualiti
 <ul>
 <li><p><strong>Content Summary</strong>: List the various stages of the project, detailing the specific deliverables at each phase (e.g., prototypes, beta versions, final products). Include descriptions of features and functionalities to be delivered for demonstration.</p>
 </li>
-<li><p>Gantt-ish Chart</p>
+	
+<li>
+	(based on prior 3-stage prop)
+1: wireFrames demo on site (hidden URI) some func eg. pic -> log registers (after lookups)
+2: Beta ver (all func)
+3: UAT
 </li>
+	
 </ul>
 <h2 id="5-technical-approach">5. Technical Approach</h2>
 <ul>
