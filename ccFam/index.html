@@ -120,17 +120,22 @@ erDiagram
         string addressState
         string addressZip
         geo locationGeoCode
+        string parent1FirstName
+        string parent1MiddleName
+        string parent1LastName
+	phone  parent1Phone
+	string  parent1OtherContactInfo
         string parent2FirstName
         string parent2MiddleName
         string parent2LastName
 	phone  parent2Phone
-        string parent2FirstName
-        string parent2MiddleName
-        string parent2LastName
-	phone  parent2Phone
-
+	string  parent2OtherContactInfo
+	string doctorName
+	phone doctorPhone
+	string notes
     }
-    FACILITY {
+    CAREGIVER ||--o{ FACILITY : contains
+    CAREGIVER {
         string firstName
         string middleName
         string lastName
@@ -140,7 +145,26 @@ erDiagram
         string addressState
         string addressZip
         geo locationGeoCode
-	int capacity
+	phone  phone
+	string  otherContactInfo
+	int yearsOfExperience
+    }
+    ADMIN ||--o{ FACILITY : assigns
+    ADMIN {
+        string firstName
+        string middleName
+        string lastName
+        string addressSt1
+        string addressSt2
+        string addressCity
+        string addressState
+        string addressZip
+        geo locationGeoCode
+	phone  phone
+	string  otherContactInfo
+	action  addChild
+	action  addFacility
+	action setDefaults(expYrs)
     }
 </pre>
      
