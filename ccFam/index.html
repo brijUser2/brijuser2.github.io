@@ -58,6 +58,22 @@ Table of Contents
 <li><p>Data import/dump/scanning</p>
 </li>
 </ul>
+<br>
+     
+     <h4>Handling Outside Cases/Eventualities</h4>
+
+The business logic for the System will handle all unexpected/outside eventualities arising from each the workflows in the system.  The approach used will depend upon directions provided.  Some questions to consider are listed here; we anticipate further issues to crop up during the process of development:
+     <br>
+<ul>
+     <li><h6>Substitute CareGiver Accepts Invite and then backs out</h6>
+     The system should offer a path to negate the prior Acceptance and roll back the numbers to reflect that this particular action occured.</li>
+
+     <li><h6>User(s) need manual intervention in Registration</h6>
+     Admins shall have the ability to reset passwords to a default option (with a forced change on first subsequent login).<br>
+     In other business situations (e.g. user no longer has the Phone device required for Two-Factor Authorization) we shall need to decide on a policy and execute based upon that.</li>
+</ul>     
+     
+
 <h2 id="4-deliverables">4. Deliverables</h2>
 <ul>
 <li><p><strong>Content Summary</strong>: List the various stages of the project, detailing the specific deliverables at each phase (e.g., prototypes, beta versions, final products). Include descriptions of features and functionalities to be delivered for demonstration.</p>
