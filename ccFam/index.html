@@ -14,6 +14,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/dojo/1.13.2/dojo/dojo.js" data-dojo-config="isDebug: 1, async: 1, parseOnLoad: 1"></script>
 <link rel="stylesheet" href="https://trivedienterprisesinc.github.io/ui/2024/common.css">
 
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+</script>
+     
 <script>
 require(["dojo/parser", "dijit/layout/TabContainer", "dijit/layout/ContentPane", "dijit/form/Button"]);
 </script>
@@ -85,12 +89,64 @@ The business logic for the System will handle all unexpected/outside eventualiti
 <ul>
 <li><p><strong>Content Summary</strong>: Explain your proposed methodology and technology stack. Detail how you will develop, test, and deploy the software, and highlight any innovative approaches or tools that will enhance project efficiency.</p>
 </li>
+    
 <li><p>SaaS vendor info goes here
   Why use microsvcs? (vs inHouse)</p>
 </li>
 <li><p>Scaleability frm scratch</p>
 </li>
+
+<pre class="mermaid">
+erDiagram
+    FACILITY ||--o{ CHILD : contains
+    FACILITY ||--o{ CAREGIVER : contains
+    FACILITY {
+        string name
+        string addressSt1
+        string addressSt2
+        string addressCity
+        string addressState
+        string addressZip
+        geo locationGeoCode
+	int capacity
+    }
+    CHILD {
+        string firstName
+        string middleName
+        string lastName
+        string addressSt1
+        string addressSt2
+        string addressCity
+        string addressState
+        string addressZip
+        geo locationGeoCode
+        string parent2FirstName
+        string parent2MiddleName
+        string parent2LastName
+	phone  parent2Phone
+        string parent2FirstName
+        string parent2MiddleName
+        string parent2LastName
+	phone  parent2Phone
+
+    }
+    FACILITY {
+        string firstName
+        string middleName
+        string lastName
+        string addressSt1
+        string addressSt2
+        string addressCity
+        string addressState
+        string addressZip
+        geo locationGeoCode
+	int capacity
+    }
+</pre>
+     
 </ul>
+
+     
 <h2 id="6-project-schedule">6. Project Schedule</h2>
 <ul>
 <li><p><strong>Content Summary</strong>: Provide a high-level timeline for the project, outlining major milestones and deadlines. Include key activities for each phase (e.g., requirements gathering, design, implementation, testing).</p>
