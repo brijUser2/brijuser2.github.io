@@ -212,8 +212,8 @@ erDiagram
 	action setDefaults(expYrs)
     }
     ADMIN ||--o{ FACADMIN : "creates, assigns"
-    FACADMIN ||--o{ LOGENTRY : "checksIn/Out Child"
-    FACADMIN ||--o{ LOGENTRY : "checksIn/Out CareGiver"
+    FACADMIN ||--o{ LOGENTRY : "checksIn/Out<br>Child"
+    FACADMIN ||--o{ LOGENTRY : "checksIn/Out<br>CareGiver"
     FACADMIN {
         string facAdminID
         string facID"*"
