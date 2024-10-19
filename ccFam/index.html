@@ -212,11 +212,11 @@ erDiagram
 	action setDefaults(expYrs)
     }
     ADMIN ||--o{ FACADMIN : creates, assigns
-    FACADMIN ||--o{ CHILD : checksIn/Out
-    FACADMIN ||--o{ CAREGIVER : checksIn/Out
+    FACADMIN ||--o{ LOGENTRY : checksIn/Out Child
+    FACADMIN ||--o{ LOGENTRY : checksIn/Out CareGiver
     FACADMIN {
         string facAdminID
-        string facID*
+        string facID"*"
         string firstName
         string middleName
         string lastName
@@ -231,7 +231,7 @@ erDiagram
         action  addChild
         action  addCaregiver
     }
-    * dropdn; default if any
+    "* dropdn; default if any"
     LOGENTRY {
         string logId
         date eventDate
