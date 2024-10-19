@@ -2,7 +2,7 @@
 <!--  Idx file in brijuser2.github.io/ccFam/index.html -->
 <!-- ccFam (TM)
      Copyright (c) M. P. Trivedi 2024.  All rights reserved.
-     Last updated: Oct 18 2024 -->
+     Last updated: Oct 19 2024 -->
 <html>
 
 <head>
@@ -252,32 +252,33 @@ erDiagram
 
 <pre class="mermaid">
 gantt
-    title A Gantt Diagram
+    title ccFam Project Schedule
     dateFormat YYYY-MM-DD
-    section Phase1
-	    A task           :a1, 2014-01-01, 30d
-	    Another task     :a2, after a1, 30d
-	    Another one      :a3, after a2, 30d
+    section Kickoff
+	    Requirements gathering  :a1, 2025-01-01, 10d
+	    System Design           :a2, 2025-01-01, 10d
+	    Architecture/Approach   :a3, after a2, 10d
     section Phase2
-	    A task           :a4, after a3, 30d
-	    Another task     :a5, after a4, 30d
-	    Another one      :a6, after a5, 30d
+	    Setup Accounts   :a4, after a3, 10d
+	    Create Db/Tbls   :a5, after a4, 10d
+	    Security1       :a6, after a5, 30d
     section Phase3
-	    A task           :a7, after a6, 30d
-	    Another task     :a8, after a7, 30d
-	    Another one      :a9, after a8, 30d
+	    Security2           :a7, after a6, 30d
+	    Security3           :a8, after a7, 30d
+	    Security Test/Debug :a9, after a8, 30d
     section Phase4
-	    A task           :a10, after a9, 30d
-	    Another task     :a11, after a10, 30d
-	    Another one      :a12, after a11, 30d
+	    QR1            :a10, after a9, 15d
+	    QR2            :a11, after a10, 15d
+	    BL1            :a12, after a11, 30d
     section Phase5
-	    A task           :a13, after a12, 30d
-	    Another task     :a14, after a13, 30d
-	    Another one      :a15, after a14, 30d
+	    BL2              :a13, after a12, 30d
+	    UAT1             :a14, after a13, 10d
+	    UAT1 Test/Debug  :a15, after a14, 30d
     section Phase6
-	    A task           :a16, after a15, 30d
-	    Another task     :a17, after a16, 30d
-	    Another one      :a18, after a17, 30d
+	    UAT2              :a16, after a15, 10d
+	    UAT2 Test/Debug   :a17, after a16, 30d
+	    PreLaunchWrapup   :a18, after a17, 30d
+      	    Launch            :a19, after a18, 1d
 </pre>
 
 
