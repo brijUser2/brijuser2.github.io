@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!--  Idx file in mike\wwwroot -->
+<!--  Idx file in brijuser2.github.io/ccFam/index.html -->
 <!-- ccFam (TM)
      Copyright (c) M. P. Trivedi 2024.  All rights reserved.
      Last updated: Oct 18 2024 -->
@@ -207,9 +207,31 @@ erDiagram
 	action  addChild
 	action  addCaregiver
 	action  addFacility
+	action  addFacAdmin
 	action sendMails
 	action setDefaults(expYrs)
     }
+    ADMIN ||--o{ FACADMIN : creates, assigns
+    FACADMIN ||--o{ CHILD : checksIn/Out
+    FACADMIN ||--o{ CAREGIVER : checksIn/Out
+    FACADMIN {
+        string facAdminID
+        string facID*
+        string firstName
+        string middleName
+        string lastName
+        string addressSt1
+        string addressSt2
+        string addressCity
+        string addressState
+        string addressZip
+        geo locationGeoCode
+        phone  phone
+        string  otherContactInfo
+        action  addChild
+        action  addCaregiver
+    }
+    * dropdn; default if any
     LOGENTRY {
         string logId
         date eventDate
@@ -278,9 +300,11 @@ gantt
 <ul>
 <li><p><strong>Content Summary</strong>: Identify potential risks associated with the project and your strategies for mitigating them. Discuss how you will monitor and address risks throughout the development cycle.</p>
 </li>
-<li><p>note re subContr. affecting risk</p>
+<li>note re subContr. affecting risk</p>
 </li>
-<li><p>note re scalab. above &amp; beyond (100 facs vs 100M usrs)</p>
+<li>note re scalab. above &amp; beyond (100 facs vs 100M usrs)</p>
+</li>
+<li>note re: access to existing data in other app(s)
 </li>
 </ul>
 <h2 id="9-quality-assurance">9. Quality Assurance</h2>
@@ -349,8 +373,11 @@ At Trivedi Enterprises, we have an extensive history of building software for us
 <br>
 Here are some <a href='https://www.avery.com/templates/5160?msockid=013842bfc7ef609b1ddd57a3c687611c'>templates</a> provided by Avery to print these labels.
 Example label here -> <br>
-<img src='https://github.com/brijUser2/brijuser2.github.io/blob/main/ccFam/assets/ExampleLabel.png'>
+<img src='https://github.com/brijUser2/brijuser2.github.io/blob/main/ccFam/assets/ExampleLabel.png?raw=true' width="250">
 </li>
-  
+
+<li>Square Avery Lbls 1x1 (Presta® 94103; 48 labels per sheet) details <a href='https://www.avery.com/blank/labels/94103'>here</a> (+ link 2 templ)
+</li>
+
 </ul>
 </body></html>
