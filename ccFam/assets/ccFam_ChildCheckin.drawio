@@ -1,0 +1,31 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0" version="24.8.0">
+  <diagram name="Page-1" id="2YBvvXClWsGukQMizWep">
+    <mxGraphModel dx="1014" dy="1607" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="1">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="j1AKYiDhO9O144jNQtt7-23" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;align=center;strokeColor=#788AA3;fontColor=#46495D;fillColor=#B2C9AB;" vertex="1" parent="1">
+          <mxGeometry x="510" y="-1090" width="270" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="j1AKYiDhO9O144jNQtt7-19" value="" style="rounded=1;arcSize=20;whiteSpace=wrap;html=1;align=center;strokeColor=#788AA3;fontColor=#46495D;fillColor=#B2C9AB;" vertex="1" parent="1">
+          <mxGeometry x="50" y="-1090" width="250" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="j1AKYiDhO9O144jNQtt7-16" value="" style="shape=image;imageAspect=0;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;strokeColor=#788AA3;fontColor=#46495D;fillColor=#B2C9AB;image=https://github.com/brijUser2/brijuser2.github.io/blob/main/ccFam/assets/Scan-qr-code.png?raw=true;" vertex="1" parent="1">
+          <mxGeometry x="589.62" y="-1040" width="94.94" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="j1AKYiDhO9O144jNQtt7-18" value="&lt;b&gt;Child&lt;/b&gt; arrives @ Facility and presents sticker with QR Code" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontColor=#46495D;" vertex="1" parent="1">
+          <mxGeometry x="70" y="-1080" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="j1AKYiDhO9O144jNQtt7-24" value="&lt;b&gt;FacilityAdmin&lt;/b&gt;&amp;nbsp;scans QR code" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontColor=#46495D;" vertex="1" parent="1">
+          <mxGeometry x="527.5" y="-1080" width="235" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="j1AKYiDhO9O144jNQtt7-25" value="" style="html=1;shadow=0;dashed=0;align=center;verticalAlign=middle;shape=mxgraph.arrows2.arrow;dy=0.67;dx=20;notch=0;strokeColor=#788AA3;fontColor=#46495D;fillColor=red;" vertex="1" parent="1">
+          <mxGeometry x="300" y="-1030" width="210" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="j1AKYiDhO9O144jNQtt7-26" value="" style="shape=image;imageAspect=0;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;strokeColor=#788AA3;fontColor=#46495D;fillColor=#B2C9AB;image=https://github.com/brijUser2/brijuser2.github.io/blob/main/ccFam/assets/exampleQRCodeWithLogo.png?raw=true;" vertex="1" parent="1">
+          <mxGeometry x="125" y="-1040" width="100" height="100" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
