@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<!--  Idx file in brijuser2.github.io/ccFam/index.html -->
+<!-- ccFam (TM)
+     Copyright (c) M. P. Trivedi 2024.  All rights reserved.
+     Last updated: Oct 19 2024 -->
+<html>
+
+<head>
+  <title>ccFam Splash</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://ajax.googleapis.com/ajax/libs/dojo/1.13.2/dijit/themes/claro/claro.css" media="screen" rel="stylesheet" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/dojo/1.13.2/dojo/dojo.js" data-dojo-config="isDebug: 1, async: 1, parseOnLoad: 1"></script>
+<link rel="stylesheet" href="https://trivedienterprisesinc.github.io/ui/2024/common.css">
+
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+</script>
+     
+<script>
+require(["dojo/parser", "dijit/layout/TabContainer", "dijit/layout/ContentPane", "dijit/form/Button"]);
+</script>
+</head>
+
+<body class="claro">
+
+Table of Contents
+<ul>
+<li><a href="#1-executive-summary">1. Executive Summary</a></li>
+<li><a href="#2-project-understanding">2. Project Understanding</a></li>
+<li><a href="#3-scope-of-work">3. Scope of Work</a></li>
+<li><a href="#4-deliverables">4. Deliverables</a></li>
+<li><a href="#5-technical-approach">5. Technical Approach</a></li>
+<li><a href="#6-project-schedule">6. Project Schedule</a></li>
+<li><a href="#7-team-qualifications">7. Team Qualifications</a></li>
+<li><a href="#8-risk-management">8. Risk Management</a></li>
+<li><a href="#9-quality-assurance">9. Quality Assurance</a></li>
+<li><a href="#10-budget-and-pricing">10. Budget and Pricing</a></li>
+<li><a href="#11-compliance-and-standards">11. Compliance and Standards</a></li>
+<li><a href="#12-conclusion">12. Conclusion</a></li>
+<li><a href="#13-appendices">13. Appendices</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="proposal-template-for-us-government-software-contract">Proposal Template for U.S. Government Software Contract</h1>
+<h2 id="1-executive-summary">1. Executive Summary</h2>
+<ul>
+<li><strong>Content Summary</strong>: Provide a brief overview of your company, highlighting key strengths and relevant experience. Summarize the project&#39;s objectives and how your solution meets the government&#39;s needs.</li>
+</ul>
+<h2 id="2-project-understanding">2. Project Understanding</h2>
+<ul>
+<li><strong>Content Summary</strong>: Describe your understanding of the project requirements, including the problem to be solved and the goals of the software solution. Discuss any challenges you anticipate and your strategies for addressing them.</li>
+</ul>
+<h2 id="3-scope-of-work">3. Scope of Work</h2>
+<ul>
+<li><p><strong>Content Summary</strong>: Outline the project scope, including key features and functionalities. Specify the boundaries of the project and any assumptions made during the planning process.</p>
+</li>
+
+<img src='https://github.com/brijUser2/brijuser2.github.io/blob/main/ccFam/assets/ExampleLabel.png?raw=true' width="250">
+     
+<li><p>Data import/dump/scanning</p>
+</li>
+</ul>
+
+<br>
+<pre class="mermaid">
+flowchart TD
+    A[Add'l CG<br>Needed] -->|Admin Sends<br>invite| B(CG recieves<br>notice)
+    B --> C{Shall I accept?}
+    C -->|Yes| D[CG Assigned]
+    C -->|No| E[Dashboard Updated]
+</pre>
+<br>
+
+<hr>
+Child wrkfl -> Key Device: ccFam sticker (Desc, pic)
+<br>arrives @ fac -> scan -> dlgBox snap/Nm + chkIn/(out disabled)/View/EditInfo
+<br>
+<br>CG -> same as above but dshbd live upd8
+<br>
+<br>FacAdmin -> login allows reset of Fac
+<br>
+<br>Adm wrkfl -> Dashbd FacNm, icons/nums, bkColor (Red/Grn/Yel) button for chkNotifications
+<br>DblClick on FacCard -> availCGs sorted by Exp (pulldown 2 upd8)
+<br>rtClick on CG -> send Invite -> CG gets sms w/2 links (can lookup map etc)
+<br>notificationsBtn displays invites sent/status (accepted/rejected/unanswered)
+<br>
+<br>Child emerg? scan -> details
+<br>Itm leftBh? ditto
+<br>	
+<hr>
+
+	
+     <h4>Handling Outside Cases/Eventualities</h4>
+
+The business logic for the System will handle all unexpected/outside eventualities arising from each the workflows in the system.  The approach used will depend upon directions provided.  Some questions to consider are listed here; we anticipate further issues to crop up during the process of development:
+     <br>
+<ul>
+     <li><h6>Substitute CareGiver Accepts Invite and then backs out</h6>
+     The system should offer a path to negate the prior Acceptance and roll back the numbers to reflect that this particular action occured.</li>
+
+     <li><h6>User(s) need manual intervention in Registration</h6>
+     Admins shall have the ability to reset passwords to a default option (with a forced change on first subsequent login).<br>
+     In other business situations (e.g. user no longer has the Phone device required for Two-Factor Authorization) we shall need to decide on a policy and execute based upon that.</li>
+</ul>     
+     
+
+<h2 id="4-deliverables">4. Deliverables</h2>
+<ul>
+<li><p><strong>Content Summary</strong>: List the various stages of the project, detailing the specific deliverables at each phase (e.g., prototypes, beta versions, final products). Include descriptions of features and functionalities to be delivered for demonstration.</p>
+</li>
+	
+<li>
+	(based on prior 3-stage prop)
+1: wireFrames demo on site (hidden URI) some func eg. pic -> log registers (after lookups)
+2: Beta ver (all func)
+3: UAT
+</li>
+	
+</ul>
+<h2 id="5-technical-approach">5. Technical Approach</h2>
+<ul>
+<li><p><strong>Content Summary</strong>: Explain your proposed methodology and technology stack. Detail how you will develop, test, and deploy the software, and highlight any innovative approaches or tools that will enhance project efficiency.</p>
+</li>
+    
+<li><p>SaaS vendor info goes here
+  Why use microsvcs? (vs inHouse)</p>
+</li>
+<li><p>Scaleability frm scratch</p>
+</li>
+
+<pre class="mermaid">
+erDiagram
+    FACILITY ||--o{ CHILD : contains
+    FACILITY ||--o{ CAREGIVER : contains
+    FACILITY {
+        string facilityID
+        string name
+        string addressSt1
+        string addressSt2
+        string addressCity
+        string addressState
+        string addressZip
+        geo locationGeoCode
+	int capacity
+	action lookupOnMap
+    }
+    CHILD {
+        string childID
+	bytes photo
+        string firstName
+        string middleName
+        string lastName
+        string addressSt1
+        string addressSt2
+        string addressCity
+        string addressState
+        string addressZip
+        geo locationGeoCode
+        string parent1FirstName
+        string parent1MiddleName
+        string parent1LastName
+	phone  parent1Phone
+	string  parent1OtherContactInfo
+        string parent2FirstName
+        string parent2MiddleName
+        string parent2LastName
+	phone  parent2Phone
+	string  parent2OtherContactInfo
+	string doctorName
+	phone doctorPhone
+	string notes
+	action register
+	action scheduleAbsence
+    }
+    FACILITY ||--o{ CAREGIVER : contains
+    CAREGIVER {
+        string caregiverID
+        string firstName
+        string middleName
+        string lastName
+        string addressSt1
+        string addressSt2
+        string addressCity
+        string addressState
+        string addressZip
+        geo locationGeoCode
+	phone  phone
+	string  otherContactInfo
+	int yearsOfExperience
+    }
+    ADMIN ||--o{ FACILITY : assigns
+    ADMIN {
+        string adminID
+        string firstName
+        string middleName
+        string lastName
+        string addressSt1
+        string addressSt2
+        string addressCity
+        string addressState
+        string addressZip
+        geo locationGeoCode
+	phone  phone
+	string  otherContactInfo
+	action  addChild
+	action  addCaregiver
+	action  addFacility
+	action  addFacAdmin
+	action sendMails
+	action setDefaults(expYrs)
+    }
+    ADMIN ||--o{ FACADMIN : "creates, assigns"
+    FACADMIN ||--o{ LOGENTRY : "checksIn/Out<br>Child"
+    FACADMIN ||--o{ LOGENTRY : "checksIn/Out<br>CareGiver"
+    FACADMIN {
+        string facAdminID
+        string facID"*"
+        string firstName
+        string middleName
+        string lastName
+        string addressSt1
+        string addressSt2
+        string addressCity
+        string addressState
+        string addressZip
+        geo locationGeoCode
+        phone  phone
+        string  otherContactInfo
+        action  addChild
+        action  addCaregiver
+    }
+    "* dropdn; default if any"
+    LOGENTRY {
+        string logId
+        date eventDate
+        time eventTime
+        string facilityID
+        string personID
+    }
+</pre>
+     
+</ul>
+
+     
+<h2 id="6-project-schedule">6. Project Schedule</h2>
+<ul>
+<li><p><strong>Content Summary</strong>: Provide a high-level timeline for the project, outlining major milestones and deadlines. Include key activities for each phase (e.g., requirements gathering, design, implementation, testing).</p>
+</li>
+<li>
+
+<pre class="mermaid">
+gantt
+    title ccFam Project Schedule
+    dateFormat YYYY-MM-DD
+    section Kickoff
+	    Requirements gathering  :a1, 2025-01-01, 10d
+	    System Design           :a2, 2025-01-01, 10d
+	    Architecture/Approach   :a3, after a2, 10d
+    section Phase2
+	    Setup Accounts   :a4, after a3, 10d
+	    Create Db/Tbls   :a5, after a4, 10d
+	    Security1       :a6, after a5, 30d
+    section Phase3
+	    Security2           :a7, after a6, 30d
+	    Security3           :a8, after a7, 30d
+	    Security Test/Debug :a9, after a8, 30d
+    section Phase4
+	    QR1            :a10, after a9, 15d
+	    QR2            :a11, after a10, 15d
+	    BL1            :a12, after a11, 30d
+    section Phase5
+	    BL2              :a13, after a12, 30d
+	    UAT1             :a14, after a13, 10d
+	    UAT1 Test/Debug  :a15, after a14, 30d
+    section Phase6
+	    UAT2              :a16, after a15, 10d
+	    UAT2 Test/Debug   :a17, after a16, 30d
+	    PreLaunchWrapup   :a18, after a17, 30d
+      	    Launch            :a19, after a18, 1d
+</pre>
+
+
+</li>
+<li><p>note re subContr. affecting timeline</p>
+</li>
+</ul>
+<h2 id="7-team-qualifications">7. Team Qualifications</h2>
+<ul>
+<li><p><strong>Content Summary</strong>: Introduce the project team, emphasizing their qualifications and relevant experience. Highlight any past government contract work and individual expertise related to the project.</p>
+</li>
+<li><p>Pic </p>
+</li>
+<li><p>1-pg res link</p>
+</li>
+<li><p>Details of 4 govt ent.s: TU, Fnma, swf, saic</p>
+</li>
+</ul>
+<h2 id="8-risk-management">8. Risk Management</h2>
+<ul>
+<li><p><strong>Content Summary</strong>: Identify potential risks associated with the project and your strategies for mitigating them. Discuss how you will monitor and address risks throughout the development cycle.</p>
+</li>
+<li>note re subContr. affecting risk</p>
+</li>
+<li>note re scalab. above &amp; beyond (100 facs vs 100M usrs)</p>
+</li>
+<li>note re: access to existing data in other app(s)
+</li>
+</ul>
+<h2 id="9-quality-assurance">9. Quality Assurance</h2>
+<ul>
+<li><p><strong>Content Summary</strong>: Describe your QA processes, including methods for functional testing, performance testing, and user acceptance testing (UAT). Specify how you will ensure the software meets all functional requirements.</p>
+</li>
+<li><p>Heavy on dotNet</p>
+</li>
+<li><p>Heavy on func approach backEnd ... immut ...</p>
+</li>
+<li><p>note re: vendors</p>
+</li>
+</ul>
+<h2 id="10-budget-and-pricing">10. Budget and Pricing</h2>
+<ul>
+<li><p><strong>Content Summary</strong>: Provide a detailed budget breakdown, including costs associated with each phase of the project. Justify your pricing model and discuss any potential cost-saving measures.</p>
+</li>
+<li><p>note re subContr. affecting est</p>
+</li>
+<li><p>note re maint</p>
+</li>
+</ul>
+<h2 id="11-compliance-and-standards">11. Compliance and Standards</h2>
+<p>
+At Trivedi Enterprises, we have an extensive history of building software for use by entities associated with the US government.<br>
+	We are aware of and intend to fully adhere to applicable government 
+	standards and regulations (e.g., security, accessibility).<br>
+	We will try our utmost to comply with all relevant US government policies and guidelines, including the following:<br>
+
+<ol>
+<li><strong>Security Compliance (NIST Standards)</strong><br>
+	We intend to adhere to NIST SP 800-53 and SP 800-171 for security controls and safeguarding sensitive information.</li>
+
+<li><strong>Accessibility Compliance (Section 508)</strong><br>
+	We shall ensure that the ccFam software meets accessibility standards for users with disabilities.</li>
+
+<li><strong>Data Privacy</strong><br>
+	We shall ensure that all ccFam data protocols follow applicable privacy laws and policies, including OMB guidelines.</li>
+
+<li><strong>Risk Management</strong><br>
+	We intend to implement a risk management framework, as outlined by NIST, to identify and mitigate potential security risks.</li>
+
+<li><strong>Cloud Security</strong><br>
+	ccFam is a cloud-based software solution.  We shall ensure compliance with FedRAMP standards for any cloud-based solutions.</li>
+
+<li><strong>Interoperability Standards</strong><br>
+	We shall ensure that the ccFam system can communicate effectively with existing government systems and platforms.</li>
+
+<li><strong>Documentation and Reporting</strong><br>
+	We shall maintain thorough documentation of compliance efforts and reporting mechanisms for audits.</li>
+
+</ol>
+
+</p>
+	
+
+<h2 id="12-conclusion">12. Conclusion</h2>
+<ul>
+<li><strong>Content Summary</strong>: Reinforce the key benefits of your proposal, summarizing why your company is the best fit for the project. Include a call to action encouraging the government to engage with you for further discussion.</li>
+</ul>
+<h2 id="13-appendices">13. Appendices</h2>
+<ul>
+<li><strong>Content Summary</strong>: Include any supplementary materials such as case studies, resumes of key personnel, or detailed technical specifications that support your proposal.</li>
+
+<li>The most common horizontal sticker label format is the Avery 5160 label. These labels are approximately 1 inch high by 2.625 inches wide, and they typically come in sheets of 30 labels per page. This format is widely used for address labels, name tags, and other general-purpose labeling needs, making it compatible with most common printers. Avery provides templates for easy printing using popular software, which adds to its popularity.
+<br>
+Here are some <a href='https://www.avery.com/templates/5160?msockid=013842bfc7ef609b1ddd57a3c687611c'>templates</a> provided by Avery to print these labels.
+Example label here -> <br>
+<img src='https://github.com/brijUser2/brijuser2.github.io/blob/main/ccFam/assets/ExampleLabel.png?raw=true' width="250">
+</li>
+
+<li>Square Avery Lbls 1x1 (Presta® 94103; 48 labels per sheet) details <a href='https://www.avery.com/blank/labels/94103'>here</a> (+ link 2 templ)
+</li>
+
+</ul>
+</body></html>
