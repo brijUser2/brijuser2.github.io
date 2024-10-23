@@ -1,0 +1,209 @@
+<!--  Idx file in brijuser2.github.io/ccFam/index.html -->
+<!-- ccFam (TM)
+     Copyright (c) M. P. Trivedi 2024.  All rights reserved.
+     Last updated: Oct 23 2024 -->
+<html>
+
+<head>
+  <title>ccFam Parent</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://ajax.googleapis.com/ajax/libs/dojo/1.13.2/dijit/themes/claro/claro.css" media="screen" rel="stylesheet" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/dojo/1.13.2/dojo/dojo.js" data-dojo-config="isDebug: 1, async: 1, parseOnLoad: 1"></script>
+<link rel="stylesheet" href="https://trivedienterprisesinc.github.io/ui/2024/common.css">
+
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+</script>
+     
+<script>
+require(["dojo/parser", "dijit/layout/TabContainer", "dijit/layout/ContentPane", "dijit/form/Button"]);
+</script>
+
+<style>
+
+/*Override for phone devices*/
+html, body {
+    font-size: 22px;
+    padding: 0px;
+}
+
+.flexAligned {
+    vertical-align: middle; 
+/*
+    display: flex;
+    align-items: center;*/
+}
+
+#appLayout {
+    height: 100%;
+}
+#leftCol {
+    width: 14em;
+}
+
+.claro .demoLayout .edgePanel {
+    background-color: #d0e9fc;
+}
+
+
+</style>
+
+<script>
+    require(["dojo/parser", "dojo/_base/fx", "dijit/registry", 
+			"dijit/form/Button", "dijit/layout/BorderContainer", 
+			"dijit/layout/TabContainer", "dijit/layout/ContentPane", "dojox/layout/ExpandoPane", "dijit/Dialog", "dojo/on", 
+			"dojo/dom", "dojo/dom-style", "dojo/domReady!"],
+        function(parser, fx, registry, Button, BorderContainer,
+        TabContainer, ContentPane, ExpandoPane, Dialog, on, dom, style){
+
+    var appLayout = new BorderContainer({
+            design: "headline"
+    }, "appLayout");
+
+    var leftPn = new ExpandoPane({
+            region: "leading",
+            id: "leftPane",
+            splitter:true,
+            style: "width: 300px",
+            content: "<br>this is a test<br>this is only a test<br>and here is a very long line which will show wrapped or not depending....<br><div id='abtDiv'>About</div><button id='progButtonNode' type='button'></button>"
+    });
+    //pLayout.addChild( leftPn );
+
+    var contentTabs = new TabContainer({
+            region: "center",
+            id: "contentTabs",
+            tabPosition: "bottom",
+            "class": "centerPanel"
+    });
+
+    appLayout.addChild( contentTabs );
+
+    appLayout.addChild(
+            new ContentPane({
+                    region: "top",
+                    "class": "edgePanel",
+                    content: "<center><h2>ccFam Parent Portal</h2></center>"
+            })
+    );
+
+    var mainDlgContent = `
+<p>
+<center>
+<div>
+
+<img src='https://github.com/brijUser2/brijuser2.github.io/blob/main/ccFam/assets/child1.png?raw=true' height='15%'>&nbsp;<h2><span  class='flexAligned'>John Doe</span></h2>
+</div>
+
+<p>
+<button id="mainDlgContent_details" data-dojo-type="dijit/form/Button" type="button" onClick="alert('hey')">
+View/Edit Details
+</button>
+<p>
+<button id="mainDlgContent_absence" data-dojo-type="dijit/form/Button" type="button" onClick="alert('hey')">
+Report Upcoming Absence
+</button>
+
+</div>
+<p>
+`;
+
+    var statusInDlgContent = `
+<p>
+<center>
+<div>
+<img src='https://github.com/brijUser2/brijuser2.github.io/blob/main/ccFam/assets/child1.png?raw=true' height='15%'>&nbsp;<h2><span  class='flexAligned'>John Doe</span></h2>
+</div>
+<p>
+
+<h3>Status:</h3>
+As of <b>5:45pm</b>, your child is awaiting pickup from the <b>Lithia PineCrest</b> Facility
+&nbsp;
+<a href='https://maps.app.goo.gl/3hmeLVN28ZBfGjiW7'>
+<span class="material-symbols-outlined">
+location_on
+</span>
+</a>
+
+
+</center>
+`;
+
+    var statusOutDlgContent = `
+<p>
+<center>
+<div>
+<img src='https://github.com/brijUser2/brijuser2.github.io/blob/main/ccFam/assets/child1.png?raw=true' height='15%'>&nbsp;<h2><span  class='flexAligned'>John Doe</span></h2>
+</div>
+<p>
+
+<h3>Status:</h3>
+Your child was picked up from the <b>Lithia PineCrest</b> Facility
+&nbsp;
+<a href='https://maps.app.goo.gl/3hmeLVN28ZBfGjiW7'>
+<span class="material-symbols-outlined">
+location_on
+</span>
+</a>
+&nbsp;
+today @ <b>5:45pm</b>
+
+</center>
+`;
+    contentTabs.addChild(
+            new ContentPane({
+                    title: "Home",
+                    content: mainDlgContent
+            })
+    );
+    contentTabs.addChild(
+            new ContentPane({
+                    id: "firstTab",
+                    title: "Child CheckIn",
+                    content: statusInDlgContent
+            })
+    );
+    contentTabs.addChild(
+            new ContentPane({
+                    title: "Child CheckOut",
+                    content: statusOutDlgContent
+            })
+    );
+
+    appLayout.startup();
+    parser.parse();
+    var myButton = new Button({
+        label: "Click me!",
+        onClick: function(){
+            //alert('Do something');
+            alert("after: " + "output");
+            }
+    }, "progButtonNode").startup();
+
+			parser.parse();
+			dijit.byId("appLayout").layout();
+/*
+      on(dom.byId('abtDiv'), mouse.enter, function(evt){
+            myAboutDlg.show();
+      });
+*/
+});
+</script>
+
+
+</head>
+
+<body class="claro">
+
+    <div id="appLayout" class="demoLayout"></div>
+
+<div data-dojo-id="myAboutDlg" data-dojo-type="dijit/Dialog" title="About me...">
+                        <img height="300px" src="https://upload.wikimedia.org/wikipedia/commons/archive/0/09/20150318141725%21Rabindranath_with_Einstein.jpg">
+                        <div class="dijitDialogPaneActionBar">
+                            <button data-dojo-props="onClick:function(){myAboutDlg.hide();}" data-dojo-type="dijit/form/Button" id="OK" type="button">OK</button>
+                        </div>
+                    </div>
+</body>
+
+</html>
