@@ -1,11 +1,11 @@
 <!--  Idx file in brijuser2.github.io/ccFam/index.html -->
 <!-- ccFam (TM)
      Copyright (c) M. P. Trivedi 2024.  All rights reserved.
-     Last updated: Oct 19 2024 -->
+     Last updated: Oct 23 2024 -->
 <html>
 
 <head>
-  <title>ccFam Splash</title>
+  <title>ccFam FacilityAdmin</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -84,50 +84,105 @@ html, body {
             new ContentPane({
                     region: "top",
                     "class": "edgePanel",
-                    content: "<center><h2>ccFam FacilityAdmin</h2></center>"
+                    content: "<center><h2>ccFam FacilityAdmin Portal</h2></center>"
             })
     );
 
-    var dlgContent = `
+    var mainDlgContent = `
+<p>
+<center>
+<div>
+<img src='https://github.com/brijUser2/brijuser2.github.io/blob/main/ccFam/assets/cg1.png?raw=true' width='15%'>&nbsp;<h2><span  class='flexAligned'>Jemmy Smith</span></h2>
+
+<img src='https://github.com/brijUser2/brijuser2.github.io/blob/main/ccFam/assets/cc-floor-plan.png?raw=true' width='50%'>
+
+<p>
+<div>
+<label for="fac">Facility: </label>&nbsp;
+	<select data-dojo-type="dijit/form/Select" id="facFld" name="facFld">
+		<option value="fac-1">Children's Academy Brandon</option>
+		<option value="fac-2" selected="selected">Child Care of Brandon</option>
+		<option value="fac-3">Kidz Club Academy Brandon</option>
+		<option value="fac-4">ARISE Academy Brandon</option>
+		<option value="fac-5">Simmons Chld World</option>
+	</select>
+	
+</div>
+
+<p>
+<button id="chkInDlgContent_roster" data-dojo-type="dijit/form/Button" type="button" onClick="alert('hey')">
+Print Roster
+</button>
+<p>
+<button id="chkInDlgContent_qrSheet" data-dojo-type="dijit/form/Button" type="button" onClick="alert('hey')">
+Print QR Sheet
+</button>
+
+</div>
+<p>
+`;
+
+    var chkInDlgContent = `
 <p>
 <center>
 <div>
 <img src='https://github.com/brijUser2/brijuser2.github.io/blob/main/ccFam/assets/child1.png?raw=true' height='15%'>&nbsp;<h2><span  class='flexAligned'>John Doe</span></h2>
 </div>
 <p>
-<button id="childChkIn" data-dojo-type="dijit/form/Button" type="button" onClick="alert('hey')" data-dojo-props="disabled:true">
+<button id="chkInDlgContent_childChkIn" data-dojo-type="dijit/form/Button" type="button" onClick="alert('hey')">
 Check-In Child
 </button>
 <p>
-<button id="childChkOut" data-dojo-type="dijit/form/Button" type="button" onClick="alert('hey');">
+<button id="chkInDlgContent_childChkOut" data-dojo-type="dijit/form/Button" type="button" onClick="alert('hey');" data-dojo-props="disabled:true">
 Check-Out Child
 </button>
 <p>
-<button id="childChkEdit" data-dojo-type="dijit/form/Button" type="button" onClick="alert('hey')">
-View/Edit
+<button id="chkInDlgContent_childChkEdit" data-dojo-type="dijit/form/Button" type="button" onClick="alert('hey')">
+View/Edit Details
 </button>
 </center>
 `;
 
+    var chkOutDlgContent = `
+<p>
+<center>
+<div>
+<img src='https://github.com/brijUser2/brijuser2.github.io/blob/main/ccFam/assets/child1.png?raw=true' height='15%'>&nbsp;<h2><span  class='flexAligned'>John Doe</span></h2>
+</div>
+<p>
+<button id="chkOutDlgContent_childChkIn" data-dojo-type="dijit/form/Button" type="button" onClick="alert('hey')" data-dojo-props="disabled:true">
+Check-In Child
+</button>
+<p>
+<button id="chkOutDlgContent_childChkOut" data-dojo-type="dijit/form/Button" type="button" onClick="alert('hey');">
+Check-Out Child
+</button>
+<p>
+<button id="chkOutDlgContent_childChkEdit" data-dojo-type="dijit/form/Button" type="button" onClick="alert('hey')">
+View/Edit Details
+</button>
+</center>
+`;
+    contentTabs.addChild(
+            new ContentPane({
+                    title: "Home",
+                    content: mainDlgContent
+            })
+    );
     contentTabs.addChild(
             new ContentPane({
                     id: "firstTab",
-                    title: "CliSide",
-                    content: dlgContent
+                    title: "Child CheckIn",
+                    content: chkInDlgContent
             })
     );
     contentTabs.addChild(
             new ContentPane({
-                    title: "ServerSide",
-                    content: 'dom.byId("FileIO_Server")'
+                    title: "Child CheckOut",
+                    content: chkOutDlgContent
             })
     );
-    contentTabs.addChild(
-            new ContentPane({
-                    title: "Download from Svr",
-                    content: 'dom.byId("FileIO_ServerDownload")'
-            })
-    );
+
     appLayout.startup();
     parser.parse();
     var myButton = new Button({
