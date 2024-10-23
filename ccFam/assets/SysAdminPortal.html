@@ -123,27 +123,8 @@ View all Children
 <p>
 `;
 
-    var dashboardContent = `
-<p>
-<div style="width: 100%; height: 100%">
-    <div data-dojo-type="dijit/layout/AccordionContainer" style="height: 100%;">
-        <div data-dojo-type="dijit/layout/ContentPane" title="Status">
-				<ul>
-				<li>
-            2 of 10 faciities need additional CareGivers
-				</li>
-				<li>
-            1 CareGiver is currently en route to a facility
-				</li>
-				<li>
-            A total of 343 Children are present at all facilities
-				</li>
-				<li>
-            A total of 31 Caregivers are present at all facilities, of which 7 are volunteers
-				</li>
-				</ul>
-        </div>
-        <div data-dojo-type="dijit/layout/ContentPane" title="Children's Academy Brandon">
+    var RedFacility = `
+        <h3>Children's Academy Brandon"</h3>
 <center>
 <img src='https://github.com/brijUser2/brijuser2.github.io/blob/main/ccFam/assets/cc-floor-plan-rm1.png?raw=true' width='50%'>
 </center>
@@ -222,7 +203,10 @@ SchlAgeChldrn (5+ yrs)
 Invite a CareGiver
 </button>
 
-        </div>
+    `;
+
+/*
+These are the rest...
         <div data-dojo-type="dijit/layout/ContentPane" title="Child Care of Brandon">
 <center>
 <img src='https://github.com/brijUser2/brijuser2.github.io/blob/main/ccFam/assets/cc-floor-plan-rm4.png?raw=true' width='50%'>
@@ -287,9 +271,45 @@ Invite a CareGiver
 <p>
             Hi how are you? .....Great, thx
         </div>
+*/
 
-    </div>
-</div>
+    addRed = () => {
+        let redCont = new ContentPane({
+                        title: "Children's Academy Brandon",
+                        content: RedFacility
+                });
+        dojo.connect(redCont, "onHide", function(nV){
+                contentTabs.removeChild(redCont);
+                redCont.destroyRecursive(false);
+        });
+        contentTabs.addChild(redCont);
+        contentTabs.selectChild(redCont);
+    }
+
+    var dashboardContent = `
+<ul>
+        <li>
+        <span style='background:#FBDADA;'>
+            2 of 10 faciities need additional CareGivers
+        </span><br>
+<button data-dojo-type="dijit/form/Button" type="button" onClick="addRed()">
+Children's Academy Brandon
+</button>
+&nbsp;&nbsp;
+<button data-dojo-type="dijit/form/Button" type="button" onClick="alert('hey')">
+View all Facilities
+</button>
+				</li>
+				<li>
+            1 CareGiver is currently en route to a facility
+				</li>
+				<li>
+            A total of 343 Children are present at all facilities
+				</li>
+				<li>
+            A total of 31 Caregivers are present at all facilities, of which 7 are volunteers
+				</li>
+</ul>
 `;
 
     var statusOutDlgContent = `
@@ -324,12 +344,6 @@ today @ <b>5:45pm</b>
                     id: "firstTab",
                     title: "Dashboard",
                     content: dashboardContent
-            })
-    );
-    contentTabs.addChild(
-            new ContentPane({
-                    title: "Child CheckOut",
-                    content: statusOutDlgContent
             })
     );
 
