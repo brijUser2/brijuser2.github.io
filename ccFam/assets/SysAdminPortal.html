@@ -47,6 +47,13 @@ html, body {
     background-color: #d0e9fc;
 }
 
+table, th, td {
+  border: 1px solid white;
+  border-collapse: collapse;
+}
+th, td {
+  background-color: #cfe5fa;
+}
 
 </style>
 
@@ -143,7 +150,7 @@ View all Children
 <p>
 
 <b>Room 1</b> at <b>Children's Academy Brandon</b> currently has 32 children and 3 CareGivers.
-<p>Here is the breakdown of the child population:<br>
+<p>Here is the breakdown of the child population in this room:<br>
 <table>
   <tr>
     <th>Category</th>
@@ -158,7 +165,7 @@ View all Children
 	5
 	</td>
 	<td>
-	1 cg : 3 infants (max grp size: 12)
+	1:3 (max grp size: 12)
 	</td>
 </tr>
 
@@ -170,7 +177,7 @@ View all Children
 	0
 	</td>
 	<td>
-		1 cg : 4 infants (max grp size: 12)
+		1:4 (max grp size: 12)
 	</td>
 </tr>
 
@@ -210,7 +217,10 @@ SchlAgeChldrn (5+ yrs)
 	</td>
 </tr>
 </table>
-
+<p>
+<button id="cgInvite" data-dojo-type="dijit/form/Button" type="button" onClick="alert('hey')">
+Invite a CareGiver
+</button>
 
         </div>
         <div data-dojo-type="dijit/layout/ContentPane" title="Child Care of Brandon">
@@ -335,11 +345,7 @@ today @ <b>5:45pm</b>
 
 			parser.parse();
 			dijit.byId("appLayout").layout();
-/*
-      on(dom.byId('abtDiv'), mouse.enter, function(evt){
-            myAboutDlg.show();
-      });
-*/
+
 });
 </script>
 
@@ -350,12 +356,6 @@ today @ <b>5:45pm</b>
 
     <div id="appLayout" class="demoLayout"></div>
 
-<div data-dojo-id="myAboutDlg" data-dojo-type="dijit/Dialog" title="About me...">
-                        <img height="300px" src="https://upload.wikimedia.org/wikipedia/commons/archive/0/09/20150318141725%21Rabindranath_with_Einstein.jpg">
-                        <div class="dijitDialogPaneActionBar">
-                            <button data-dojo-props="onClick:function(){myAboutDlg.hide();}" data-dojo-type="dijit/form/Button" id="OK" type="button">OK</button>
-                        </div>
-                    </div>
 </body>
 
 </html>
