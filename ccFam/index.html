@@ -1,13 +1,12 @@
-
 <!DOCTYPE html>
-<!--  Idx file in brijuser2.github.io/ccFam/index.html -->
+<!--  Proposal file in brijuser2.github.io/ccFam/assets/proposal.html -->
 <!-- ccFam (TM)
      Copyright (c) M. P. Trivedi 2024.  All rights reserved.
-     Last updated: Oct 23 2024 -->
+     Last updated: Oct 24 2024 -->
 <html>
 
 <head>
-  <title>ccFam Home</title>
+  <title>ccFam Proposal</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -15,6 +14,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/dojo/1.13.2/dojo/dojo.js" data-dojo-config="isDebug: 1, async: 1, parseOnLoad: 1"></script>
 <link rel="stylesheet" href="https://trivedienterprisesinc.github.io/ui/2024/common.css">
 
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+</script>
+     
 <style>
 
 /*Override for phone devices*/
@@ -41,39 +44,351 @@ html, body {
     background-color: #d0e9fc;
 }
 
+table, th, td {
+  border: 1px solid white;
+  border-collapse: collapse;
+}
+th, td {
+  background-color: #cfe5fa;
+}
+
+/*For the Grid TitlePanes*/
+.claro [id="RedPane"] .dijitTitlePaneTitleHover  {
+  background-color:#FBDADA;
+  border-color: #FBDADA;
+}
+.claro [id="RedPane"] .dijitTitlePaneTitle   {
+  background-color: #FBDADA;
+  border-color: #FBDADA;
+}
+.claro [id="YellowPane"] .dijitTitlePaneTitleHover  {
+  background-color:oldlace;
+  border-color: oldlace;
+}
+.claro [id="YellowPane"] .dijitTitlePaneTitle   {
+  background-color: oldlace;
+  border-color: oldlace;
+}
+.claro [id="GreenPane"] .dijitTitlePaneTitleHover  {
+  background-color: #CFFAEA;
+  border-color: #CFFAEA;
+}
+.claro [id="GreenPane"] .dijitTitlePaneTitle   {
+  background-color: #CFFAEA;
+  border-color: #CFFAEA;
+}
+
 
 </style>
-
-<script type="module">
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-</script>
-     
-<script>
-require(["dojo/parser", "dijit/layout/TabContainer", "dijit/layout/ContentPane", "dijit/form/Button"]);
-</script>
 </head>
 
 <body class="claro">
-
-<img src='https://raw.githubusercontent.com/brijUser2/brijuser2.github.io/refs/heads/main/ccFam/assets/avatar.png' width='100px;'>
-<p>
-	Hi, Justin!
-<p>
-This page will be the 'center of communications' between us, I'll make sure all links are on this page.
-<p>
-An easier way to access this page is through this <a href='https://is.gd/ccFamJustin'>link</a> (The link is easier to remember: just type in the address "is.gd/ccFamJustin")
-<p>
-By the way, I'm temporarily using ccFam as short for <b><u><span style='background:burlywood;'>C</span>hild-<span style='background:burlywood;'>c</span>are <span style='background:burlywood;'>Fa</span>cility <span style='background:burlywood;'>M</span>anagement System</u></b>.<p>  Here's the logo I'm using (we can replace it with a better one later perhaps):
-<p>
-<center><img src='https://raw.githubusercontent.com/brijUser2/brijuser2.github.io/refs/heads/main/ccFam/assets/ccFam_logo4.jpg' width='100px;'></center>
-<p>
-I just got the email you sent to me @ 1pm; so we don't need any workarounds for now; we can communicate via email and I'll use this email to post links to work.
-<p>
-I'm really glad you happened to drop in @ Bloomingdale; otherwise I'd have been waiting for your email reply and thinking you're busy with work :-)
-<p>
-Again, I'm working on the Proposal as we speak and will have a good initial document to show you by this weekend, including ScreenShots with demo data etc.
-<p>
-Thanks,
+<center>
+<img src='https://raw.githubusercontent.com/brijUser2/brijuser2.github.io/refs/heads/main/ccFam/assets/ccFam_logo4.jpg' width='25%;'>
+<h1 id="proposal-template-for-us-government-software-contract">Proposal<br>
+<b><u><span style='background:burlywood;'>C</span>hild-<span style='background:burlywood;'>c</span>are <span style='background:burlywood;'>Fa</span>cility <span style='background:burlywood;'>M</span>anagement System</u></b></h1>
+</center>
 <br>
--Mike
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<i>Note: This document appears best on a desktop computer.</i>
+<p>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#1-executive-summary">1. Executive Summary</a></li>
+<li><a href="#2-qr-code">2. QR Codes</a></li>
+<li><a href="#3-workflows">3. Project Workflows</a></li>
+<ul>
+	<li><a href="#website">ccFam website</a></li>	
+	<li><a href="#childCheckIn">Child CheckIn</a></li>
+	<li><a href="#roster">Roster</a></li>
+	<li><a href="#checkOut"><b>Child CheckOut</b></li>
+	<li><a href="#parentWrkfl"><b>Parent Workflows</b></li>
+	<li><a href="#sysAd"><b>SysAdmin Workflows</b></li>
+
+</ul>
+<!--li><a href="#4-deliverables">4. Deliverables</a></li-->
+<li><a href="#4-technical-approach">4. Technical Approach</a></li>
+<li><a href="#6-project-schedule">6. Project Schedule</a></li>
+<!--li><a href="#7-team-qualifications">7. Team Qualifications</a></li>
+<li><a href="#8-risk-management">8. Risk Management</a></li>
+<li><a href="#9-quality-assurance">9. Quality Assurance</a></li>
+<li><a href="#10-budget-and-pricing">10. Budget and Pricing</a></li>
+<li><a href="#11-compliance-and-standards">11. Compliance and Standards</a></li>
+<li><a href="#12-conclusion">12. Conclusion</a></li-->
+<li><a href="#7-appendices">7. Appendices</a></li>
+</ul>
+</li>
+</ul>
+
+<h2 id="1-executive-summary">1. Executive Summary</h2>
+
+The vendor, Mike Trivedi, has over 20 years of experience in the Software Development Industry (Please see the Appendices for further information).  Many Dow Jones 30 and S&P 500 companies have benefited from Mr. Trivedi's consulting, and so have some large international firms and many smaller companies.
+<p>
+Besides working with top companies, Mr. Trivedi has also worked at four US government organizations, viz.: Temple University, Fannie Mae, SWFWMD and the US Dept. of Energy.  Mr. Trivedi is familiar with US Government Standards and will have no issues ensuring compliance with standards and requirements outlined by DCF and other US gov't entities.
+<p>
+Mr. Trivedi's strong experience and talent enable him to develop Software Systems which are <b>cutting edge</b> using the very latest and best technology available today.
+<p>
+We strongly believe that other vendors will not be able to match our proposal in technical width and depth.  Moreover, for ccFam we intend to use many tools and software libraries previously developed by ourselves.  This gives us a the ability to use time-tested and proven tech as well as a lead in time and effort.  We therefore believe that our quote will also prove to be very competitive.
+<p>
+<br>
+
+<h2 id="2-qr-code">2. QR Codes</h2>
+
+<center>
+	<figure>
+		<img src='https://github.com/brijUser2/brijuser2.github.io/blob/main/ccFam/assets/exampleQRCodeLbl1by1.png?raw=true' width="25%"><br>
+	<figcaption>QR Label</figcaption>
+	</figure>
+</center>
+The QR Label you see above is a key component of the proposed ccFam System.
+<p>
+The image is created from an Avery sticker sheet:<br>
+<a href='https://www.avery.com/blank/labels/94103'>Square Avery Lbls</a> 1x1 (Presta® 94103; 48 labels per sheet)
+<p>
+These QR codes can be used for <b>all</b> entities in the system, including:
+<ul>
+	<li>Children</li>
+	<li>CareGivers</li>
+	<li>Facility Administrators</li>
+</ul>
+Using these QR labels:
+<ul>
+	<li>Makes work <b>easier</b> for Facility Admins (they only have to scan the sticker and click on "Child CheckIn" to register a child)</li>
+	<li>Reduce the possiblity of <b>error</b></li>
+	<li>Have unrelated advantages (e.g.: If children place these on all their <b>belongings</b>; if they forget their phone or water-bottle at the facility the Admin will know instantly by scanning the QR Code.)
+	<li>If used by the parents while picking up, there is an additional level of <b>security</b> added.</li>
+	<li>In case of a medical <b>emergency</b> for a child, any adult can instantly pull up the child's Emergency Information including Doctor's contact info and allergy information.</li>
+</ul>
+
+<h2 id="3-workflows">2. Project Workflows</h2>
+
+This section of the proposal outlines the workflows for tasks related to each of the principal ccFam users, viz.: Facility Administrators and the System Administrator.
+<p>
+The entire workflows are listed for clarity and to reduce the possiblity of error, and to ensure that the vendor and organization are in sync about every Functional Aspect of the new system.
+<p>
+<h3>Child Workflows</h3>
+
+<span id='website'><b>ccFam website</b></span>
+<p>
+The main ccFam website will have three sections for visitors:
+<ol>
+	<li>Child/Parent Portal</li>
+	<li>CareGiver Portal</li>
+	<li>Site Admin Portal</li>
+</ol>
+<ul>
+	<li>Each of these sections will allow the usual website flows for registration/login/lost password recovery, etc.</li>
+	<li>We will offer to let the user use Social Media and Email platforms (e.g. Outlook/Google/FaceBook/X) to login.  This is standard procedure nowadays to allow users a one-click login without entering a username/password.</li>
+	<li>The website will offer Password recovery and 2FA (Two Factor Authentication, which allows the use of Voice Mail and/or SMS to verify identity)</li>
+	</ul>
+Besides this, the ccFam website will contain the usual site-oriented information (find a facility, lookup a facility map/address, contact us, etc.)
+<p>
+
+<span id='childCheckIn'><b>CheckIn</b></span>
+<center>
+	<figure>
+		<img src='https://raw.githubusercontent.com/brijUser2/brijuser2.github.io/refs/heads/main/ccFam/assets/ChildChkInDlg.png' width="25%"><br>
+	<figcaption><i>Child CheckIn</i></figcaption>
+	</figure>
+</center>
+<ol>
+	<li>Child arrives at facility</li>
+	<li>The Facility Adminstrator scans the child's QR code (from a sticker)</li>
+	<li>The system pulls up the child's record on the FacAdmin's device (showing name and photo)</li>
+	<li>After confirming, FacAdmin clicks on the <b>CheckIn</b> button</li>
+	<li>The System prompts the FacAdmin to assign the child to a Room (only rooms for the current facility are shown)</li>
+	<li>The child is checked-in, and the SysAdmin's dashboard count increases by one.</li>
+</ol>
+
+<span id='roster'><b>Roster</b></span>
+<center>
+	<figure>
+		<img src="https://raw.githubusercontent.com/brijUser2/brijuser2.github.io/refs/heads/main/ccFam/assets/roster.png" width="25%;"><br>
+	<figcaption><i>Class Roster</i></figcaption>
+	</figure>
+</center>
+<ol>
+	<li>At some time during the morning - after the bulk of the children have arrived - the FacAdmin clicks on a button to print out all Rosters for the facility</li>
+	<li>The Roster contains the following data:
+		<ul>
+			<li>Facility Name</li>
+			<li>Room name/id</li>
+			<li>One row for each child in the Room, with columns for |Photo|Name|Age|QR Code</li>
+			<li>To reAssign a child to another room the FacAdmin just scans the QR Code and clicks on the 'reAssign' button.  If a child is assigned to a different room the system updates the counts for both rooms live.</li>
+			<li>The system automatically caculates the ratios required by DCF and updates the dashboard in real-time</li>
+		</ul>
+	</li>
+</ol>
+
+<p>
+
+<span id='checkOut'><b>CheckOut</b></span>
+<center>
+	<figure>
+		<img src='https://raw.githubusercontent.com/brijUser2/brijuser2.github.io/refs/heads/main/ccFam/assets/ChildChkOutDlg.png' width="25%"><br>
+	<figcaption><i>Child CheckOut</i></figcaption>
+	</figure>
+</center>
+<ol>
+	<li>Similar to above, except that since the system knows that the child is currently at the facility, the CheckIn button is auto-disabled.</li>
+</ol>
+<p>
+
+
+<p>
+
+<span id='parentWrkfl'><b>Parent Workflows</b></span>
+
+<b>Status</b><p>
+All parents will be allowed to check their child(ren)'s status.  
+<p>
+Additionally we will offer live updates on Child-CheckOuts; this may be useful in situations where one parent tells the other "Pick up the child if I don't make it to the childcare center".
+<p>
+The appropriate Status screens which the parents will see are shown below:
+<p>
+
+<center>
+	<table>
+		<tr>
+			<td>
+	<figure>
+		<img src='https://raw.githubusercontent.com/brijUser2/brijuser2.github.io/refs/heads/main/ccFam/assets/ChildStatus1.png' width="95%"><br>
+	<figcaption><i>Child Status 1</i></figcaption>
+	</figure>
+							</td><td>
+	<figure>
+		<img src='https://raw.githubusercontent.com/brijUser2/brijuser2.github.io/refs/heads/main/ccFam/assets/ChildStatus2.png' width="95%"><br>
+	<figcaption><i>Child Status 2</i></figcaption>
+	</figure></td></tr></table>
+</center>
+<p>
+The parents will also be able to schedule upcoming absences (e.g. vacations) and be able to communicate with the FacilityAdmin.
+<p>
+The parents will be able to access the ccFam website 24x7.
+<p>
+
+	<span id="parentWrkfl"><b>SysAdmin Workflows</b></span>
+<p>
+The ccFam System will offer the System Administrator all capabilities to view/edit/delete any of the tables:
+<ul>
+	<li>Child</li>
+	<li>Facility</li>
+	<li>CareGiver</li>
+	<li>FacAdmin</li>
+</ul>
+<p>
+The system will of course also allow the SysAdmin to communicate effectively with all users of the system.
+<p>
+We shall create eMail Templates for all common usage patterns, e.g.: Facility Adminstrators will have the option of filling a "Lost Item email" which allows them to just (only) enter the description of the item ("A Cinderella water bottle") and with just one click, send the email message to the parent.
+<p>
+However, the main module of interest to SysAdmins is the <b>Dashboard</b>.
+<p>
+The System Dashboard will update multiple times a second and show <b>live</b> streaming data from each facility including totals and ratios.
+<p>
+	To get a rough idea of what we intend to build, please click on <a href='https://brijuser2.github.io/ccFam/assets/SysAdminPortal.html'>this link</a><p>
+		Please note that clicking on any of the bottom sections (e.g. "In Violation") will show you detailed information.<p>
+			Also, clicking on the table shown in the "In Violation" section will bring up the details of the specific facility you click on (right now it only shows a demo screen but the system shall show data for each row)<p>
+				As you can see, the details include a FloorPlan of the facility (with the specific location of the room highlighted)<p>
+<b>In addition</b> to this functionality, when the SysAdmin clicks on the "Invite Caregiver" button the system:
+<ul>
+	<li>Auto-filters the Caregivers and shows only the ones with the experience needed (age-groups etc.)</li>
+	<li>Allows the SysAdmin to send a one-click Invite</li>
+	<li>The Caregiver will recieve a VoiceMail or SMS asking to accept/decline and will be given a timeout (say 15 minutes, depending on your feedback)<br>This is in order to allow the CareGiver to lookup the facility or decide whether the engagement is convenient.</li>
+	<li>The system shall display live information status: if the CareGiver doesn't reply it moves to Yellow (awaiting reply) else accept/reject allows the SysAdmin to take the next step.</li>
+	<li>The facility remain in yellow status until the additional caregiver checksIn.</li>
+	<li>The SysAdmin shall be able to look at <b>all</b> invites sent and status for each (accepted/rejected/pending).</li>
+</ul>
+We believe that a system designed in such a manner will be very intuitive to use and, therefore, the most productive.
+<p>
+Of course, we shall be totally open to any modifications you prefer to make to these workflows and are confident that we shall be able to translate all your business requirements into a top-notch software product.
+
+
+<h2 id="4-technical-approach">4. Technical Approach</h2>
+
+We intend to use the following Tech Stack to build the ccFam System:
+<table>
+	<tr>
+		<td>BackEnd: </td>
+			<td>Microsoft dotNet + FSharp</td>
+	</tr>
+	<tr>
+		<td>Database System:</td>
+		<td>MongoDb</td>
+	</tr>
+	<tr>
+		<td>Web Server Hosting:</td>
+		<td>Microsoft Azure</td>
+	</tr>	
+	<tr>
+		<td>Authentication System: </td>
+		<td>Microsoft Azure/AD</td>
+	</tr>
+	<tr>
+		<td>VoiceMail/SMS:</td>
+		<td>Twilio</td>
+	</tr>
+	</thead>
+</table><p>
+These are all industry-standard vendors offering the most reliable and business-proven technology available today.<p>
+
+	<b>A Note about Scale</b><br>
+	ccFam shall be built from scratch with a view to scale.  By that we mean that the system shall be able to easily handle a great many facilities (lets say a hundred would be no problem).<p>
+		Expanding the product to meet really large scale demands (say, 100m children: the entire US population) would also not require any <b>basic</b> architecture changes, <i>but</i> we'll then need to optimize for performance: handling tens of millions of checkIns simulataneously would slow down the system; so to prevent that we would need to set up support systems and backup devices.
+
+<h2 id="6-project-schedule">6. Project Schedule</h2>
+<ul>
+<li><p><strong>Content Summary</strong>: Provide a high-level timeline for the project, outlining major milestones and deadlines. Include key activities for each phase (e.g., requirements gathering, design, implementation, testing).</p>
+</li>
+<li>
+
+<pre class="mermaid">
+gantt
+    title ccFam Project Schedule
+    dateFormat YYYY-MM-DD
+    section Kickoff
+	    Requirements gathering  :a1, 2025-01-01, 10d
+	    System Design           :a2, 2025-01-01, 10d
+	    Architecture/Approach   :a3, after a2, 10d
+    section Phase2
+	    Setup Accounts   :a4, after a3, 10d
+	    Create Db/Tbls   :a5, after a4, 10d
+	    Security1       :a6, after a5, 30d
+    section Phase3
+	    Security2           :a7, after a6, 30d
+	    Security3           :a8, after a7, 30d
+	    Security Test/Debug :a9, after a8, 30d
+    section Phase4
+	    QR1            :a10, after a9, 15d
+	    QR2            :a11, after a10, 15d
+	    BL1            :a12, after a11, 30d
+    section Phase5
+	    BL2              :a13, after a12, 30d
+	    UAT1             :a14, after a13, 10d
+	    UAT1 Test/Debug  :a15, after a14, 30d
+    section Phase6
+	    UAT2              :a16, after a15, 10d
+	    UAT2 Test/Debug   :a17, after a16, 30d
+	    PreLaunchWrapup   :a18, after a17, 30d
+      	    Launch            :a19, after a18, 1d
+</pre>
+
+<p>
+
+<span id='7-appendices'><b>7. Appendices</b></span>
+
+Mike Trivedi's one-page <a href='https://trivedienterprisesinc.github.io/brijPitch/articles/images/Resume_Mike_Trivedi.pdf'>resume</a>.
+<p>
+As always, please feel free to contact me with any quetions/comments.
+<p>
+Justin, I really look forward to working with you on this project and hope that it will be a win-win for both of us.
+<p>
+Thank you,
+<br>Mike
 </body></html>
