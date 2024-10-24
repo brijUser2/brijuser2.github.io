@@ -1,7 +1,7 @@
 <!--  Idx file in brijuser2.github.io/ccFam/index.html -->
 <!-- ccFam (TM)
      Copyright (c) M. P. Trivedi 2024.  All rights reserved.
-     Last updated: Oct 23 2024 -->
+     Last updated: Oct 24 2024 -->
 <html>
 
 <head>
@@ -15,10 +15,6 @@
 
 <script type="module">
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-</script>
-     
-<script>
-require(["dojo/parser", "dijit/layout/TabContainer", "dijit/layout/ContentPane", "dijit/form/Button"]);
 </script>
 
 <style>
@@ -55,15 +51,48 @@ th, td {
   background-color: #cfe5fa;
 }
 
+/*For the Grid TitlePanes*/
+.claro [id="RedPane"] .dijitTitlePaneTitleHover  {
+  background-color:#FBDADA;
+  border-color: #FBDADA;
+}
+.claro [id="RedPane"] .dijitTitlePaneTitle   {
+  background-color: #FBDADA;
+  border-color: #FBDADA;
+}
+.claro [id="YellowPane"] .dijitTitlePaneTitleHover  {
+  background-color:oldlace;
+  border-color: oldlace;
+}
+.claro [id="YellowPane"] .dijitTitlePaneTitle   {
+  background-color: oldlace;
+  border-color: oldlace;
+}
+.claro [id="GreenPane"] .dijitTitlePaneTitleHover  {
+  background-color: #CFFAEA;
+  border-color: #CFFAEA;
+}
+.claro [id="GreenPane"] .dijitTitlePaneTitle   {
+  background-color: #CFFAEA;
+  border-color: #CFFAEA;
+}
+
+
 </style>
 
 <script>
     require(["dojo/parser", "dojo/_base/fx", "dijit/registry", 
 			"dijit/form/Button", "dijit/layout/BorderContainer", 
 			"dijit/layout/TabContainer", "dijit/layout/ContentPane", "dojox/layout/ExpandoPane", "dijit/Dialog", "dojo/on", 
-			"dojo/dom", "dojo/dom-style", "dojo/domReady!"],
+			"dojo/dom", "dojo/dom-style", 
+            "dijit/ConfirmDialog",
+/*These're for the chart*/
+"dojox/charting/Chart", "dojox/charting/plot2d/Pie", "dojox/charting/action2d/Highlight",
+         "dojox/charting/action2d/MoveSlice" , "dojox/charting/action2d/Tooltip",
+         "dojox/charting/themes/MiamiNice", "dojox/charting/widget/Legend",  "dojo/ready", "dojo/domReady!"],
         function(parser, fx, registry, Button, BorderContainer,
-        TabContainer, ContentPane, ExpandoPane, Dialog, on, dom, style){
+        TabContainer, ContentPane, ExpandoPane, Dialog, on, dom, style, Dlg,
+        Chart, Pie, Highlight, MoveSlice, Tooltip, MiamiNice, Legend, ready){
 
     var appLayout = new BorderContainer({
             design: "headline"
@@ -85,7 +114,8 @@ th, td {
             "class": "centerPanel"
     });
 
-    appLayout.addChild( contentTabs );
+    //remmed 10.24; see newDashboard
+    // appLayout.addChild( contentTabs );
 
     appLayout.addChild(
             new ContentPane({
@@ -273,6 +303,32 @@ These are the rest...
         </div>
 */
 
+window.showRedDlg = () => {
+    //Consider moving this to common for all the Dlgs
+	console.log("pvDlg.init()...");
+    var redDlg;
+    let dlgActionBarTempl = "<div class='dijitDialogPaneActionBar' data-dojo-attach-point='actionBarNode'>" +
+	"<button data-dojo-type='dijit/form/Button' type='submit'" +
+        "    data-dojo-attach-point='okButton'></button>" +
+	"<button data-dojo-type='dijit/form/Button' type='button'" +
+	"		data-dojo-attach-point='cancelButton' data-dojo-attach-event='click:onCancel'></button>" +
+        "</div>";
+
+        redDlg = new Dlg({
+                title: "In Violation...",
+                id: "redDlg",
+                content: RedFacility,
+                style: "height:80%;width:80%;",
+                actionBarTemplate: dlgActionBarTempl
+        });
+
+	on(redDlg, "hide", function(){
+	     pvDlg.destroy();
+	     pvGrid.destroy();
+	});
+    redDlg.show();
+  }
+
     addRed = () => {
         let redCont = new ContentPane({
                         title: "Children's Academy Brandon",
@@ -287,21 +343,21 @@ These are the rest...
     }
 
     var dashboardContent = `
+<div id="dashboardInnerDiv">
+<center>
+    <div id="dashboardChart" style="width: 300px; height: 300px;"></div>
+    <div id="dashboardLegend"></div>
+</center>
 <ul>
         <li>
         <span style='background:#FBDADA;'>
             2 of 10 faciities need additional CareGivers
         </span><br>
-<button data-dojo-type="dijit/form/Button" type="button" onClick="addRed()">
-Children's Academy Brandon
-</button>
-&nbsp;&nbsp;
-<button data-dojo-type="dijit/form/Button" type="button" onClick="alert('hey')">
-View all Facilities
-</button>
 				</li>
 				<li>
+        <span style='background:oldlace;'>
             1 CareGiver is currently en route to a facility
+        </span><br>
 				</li>
 				<li>
             A total of 343 Children are present at all facilities
@@ -310,6 +366,23 @@ View all Facilities
             A total of 31 Caregivers are present at all facilities, of which 7 are volunteers
 				</li>
 </ul>
+
+<p>
+
+<hr>
+    <div id='Grids'>
+        <div id="RedPane" data-dojo-props="title:'In Violation', open:false" data-dojo-type="dijit/TitlePane"> 
+        <img src='https://github.com/brijUser2/brijuser2.github.io/blob/main/ccFam/assets/redDV.png?raw=true' width='100%' onClick="showRedDlg();">
+        </div>
+        <div id="YellowPane" data-dojo-props="title:'Caregivers En Route', open:false" data-dojo-type="dijit/TitlePane"> 
+        <img src='https://github.com/brijUser2/brijuser2.github.io/blob/main/ccFam/assets/yellowDV.png?raw=true' width='100%'>
+        </div>
+        <div id="GreenPane" data-dojo-props="title:'Operating Normally', open:false" data-dojo-type="dijit/TitlePane"> 
+        <img src='https://github.com/brijUser2/brijuser2.github.io/blob/main/ccFam/assets/greenDV.png?raw=true' width='100%'>
+        </div>
+    </div>
+
+</div>
 `;
 
     var statusOutDlgContent = `
@@ -333,6 +406,7 @@ today @ <b>5:45pm</b>
 
 </center>
 `;
+/* remmed 10.24
     contentTabs.addChild(
             new ContentPane({
                     title: "Home",
@@ -346,9 +420,16 @@ today @ <b>5:45pm</b>
                     content: dashboardContent
             })
     );
+*/
+    var newDashboard = new ContentPane({
+            region: "center",
+            id: "newDashboard",
+            tabPosition: "bottom",
+            "class": "centerPanel",
+            content: dashboardContent
+    });
+    appLayout.addChild( newDashboard );
 
-    appLayout.startup();
-    parser.parse();
     var myButton = new Button({
         label: "Click me!",
         onClick: function(){
@@ -357,8 +438,37 @@ today @ <b>5:45pm</b>
             }
     }, "progButtonNode").startup();
 
-			parser.parse();
-			dijit.byId("appLayout").layout();
+    var dashboardChart = new Chart("dashboardChart");
+    dashboardChart.setTheme(MiamiNice)
+     .addPlot("default", {
+        type: Pie,
+        font: "normal normal 18pt Tahoma",
+        fontColor: "black",
+        labelOffset: -30,
+        radius: 80,
+    styleFunc: function(item){
+        if(item.stroke == "red"){
+            return { fill : '#FBDADA' };
+        }else if(item.stroke ==  "yellow"){
+            return { fill: 'oldlace' };
+        }
+        return { fill: "#CFFAEA" };
+    }}).addSeries("Series A", [
+        {y: 2, text: "",   stroke: "red", tooltip: "Additional Caregivers<br>needed at 2 Facilities"},
+        {y: 3, text: "", stroke: "yellow", tooltip: "3 Caregivers en route<br>to Facilities"},
+        {y: 20, text: "", stroke: "black", tooltip: "18 Facilities running<br>without violations"}
+    ]);
+    //var anim_a = new MoveSlice(dashboardChart, "default");
+    //var anim_b = new Highlight(dashboardChart, "default");
+    var anim_c = new Tooltip(dashboardChart, "default");
+    dashboardChart.render();
+    //var dashboardLegend = new Legend({chart: dashboardChart}, "dashboardLegend");
+
+
+    appLayout.startup();
+    dijit.byId("appLayout").layout();
+    parser.parse();
+
 
 });
 </script>
