@@ -1,7 +1,7 @@
-<!--  Idx file in brijuser2.github.io/ccFam/index.html -->
+<!--  File in brijuser2.github.io/ccFam/SysAdPortal.html -->
 <!-- ccFam (TM)
      Copyright (c) M. P. Trivedi 2024.  All rights reserved.
-     Last updated: Oct 23 2024 -->
+     Last updated: Oct 25 2024 -->
 <html>
 
 <head>
@@ -77,7 +77,9 @@ th, td {
   border-color: #CFFAEA;
 }
 
-
+.pieTinyTxt {
+	font: 8pt Tahoma;
+}
 </style>
 
 <script>
@@ -121,7 +123,7 @@ th, td {
             new ContentPane({
                     region: "top",
                     "class": "edgePanel",
-                    content: "<center><h2>ccFam SysAdmin Portal</h2></center>"
+                    content: "<table style='border-collapse: collapse; border: none;'><tr><td style='width:25%; text-align: right;border: none;'><span id='hdr'><img src='https://raw.githubusercontent.com/brijUser2/brijuser2.github.io/refs/heads/main/ccFam/assets/ccFam_logo4.jpg' width='25%'></td><td style='border: none;padding: 25px;'>SysAdmin Portal</td></tr></table>"
             })
     );
 
@@ -344,8 +346,9 @@ window.showRedDlg = () => {
     var dashboardContent = `
 <div id="dashboardInnerDiv">
 <center>
-    <div id="dashboardChart" style="width: 300px; height: 300px;"></div>
-    <div id="dashboardLegend"></div>
+    <div id="dashboardChart" style="width: 400px; height: 400px;"></div>
+		<p>
+    <div id="dashboardLegend"><small><i>[Please hover the mouse pointer over a slice for details]</i></small></div>
 </center>
 <ul>
         <li>
@@ -441,10 +444,15 @@ today @ <b>5:45pm</b>
     dashboardChart.setTheme(MiamiNice)
      .addPlot("default", {
         type: Pie,
-        font: "normal normal 18pt Tahoma",
+        font: "normal normal 8pt Tahoma",
         fontColor: "black",
-        labelOffset: -30,
-        radius: 80,
+				ticks: false,
+				fixed: true,
+				precision: 1,
+        labelOffset: -10,
+				labelStyle: "columns",
+				htmlLabels: false,
+        radius: 70,
     styleFunc: function(item){
         if(item.stroke == "red"){
             return { fill : '#FBDADA' };
@@ -453,12 +461,12 @@ today @ <b>5:45pm</b>
         }
         return { fill: "#CFFAEA" };
     }}).addSeries("Series A", [
-        {y: 2, text: "",   stroke: "red", tooltip: "Additional Caregivers<br>needed at 2 Facilities"},
-        {y: 3, text: "", stroke: "yellow", tooltip: "3 Caregivers en route<br>to Facilities"},
-        {y: 20, text: "", stroke: "black", tooltip: "18 Facilities running<br>without violations"}
+        {y: 2, text: "Violation",   stroke: "red", tooltip: "Additional Caregivers<br>needed at 2 Facilities"},
+        {y: 3, text: "Pending", stroke: "yellow", tooltip: "3 Caregivers en route<br>to Facilities"},
+        {y: 20, text: "Ok", stroke: "black", tooltip: "18 Facilities running<br>without violations"}
     ]);
-    //var anim_a = new MoveSlice(dashboardChart, "default");
-    //var anim_b = new Highlight(dashboardChart, "default");
+    var anim_a = new MoveSlice(dashboardChart, "default");
+    var anim_b = new Highlight(dashboardChart, "default");
     var anim_c = new Tooltip(dashboardChart, "default");
     dashboardChart.render();
     //var dashboardLegend = new Legend({chart: dashboardChart}, "dashboardLegend");
