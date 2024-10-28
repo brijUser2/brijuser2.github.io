@@ -1,0 +1,786 @@
+<!DOCTYPE html> 
+<html>
+<head>
+	<title>Gridx style changes + some func</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+	<!--The file below imports claro/document/gridx/rtl/dojo css files-->
+	<link rel='stylesheet' href="https://oria.github.io/gridx/build/gridx/tests/support/common.css" />
+
+	<style type="text/css">
+		.gridx {
+			width: 800px;
+			height: 400px;
+		}
+	</style>
+	<script type="text/javascript" src="https://oria.github.io/gridx/build/dojo/dojo.js" data-dojo-config="async: true"></script>
+
+	<!--link rel="stylesheet" href="gfxClaro.css"-->	<!--(for overrides)-->
+	<link rel="stylesheet" href="gridx_Styling/common.css">
+	<link rel="stylesheet" href="gridx_Styling/gfxGridx.css">	<!--(for customizations)-->
+
+<!--BEGIN Frm related assets-->
+	<style>
+		fieldset		{ border: 1px solid; margin: 1em; padding: 1em; }
+		legend 			{ font-weight: bolder; font-size: larger; }
+
+		#result			{ background-color: white; }
+		#result th		{ font-weight: bolder; }
+		#result .hilite	{ background-color: #fd8; }
+
+.dijitDialogPaneContent {
+    width: 800px !important;
+    height: 600px !important;
+}
+
+		.makeYellow		{ background-color: #ffa; }
+	</style>
+
+<script type="text/javascript" src="./gridx_Styling/commonAux.js"></script>
+<script type="text/javascript" src="./gridx_Styling/FrmMngrExt.js"></script>
+<script type="text/javascript" src="./gridx_Styling/pvDlg.js"></script>
+<!--END Frm related assets-->
+
+<script>
+require([
+	'dojo/parser',
+	'dojo/on', 'dojo/dom', 'dojo/mouse', /*@mbi'dojo/dom-Class',*/
+	'dojo/_base/Deferred', 'dijit/Tooltip', 'dijit/Toolbar', 
+	'dijit/form/Button', 'dijit/form/Select', 
+	/* frm related */
+    "dojo/_base/lang", "dijit/registry", "dojox/form/Manager",
+	'dijit/Dialog',
+	'gridx/tests/support/data/TreeColumnarTestData',
+/*	'gridx/tests/support/data/TreeNestedTestData', dereferenced in favor of local 4 deltas*/
+	'./gridx_Styling/TreeNestedTestData.js',
+	'gridx/tests/support/stores/ItemFileWriteStore',
+	'gridx/modules/ColumnWidth',
+	'gridx/modules/Body',
+	'gridx/allModules',
+	'gridx/Grid',
+	'gridx/core/model/cache/Sync',
+	'gridx/core/model/cache/Async',
+	'dojo/domReady!'
+], function(parser, on, dom, mouse, /*@mbidomClass,*/ Deferred, Tooltip, Toolbar, Button, Select, lang, registry, Mngr, Dialog, dataSource, nestedDataSource, storeFactory, ColumnWidth, Body, modules, Grid){
+
+	window.showFrm = function(){
+	    myFrmDialog.show();
+	    var frm = registry.byId("form");
+	    frm["disable"]();
+	}
+	window.editFrm = function(){
+	    var frm = registry.byId("form");
+	    frm["enable"]();
+	}
+	window.saveFrm = function(){
+	    var frm = registry.byId("form");
+	    frm.getDeltas();
+	}
+    
+	window.addRow = function() {
+		var newItem = {id: "itemId", type: "itemType"},
+			parentId = dojo.byId('parentIdInput').value;
+
+		if (!parentId) return;
+
+		this.store.fetchItemByIdentity({identity: parentId, onItem: function(parentItem) {
+			if (!parentItem) return;
+			
+			this.store.newItem({id: new Date().getTime()}, {
+				parent: parentItem,
+				attribute: "children"
+			});
+		}});
+	};
+
+	window.deleteRow = function() {
+		var newItem = {id: "itemId", type: "itemType"},
+			deleteRowId = dojo.byId('deleteRowId').value;
+
+		if (!deleteRowId) return;
+
+		this.store.fetchItemByIdentity({identity: deleteRowId, onItem: function(item) {
+			if (!item) return;
+			
+			this.store.deleteItem(item);
+			// this.store.newItem({id: new Date().getTime()}, {
+			// 	parent: parentItem,
+			// 	attribute: "children"
+			// });
+		}});
+	};
+
+	store = storeFactory({
+		dataSource: dataSource, 
+		maxLevel: 4,
+		maxChildrenCount: 10
+	});
+	store.hasChildren = function(id, item){
+		return item && store.getValues(item, 'children').length;
+	};
+	/* 
+	 * Dojo don't provide sort interface for tree store, so it's hard to do sorting for children. 
+	 * User should add their own sorting logic here to sort children manually.
+	 */
+	store.getChildren = function(item, req){
+		var children = store.getValues(item, 'children'),
+			attr,
+			t = this,		//store object
+			sorts = req.sort;
+
+		var sorting = function (a, b, index) {
+			if (!sorts[index]) return 0;
+
+			var attr = sorts[index].attribute;
+			var va = t.getValue(a, attr);
+			var vb = t.getValue(b, attr);
+
+			if (va == vb) {
+				return sorting(a, b, ++index);
+			}
+			return !sorts[index].descending ? (va > vb ? 1 : -1) : (va <= vb ? 1 : -1);
+		}
+
+		if (sorts && sorts.length) {
+			children.sort(function(a, b) {
+				return sorting(a, b, 0);
+			});
+		}
+
+		return children;
+	};
+
+	storeAsync = storeFactory({
+		isAsync: true,
+		dataSource: dataSource, 
+		maxLevel: 4,
+		maxChildrenCount: 10
+	});
+	storeAsync.hasChildren = function(id, item){
+		return item && storeAsync.getValues(item, 'children').length;
+	};
+	storeAsync.getChildren = function(item){
+		var d = new Deferred();
+		console.log('getChildren: ', storeAsync.getIdentity(item));
+		setTimeout(function(){
+			var children = storeAsync.getValues(item, 'children');
+			d.callback(children);
+		}, 1000);
+		return d;
+	};
+
+	storeNested = storeFactory({
+		dataSource: nestedDataSource, 
+		maxLevel: 4,
+		maxChildrenCount: 10
+	});
+	storeNested.hasChildren = function(id, item){
+		return item && storeNested.getValues(item, 'children').length;
+	};
+	storeNested.getChildren = function(item){
+		var d = new Deferred();
+		setTimeout(function(){
+			var children = storeNested.getValues(item, 'children');
+			d.callback(children);
+		}, 1000);
+		return d;
+	};
+
+
+	let payLoadArr = 
+	 [ 	{isVol: [false], children: [], CGName: ['Michael Smith'], id: ['item-1'], ExpYrs: [8], Distance: [2.8], ImgUri: ['https://raw.githubusercontent.com/brijUser2/brijuser2.github.io/refs/heads/main/ccFam/assets/cg6.png']},
+        {isVol: [true], children: [], CGName: ['Sally Brown'], id: ['item-2'], ExpYrs: [3], Distance: [18], ImgUri: ['https://raw.githubusercontent.com/brijUser2/brijuser2.github.io/refs/heads/main/ccFam/assets/cg9.png']},
+        {isVol: [false], children: [], CGName: ['Sam Peterson'], id: ['item-3'], ExpYrs: [1], Distance: [4], ImgUri: ['https://raw.githubusercontent.com/brijUser2/brijuser2.github.io/refs/heads/main/ccFam/assets/cg7.png']},
+        {isVol: [false], children: [], CGName: ['Jenny Koch'], id: ['item-4'], ExpYrs: [6], Distance: [12], ImgUri: ['https://raw.githubusercontent.com/brijUser2/brijuser2.github.io/refs/heads/main/ccFam/assets/cg10.png']},
+        {isVol: [true], children: [], CGName: ['Joshua Rose'], id: ['item-5'], ExpYrs: [7], Distance: [11], ImgUri: ['https://raw.githubusercontent.com/brijUser2/brijuser2.github.io/refs/heads/main/ccFam/assets/cg9.png']}]
+
+	let payLoad = 
+	 [ 	{isVol: false, children: null, CGName: 'Michael Smith', id: 'item-1', ExpYrs: 8, Distance: 2.8, ImgUri: 'https://raw.githubusercontent.com/brijUser2/brijuser2.github.io/refs/heads/main/ccFam/assets/cg6.png'},
+        {isVol: true, children: null, CGName: 'Sally Brown', id: 'item-2', ExpYrs: 3, Distance: 18, ImgUri: 'https://raw.githubusercontent.com/brijUser2/brijuser2.github.io/refs/heads/main/ccFam/assets/cg9.png'},
+        {isVol: false, children: null, CGName: 'Sam Peterson', id: 'item-3', ExpYrs: 1, Distance: 4, ImgUri: 'https://raw.githubusercontent.com/brijUser2/brijuser2.github.io/refs/heads/main/ccFam/assets/cg7.png'},
+        {isVol: false, children: null, CGName: 'Jenny Koch', id: 'item-4', ExpYrs: 6, Distance: 12, ImgUri: 'https://raw.githubusercontent.com/brijUser2/brijuser2.github.io/refs/heads/main/ccFam/assets/cg10.png'},
+        {isVol: true, children: null, CGName: 'Joshua Rose', id: 'item-5', ExpYrs: 7, Distance: 11, ImgUri: 'https://raw.githubusercontent.com/brijUser2/brijuser2.github.io/refs/heads/main/ccFam/assets/cg9.png'}]
+
+getCCStore = function(){
+		return { getData: function(args){
+			var data = {
+				identifier: 'id', 
+				label: 'id', 
+				items: payLoad
+			};
+			console.log("getCCStore:", data);
+			console.log("stringified getCCStore 2:", mJSONStringify(data.items[2]));
+			return data;
+		}}
+};
+
+
+	var layoutCG = [
+        {id: 'ImgUri', name: 'ImgUri', field: 'ImgUri', width: '10%',
+            widgetsInCell: true, 
+			decorator: function(){
+				return [
+					"<img data-dojo-attach-point='att' src='src' width='100%'>"
+				].join('')},
+			setCellValue: function(gridData, storeData, cellWidget){
+			this.att.src = gridData;
+			}},
+        {id: 'CGName', name: 'CGName', field: 'CGName', width: '45%'},
+        {id: 'ExpYrs', name: 'ExpYrs', field: 'ExpYrs', width: '22%'},
+        {id: 'Distance', name: 'Distance', field: 'Distance', width: '15%'},
+        {id: 'isVol', name: 'isVol', field: 'isVol', width: '8%'}
+	];
+
+
+newDat = function(){
+	console.log("newDat() called, returning ob...");
+	return {
+		getData: function(args){
+			var data = {
+				identifier: 'id', 
+				label: 'id', 
+				items: 	 [ 	{isVol: false, children: [], CGName: 'Michael Smith', id: 'item-1', ExpYrs: 8, Distance: 2.8, ImgUri: 'https://raw.githubusercontent.com/brijUser2/brijuser2.github.io/refs/heads/main/ccFam/assets/cg6.png'},
+        {isVol: true, children: [], CGName: 'Sally Brown', id: 'item-2', ExpYrs: 3, Distance: 18, ImgUri: 'https://raw.githubusercontent.com/brijUser2/brijuser2.github.io/refs/heads/main/ccFam/assets/cg9.png'},
+        {isVol: false, children: [], CGName: 'Sam Peterson', id: 'item-3', ExpYrs: 1, Distance: 4, ImgUri: 'https://raw.githubusercontent.com/brijUser2/brijuser2.github.io/refs/heads/main/ccFam/assets/cg7.png'},
+        {isVol: false, children: [], CGName: 'Jenny Koch', id: 'item-4', ExpYrs: 6, Distance: 12, ImgUri: 'https://raw.githubusercontent.com/brijUser2/brijuser2.github.io/refs/heads/main/ccFam/assets/cg10.png'},
+        {isVol: true, children: [], CGName: 'Joshua Rose', id: 'item-5', ExpYrs: 7, Distance: 11, ImgUri: 'https://raw.githubusercontent.com/brijUser2/brijuser2.github.io/refs/heads/main/ccFam/assets/cg9.png'}]
+			};
+			console.log("in newDat.getData(), returning:", data);
+			console.log("stringified 2:", mJSONStringify(data.items[2]));
+			return data;
+		},
+		layouts: [
+			[
+                {id: 'imgUri', name: 'ImgUri', field: 'string', expandLevel: 1, width: '10%'},
+                {id: 'CGName', name: 'CGName', field: 'string', expandLevel: 2, width: '45%'},
+                {id: 'expYrs', name: 'ExpYrs', field: 'number', expandLevel: 3, width: '22%'},
+                {id: 'distFrmFac', name: 'Distance', field: 'number', width: '15%'},
+                {id: 'isVol', name: 'isVol', field: 'bool', width: '8%'},
+                {id: 'id', name: 'id', field: 'id'}
+			],
+			[
+                {id: 'imgUri', name: 'ImgUri', field: 'string'},
+                {id: 'CGName', name: 'CGName', field: 'string'},
+                {id: 'expYrs', name: 'ExpYrs', field: 'number'},
+                {id: 'distFrmFac', name: 'Distance', field: 'number'},
+                {id: 'isVol', name: 'Vol?', field: 'bool'},
+                {id: 'id', name: 'id', field: 'id'}
+			]
+		]
+	}};
+
+	storeccFam = storeFactory({
+		dataSource: newDat(),
+		maxLevel: 4,
+		maxChildrenCount: 10
+	});
+	storeccFam.hasChildren = function(id, item){
+		//return item && storeccFam.getValues(item, 'children').length;
+		return false;
+	};
+	storeccFam.getChildren = function(item){
+		var d = new Deferred();
+		setTimeout(function(){
+			var children = storeccFam.getValues(item, 'children');
+			d.callback(children);
+		}, 1000);
+		return d;
+	};
+
+/*
+	var progressDecorator = function(){
+		return [
+			"<div data-dojo-type='dijit.ProgressBar' data-dojo-props='maximum: 10000' ",
+			"class='gridxHasGridCellValue' style='width: 100%;'></div>"
+		].join('');
+	};
+    */
+
+	const undoMBI = () => {
+/*@mbi		if (domClass.contains("body", "mblBackground")){
+			domClass.remove("body", "mblBackground");
+		}*/
+	}
+
+	const gfxCreateBtnHandler = (e) => {
+	    myFrmDialog.show();
+			(registry.byId('frmTBpv')).set('disabled', true);
+	    frm["enable"]();
+			alert('createBtnTibbie');
+	}
+
+	const gfxSaveBtnHandler = (r) => {
+		//if no id snd createCmd else updCmd
+	}
+
+	const gfxEditHandler = (r) => {
+		console.log("in gfxEditHandler for r: ", r);
+		if (r.rawData.hasPriorVersions) {
+				(registry.byId('frmTBpv')).set('disabled', false);
+		} else {
+				(registry.byId('frmTBpv')).set('disabled', true);
+		}
+	    myFrmDialog.show();
+	    frm["disable"]();
+			frm.insp(r.rawData);
+	}
+
+	const gfxEditBtnHandler = (e) => {
+		//note that the 2nd param is if we arrived here via a dblClick
+		undoMBI();
+		let numSel = grid.select.row.getSelected().length;
+		if (numSel === 1){
+				let selId = (grid.select.row.getSelected())[0];
+				console.log("gfxEditBtnHandler: selId: " + selId);
+				grid.store.fetchItemByIdentity({identity: selId, onItem: function(item) {
+					console.log("gfxEditBtnHandler: selId: " + selId + " pv? " + item['hasPriorVersions']);
+					//@mpt: disabled for ccFam until new Frm in place...
+					//gfxEditHandler(item);
+				}});
+		}else{
+				alert("Pls select a single record before clicking the Edit Button; or double-click the record you wish to edit");
+				}
+	}
+
+	const gfxQEditBtnHandler = (e) => {
+		//note that the 2nd param is if we arrived here via a dblClick
+		undoMBI();
+		//let numSel = grid.select.row.getSelected().length;
+		alert("QE tibbie");
+		}
+
+	const gfxRtlBtnHandler = () => {
+		//see: https://oria.github.io/gridx/build/gridx/tests/support/common.js
+		var w = window,
+			d = document,
+			l = w.location,
+			h = l.href,
+			i = h.indexOf('?'),
+			q = i > -1,
+			b = 'RTL',
+			p = q && h.substr(i + 1).split(/#/)[0].split(/&/)[0].split('='),	//LIMITATION: dir must be the first parameter...
+			v = d.getElementsByTagName('html')[0].dir = 
+				p && p[0] == 'dir' &&
+						(p[1] || '').replace(/[^\w]/g, '').toUpperCase() == b ?	//replace() to avoid XSS attack...
+							b : '';
+		v = v == b ? '' : b;
+		//p = d.createElement('a');
+		//p.innerHTML = "<input type='button' style='position:fixed;top:0;right:0;width:5em;' value='" + (v || 'LTR') + "' />";
+
+		l.href = (q ? h.substr(0, i) : h) + (v && '?dir=' + v);
+	}
+
+	var gfxTb = new Toolbar({}, 'toolbar');
+	var gfxCreateBtn = new Button({
+		label: 'Create',
+		iconClass:'gridxCreateIcon',
+		onClick:gfxCreateBtnHandler
+	});
+	gfxTb.addChild(gfxCreateBtn);
+
+	var gfxEditBtn = new Button({
+		label: 'Edit',
+		iconClass:'gridxEditIcon',
+		onClick:gfxEditBtnHandler
+	});
+	gfxTb.addChild(gfxEditBtn);
+
+	var gfxQEditBtn = new Button({
+		label: 'QEdit',
+		iconClass:'gridxQEditIcon',
+		disabled: true,
+		onClick:gfxEditBtnHandler
+	});
+	gfxTb.addChild(gfxQEditBtn);
+
+	var gfxDelBtn = new Button({
+		label: 'Delete',
+		iconClass:'gridxDeleteIcon',
+		onClick:gfxEditBtnHandler
+	});
+	gfxTb.addChild(gfxDelBtn);
+
+	var gfxExpAllBtn = new Button({
+		label: 'Expand All',
+		iconClass:'gridxExpandAllIcon',
+		onClick:gfxEditBtnHandler
+	});
+	gfxTb.addChild(gfxExpAllBtn);
+
+	var gfxColAllBtn = new Button({
+		label: 'Collapse All',
+		iconClass:'dijitIconFunction',
+		onClick:gfxEditBtnHandler
+	});
+//gridxCollapseAllIcon
+	gfxTb.addChild(gfxColAllBtn);
+
+	var gfxRtlBtn = new Button({
+		label: 'RTL',
+		iconClass:'gridxCollapseAllIcon',
+		onClick:gfxRtlBtnHandler
+	});
+//.gridxLTRIcon
+	gfxTb.addChild(gfxRtlBtn);
+	gfxTb.startup();
+
+	layout3 = [
+		{id: 'number', name: 'number', field: 'number', width: '10%'},
+		{id: 'string', name: 'string', field: 'string', width: '45%'},
+		{id: 'date', name: 'date', field: 'date', width: '22%'},
+		{id: 'time', name: 'time', field: 'time', width: '15%'},
+		{id: 'bool', name: 'bool', field: 'bool', width: '8%'}
+        /*, just don't include 'em...
+		{id: 'id', name: 'id', field: 'id', width: '0%'},
+		{id: 'hasPriorVersions', name: 'hasPriorVersions', field: 'hasPriorVersions', width: '0%'}*/
+	];
+	layout4 = [
+		{id: 'id', name: 'id', field: 'id'},
+		{id: 'number', name: 'number *', field: 'number', expandLevel: 1},
+		{id: 'string', name: 'string *', field: 'string', expandLevel: 2},
+		{id: 'date', name: 'date', field: 'date'},
+		{id: 'time', name: 'time *', field: 'time', expandLevel: 3},
+		{id: 'bool', name: 'bool', field: 'bool'}
+	];
+
+
+	mods = [
+		modules.Tree,
+		modules.Filter,
+		modules.FilterBar,
+		modules.QuickFilter,
+		modules.Pagination,
+		modules.PaginationBar,
+		modules.ColumnResizer,
+		modules.SelectRow,
+		// modules.ExtendedSelectRow,
+		modules.CellWidget,
+		modules.Edit,
+		modules.IndirectSelectColumn,
+		modules.SingleSort,
+		// modules.NestedSort,
+		modules.VirtualVScroller
+	];
+
+
+	ccFamMods = [
+		modules.Tree,
+		modules.Filter,
+		modules.FilterBar,
+		/*modules.QuickFilter, used 4 FTSrch */
+		modules.Pagination,
+		modules.PaginationBar,
+		modules.ColumnResizer,
+		// modules.SelectRow,
+		modules.ExtendedSelectRow,
+		modules.CellWidget,
+		modules.Edit,
+		modules.IndirectSelectColumn,
+		modules.SingleSort,
+		modules.VirtualVScroller,
+		modules.Bar,
+		modules.Persist
+	];
+
+
+	gfxMods = [
+		{
+				moduleClass: Body,
+				rowHoverEffect: false,
+				onAfterRow: function(row) {
+					let selId = row.id;
+					let isCateg = false;
+					grid.store.fetchItemByIdentity({identity: selId, onItem: function(item) {
+								isCateg = (item['isCateg']);
+					}});
+					if ( row._decorated ) return;
+						row._decorated = true;
+						var domNode = row.node();
+						if ( isCateg ) {
+								console.log("adding isCateg style for row id " + row.id + "isCateg: " + isCateg);
+								domClass.add(domNode, "gridxCategRow");
+						}
+				},
+		},
+		modules.Tree,
+		modules.Filter,
+		modules.FilterBar,
+		/*modules.QuickFilter, used 4 FTSrch */
+		modules.Pagination,
+		modules.PaginationBar,
+		modules.ColumnResizer,
+		// modules.SelectRow,
+		modules.ExtendedSelectRow,
+		modules.CellWidget,
+		modules.Edit,
+		modules.IndirectSelectColumn,
+		modules.SingleSort,
+		modules.VirtualVScroller,
+		modules.Bar,
+		modules.Persist
+	];
+
+		//This is the DV Selector
+		const dvSel = new Select({
+            name: "ccFamDvSelect",
+			style:"width: 100%;",
+			intermediateChanges: true,
+		        options: [
+		            { label: "Caregiver", value: "Tennessee" },
+		            { label: "Child", value: "Virginia", selected: true },
+		            { label: "Facility", value: "Washington" },
+		            { label: "FacilityAdmin", value: "Florida" }
+		        ]});
+
+		dojo.connect(dvSel, "onChange", function(nV){
+						undoMBI();
+		      alert("my value: " +  nV);
+		});
+		undoMBI();
+		window.grid = null;
+
+/*
+		grid.model.clearCache();
+        grid.setStore(newStore);
+		grid.body.refresh();
+*/
+        let newStore = storeFactory({
+			dataSource: newDat(), 
+			maxLevel: 4,
+			maxChildrenCount: 10
+		});
+		window.createGrid = () => {
+		grid = new Grid({
+			cacheClass: "gridx/core/model/cache/Async",
+            store: storeccFam,
+            structure: layoutCG,
+			columnWidthAutoResize: true,
+			autoWidth: false,
+			autoHeight: true,
+			treeNested: true,
+			paginationBarSizes: [1, 2, 0],
+			modules: ccFamMods,
+			barTop: [
+			     [ dvSel ],
+			     [ gfxTb ]
+			]
+		});
+		grid.placeAt('grid');
+		undoMBI();
+		grid.persist.enabled = true;
+		console.log("Persist features: " + JSON.stringify(grid.persist.features()));
+		//["column","filterBar","sort","tree"]
+		console.log("column.isEnabled ?: " + JSON.stringify(grid.persist.isEnabled('column')));
+		console.log("filterBar.isEnabled ?: " + JSON.stringify(grid.persist.isEnabled('filterBar')));
+
+		grid.startup();
+		undoMBI();
+		}
+		createGrid();
+
+		window.destroyGrid = () => {
+			if(window.grid){
+				grid.destroy();
+				window.grid = null;
+			}
+		};	
+
+
+		window.selectTwoRows = () => {
+			grid.select.row.selectById('item-1');
+			grid.select.row.selectById('item-3');
+			alert('selected rows: ' + grid.select.row.getSelected());
+		}
+		window.deSelectRows = () => {
+			grid.select.row.clear();
+			alert('selected rows: ' + grid.select.row.getSelected());
+		}
+
+
+        dojo.connect(grid.select.row, 'onSelectionChange', function(selected){ 
+            if ((selected.length > 1) && (gfxQEditBtn.disabled)) {
+                gfxQEditBtn.set("disabled", false);
+            }
+            if ((selected.length < 2) && (!(gfxQEditBtn.disabled))) {
+                gfxQEditBtn.set("disabled", true);
+            }
+        });
+        
+	window.updRow1 = () => {
+
+//These fns from gridx test data gen for testing only
+	var seed = 9973;
+
+	var randomNumber = (range) => {
+		var a = 8887;
+		var c = 9643;
+		var m = 8677;
+		seed = (a * seed + c) % m;
+		var res = Math.floor(seed / m * range);
+		return res;
+	};
+
+	var randomDate = () => {
+		return new Date(randomNumber(Math.random() * 1000000)).toDateString();
+	};
+
+function saveDone(){
+  alert("Done saving.");
+}
+function saveFailed(){
+  alert("Save failed.");
+}
+
+		var item = grid.row(0).item();
+		//item.date = randomDate();
+		//grid.store.put(item);
+		var newD = randomDate();
+		console.log(">> new dt: " + newD);
+		grid.store.setValue(item, "date", newD);
+                grid.store.save({onComplete: saveDone, onError: saveFailed});
+                grid.body.refresh();
+	};
+
+	setStore = function(){
+		grid.model.clearCache();
+        let newStore = storeFactory({
+			dataSource: newDat(), 
+			maxLevel: 4,
+			maxChildrenCount: 10
+		});
+        grid.setStore(newStore);
+		grid.body.refresh();
+	};
+
+
+		//see: https://github.com/oria/gridx/blob/a05e8b910bc88106792c2c68ebdbdbea45cb63f8/Grid.js#L263C3-L263C4
+		dojo.connect(grid, "onRowMouseOver", function(e){
+			undoMBI();
+			//console.log(">>rowId: " + e.rowId);
+			let r = grid.model.byId(e.rowId);
+			//console.log(">>cells: " + JSON.mStringify(r));
+			grid.store.fetchItemByIdentity({identity: e.rowId, onItem: function(item) {
+				if (!item) return;
+				//console.log("onRowMouseOver: fetchedItemById (store) : " + item['id']);
+		                let roNd = grid.body.getRowNode({visualIndex: e.visualIndex});
+				Tooltip.show(("row Time fld: " + item['time']), roNd);
+				
+				on.once(roNd, mouse.leave, function(){
+				      Tooltip.hide(roNd);
+				});
+			}});
+		});
+	    dojo.connect(grid, "onRowDblClick", (e) => {
+		let r = grid.model.byId(e.rowId);
+        alert('gfxEditHandler(r) disabled pending new frm...')
+		//gfxEditHandler(r);
+	   });
+
+/* See this for embedding a whole mod (good 4 testing) in shell ->
+//https://github.com/oria/gridx/issues/293
+//see https://github.com/oria/gridx/blob/master/tests/test_grid_events.js
+*/
+
+	testFetch = function(){
+						window.runFetch('fetchPVs');
+	};
+
+	parser.parse();
+	undoMBI();
+});
+</script>
+
+</head>
+
+<body class='claro'>
+
+Note: For img in cell, just use decorators + uris in dat; see <a href='https://oria.github.io/gridx/demos/cellWidget.html'>this</a> test.
+
+
+<div data-dojo-type="dijit.form.Button" data-dojo-props="onClick: createGrid">Create Grid</div>
+<div data-dojo-type="dijit.form.Button" data-dojo-props="onClick: destroyGrid">Destroy Grid</div>
+<div data-dojo-type="dijit.form.Button" data-dojo-props="onClick: selectTwoRows">Select 2 Rows</div>
+<div data-dojo-type="dijit.form.Button" data-dojo-props="onClick: deSelectRows">deSelectRows</div>
+<hr>
+<div data-dojo-type="dijit.form.Button" data-dojo-props="onClick: updRow1">update Row #1</div>
+<div data-dojo-type="dijit.form.Button" data-dojo-props="onClick: setStore">setStore</div>
+<div data-dojo-type="dijit.form.Button" data-dojo-props="onClick: testFetch">testFetchCall</div>
+
+
+<div data-dojo-type="dijit/form/Button" id="frmBtn"
+            data-dojo-props="onClick:'window.showFrm();'"><span style='color:DarkRed;' class="material-symbols-outlined">
+terminal</span>frm</div>
+
+<p><p>
+	<div id='grid'></div>
+<p>
+
+<div data-dojo-type="dijit/Dialog" data-dojo-id="myFrmDialog" title="brij"
+    execute="alert('submitted w/args:\n' + dojo.toJson(arguments[0], true));" style="display: none">
+
+    <div class="dijitDialogPaneContentArea">
+
+    <div id="frmTB" data-dojo-type="dijit/Toolbar"
+        ><div data-dojo-type="dijit/form/Button" id="frmTBedit"
+            data-dojo-props="onClick:'window.editFrm();', showLabel:true"><span style='color:DarkRed;' class="material-symbols-outlined">
+edit_note</span>Edit</div
+        ><div data-dojo-type="dijit/form/Button" id="frmTBsave"
+            data-dojo-props="onClick:'window.saveFrm();',showLabel:true">Save</div
+        ><span data-dojo-type="dijit/ToolbarSeparator"></span
+        ><div data-dojo-type="dijit/form/Button" id="frmTBpv"
+            data-dojo-props="showLabel:true, onClick:'window.showPvDlg();'"><span style='color:DarkRed;' class="material-symbols-outlined">
+history</span>Prior Versions</div></div>
+
+			<form data-dojo-type="dojox/form/Manager" data-dojo-id='frm' id="form">
+				<fieldset dojoAttachPoint="part2">
+					<legend>Form Title</legend>
+					<div>
+						<input type="checkbox" data-dojo-type="dijit/form/CheckBox" id="bool" name="bool" value=false data-dojo-observer="showValues">
+						&nbsp;<label for="bool">bool dijit/form/CheckBox</label>
+					</div>
+					<div>
+						<input type="text" data-dojo-type="dijit/form/TextBox" id="number" name="number" value="" data-dojo-observer="showValues" intermediateChanges="false">
+						&nbsp;<label for="number">number dijit/form/TextBox</label>
+					</div>
+					<div>
+						<input type="text" data-dojo-type="dijit/form/TextBox" id="string" name="string" value="" data-dojo-observer="showValues" intermediateChanges="false">
+						&nbsp;<label for="string">string dijit/form/TextBox</label>
+					</div>
+
+					<div>
+						<label for="date">CompletedOn:</label>
+						<input class="cellWid dojoFormValue" type="text" name="date" id="date" value=""
+							data-dojo-type="dijit/form/DateTextBox"
+							observer="logD" />
+					</div>
+
+					<div>
+						<label for="time">Drop down Time box:</label>
+						<input type="text" name="time" id="time" value=""
+								data-dojo-type="dijit/form/TimeTextBox"
+								onChange="require(['dojo/dom'], function(dom){dom.byId('timeVal').value=dom.byId('time').value.toString().replace(/.*1970\s(\S+).*/,'T$1')})"
+								observer="logT"/>
+						<br>string value: <input id="timeVal" value="value not changed" readonly="readonly"
+							/>
+					</div>
+				</fieldset>
+				<script type="dojo/method" data-dojo-event="logD" data-dojo-args="value,name">
+				require(['dojo/date/stamp'], function(stmp){
+					var fmted = stmp.toISOString(value, {selector: 'date'});
+					frm.addDelta(name,fmted);
+				})
+				</script>
+				<script type="dojo/method" data-dojo-event="logT" data-dojo-args="value,name">
+				require(['dojo/date/stamp'], function(stmp){
+					var fmted = stmp.toISOString(value, {selector: 'time'});
+					frm.addDelta(name,fmted);
+				})
+				</script>
+				<script type="dojo/method" data-dojo-event="showValues" data-dojo-args="value,name">
+   				//console.log("showValues for " + name);
+					this.addDelta(name, value.toString().trim());
+				</script>
+        </form>    
+</div></div>
+    </body>
+</html>
