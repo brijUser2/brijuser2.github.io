@@ -1,0 +1,2369 @@
+|tks2New_tkDatK|5|
+...........tks2New_tkDatK1 len:776
+...........tks2New_tkDatK2 resTy: "Microsoft.FSharp.Collections.FSharpList`1[Main+Task24`1[Main+CustID_Trivedi_TaskTbl]]"
+final len (after flat/box): 387
+recsToProc len : 535
+[[["spxServer/New Feature" (40 recs)]]]
+|||"mTable - .addAll(List<obj>)|oldId:201710220243674^Task |||"
+"does Replace or Put as needed;  allows .mSaveTbl() &nbsp;&nbsp;this will merge directly into mObjMap;  no need to mess w/instance vars"
+|||"Impl DELETES become stubs (on by default)|oldId:20203512255987000000^Task |||"
+"Deletes become stubs <br>
+~(Note: mData DOES NOT have isDeleted)<br>
+~we'll also need DeletedOn & DeletedBy<br>~Again (as in docVers) users have the ability to compact or archive stubs<br>
+~Also, deletes remove (mark) all priorVersions as deleted<br>..."
+|||"images in adminTbl?|oldId:20187171202217654800^Task |||"
+"Need to decide whether we need a separate file or just incl these in Admin <br>
+~
+~if we're only going to retain a few system images. <br>
+~
+~<span style='color: red'>5/14: Consider:</span> Looks like we We do, even if using just as an example for Ar..."
+|||"Add new articles to citation lists|oldId:2019717173836192000000^Task |||"
+"So far we have about 600 (100 ea), try to double.  Needed for correct readings on accuracy in classification.<br>
+~Also, modify some articles by seeding them with test sentences for testing nWords.<br>
+~Finally, after the Corpus is ready we'll need t..."
+|||"Design & Add Article Header to Article View|oldId:20185312584942000000^Task |||"
+"Just a standard way to present all articles, showing source, headline, pubDt & tags<br>
+~
+~Later, cld get fancy e.g., acc to length of headline we cld maximize the adjust the font-size."
+|||"Update Setup|oldId:201871712022131654800^Task |||"
+"Setup shd do ALL the (un)packing reqd at one go, so NEEDED: <br><ul><li>9999_sys.enc to .zip & vice versa</li><li>9999_run.enc to .zip & vice versa</li><li>9999_upd.enc to .zip & vice versa</li><li>split_12.3 to split1.enc, split2.enc ... where ea ar..."
+|||"Misc dojo items|oldId:201871712022119654800^Task |||"
+"<ul><li>fix fade/dissolve.  Necc to revert to earlier dojo ver?</li><li>Lookup set/get dojo-props for Pane dataClass Type/tbl info<br>
+~This will be useful esply if using common toolBar w/ show-hide based on currDataType</li></ul>"
+|||"System Misc items|oldId:201871712022116654800^Task |||"
+"<ul><li>Tmp DropDown to switch categs in Tk for now? (until DVs impl)</li></ul>"
+|||"LMAX-Exchange|oldId:201986123613556000000^Task |||"
+"It's on github.  We shd consider/test various types of queues <br>
+~
+~& have perhaps a few options ready to deploy for ea type of task<br>
+~
+~If we adapt this using pipelines (consumer/producer), how will that<br>
+~
+~affect the HotSwap stuff?<br>
+~
+~..."
+|||"docVersioning-related|oldId:201986123613530000000^Task |||"
+"@updated 2020.03.05~<br>
+~
+~
+~
+~AutoVersioning functional & tested w/mT<br>
+~
+~
+~
+~Now, we need to impl the foll.:~<ol>~<li>the trigger shd be in mTbl.put (QuerySave) -> calls fn</li>~<li>to avoid the recursion headache, it calls super.put()</li>~</o..."
+|||"Form qryOpen / imgs|oldId:20187171202298654800^Task |||"
+"needs to chk for & resolve images/attachments<br>
+~
+~
+~
+~
+~
+~
+~STANDARDIZE the approach: <br>
+~
+~
+~
+~
+~
+~
+~1) (pref) hasImg=true hasAttchments=true numAttachments;  list of UNIDs/fileTypes<br>
+~
+~
+~
+~
+~
+~
+~2) docUNIDs stored in imagesTbl for direct a..."
+|||"impl single common ToolBar w/show-hide btns???|oldId:201871712022122654800^Task |||"
+"<ul><li>single selected items fld w/class: '20182018&dataClass=XX' or 'mA_201812121'</li><li>Switching pane triggers toolbar show/hides</li><li>Could have QuickEdit dlgs for ea dataClass;  show appropriate one w/flds</li><li>If going this route, afte..."
+|||"<html><span style='color: blue' >DELETE (dup)</span></html>|oldId:201871712022108654800^Task |||"
+"Add a new type for testing<br>
+~AFTER the form functionality is working & <br>
+~the generic DV infrastructure's in place<br>
+~test w/ mNote/mBookMk / mFilm (toDojoRow() creates mBoxes)<br>
+~Note for later: ContainerPane needs CSS class for mBoxContai..."
+|||"DELETE (dup)|oldId:20187171202293654800^Task |||"
+"Same forms altered to load existing data...</div>"
+|||"QuickEdit Dlg updates|oldId:20187171202240654800^Task |||"
+"Above: a DropDown fld w/flds of the selectedClass<br>
+~
+~Below: appropriate inputFld (radio for Bool, dateControl for Date etc.).  <br>
+~
+~Copy over to editForm later<br>
+~
+~[PLACEHOLDER] Link for dojo examle form w/all the controls"
+|||"CSS for Read docs|oldId:20187171202224654800^Task |||"
+"Update CSS w/new style for UnREAD (read remains black)<br>
+~
+~Add a 'marked' style (used by Articles to show Marked;  other types to show 'highlighted' - 'not complete' if show all tasks turned on?)<br>
+~
+~Dark Blue is unRead</div>"
+|||"mTbl class vars|oldId:20187171202243654800^Task |||"
+"mTbl init shd populate vars like Flds/tableName/even Defined DVs<br>
+~
+~
+~NOTE: there is an INIT issue storing stuff in the mAd tbl (e.g., Logger) <br>
+~
+~
+~"
+|||"Dictionary Design notes|oldId:201986123613553000000^Task |||"
+"Since ea articles' wordCount &lt;&lt; Total Dict;<br>
+~
+~the lookup in the Dict'll have to be run on the article side<br>
+~
+~Map&lt;String, List&lt;TagTuple&gt;&gt; Dict<br>
+~
+~(1st par is Term or nWord; TagTuple can be defined as a new class in Tagg..."
+|||"Support for Users being able to add new dataClasses (by extending)|oldId:202034132940115000000^Task |||"
+"Add a new type for testing<br>
+~~AFTER the form functionality is working & <br>
+~~the generic DV infrastructure's in place<br>
+~~test w/ mNote/mBookMk / mFilm (toDojoRow() creates mBoxes)<br>
+~~Note for later: ContainerPane needs CSS class for mBoxCo..."
+|||"Status/errHandling of payload|oldId:201986123613537000000^Task |||"
+"Q: How does the frontEnd know if one particular response in a stream is an error?<br>
+~Perhaps prepend Status Code (1st 3 chars?) as part of message; <br>
+~mapped UI-side & THEN the payload -> Toast -> Log.<br>
+~If we've to split every response to ch..."
+|||"AdminTbl access by User|oldId:201871712022101654800^Task |||"
+"Only via custom front-end adminUI offering limited func.<br>
+~
+~
+~
+~
+~Note: Users' clients only SUBMIT;<br>
+~
+~
+~  if they want to browse user can setup/generate."
+|||"Pseudo-reflective proc in Init|oldId:20187171202265654800^Task |||"
+"We need to add a proc in Init which builds/checks Adm tbl docs<br>
+~
+~1 doc per Table: w/FldNames & other params for ea table - ClassName<br>
+~
+~if new flds added (by user);  these docs w/autoPopulate. <br>
+~
+~This gives us a way to continue having t..."
+|||"FileFmt spxV3|oldId:201910115414423000000^Task |||"
+"@created 2019.12.30~More header splits -><ul><li>~Use diff providers & store~</li><li>Use random salt/IV & store~</li><li>Use diff encryptionFmts & store~</li><br>
+~    Since the hash is operational; we need to ensure that<ul><li>~the hash is being c
+reated of the plainTxt (before encryptn)~</li><li>during load; if hash chk fails; BREAK w/dlg (instd of current pasting encrTxt into TA)~</li><li>poss allow maxTries (esp if calling load again)</li><br>
+~~    Work on a SEPARATE fn to:</li><li>~~   - ..."
+|||"mTbl class needs new fld to store CLASS|oldId:201871712022126654800^Task |||"
+"<ul><li>will allow totally generic fns</li><li>Class viewDoc = (Clazz) mTbl.get(suppliedUNID);</li><li>viewDoc.loadEditForm;</li></ul>"
+|||"New flds for mData|oldId:201871712022113654800^Task |||"
+"<ul><li>ATTACHMENTS: allows access via Dlg showing ZipEntries w/ #, Name</li><li>IMAGES: works similarly;  replaces mImage class</li>	</ul><br>
+~
+~Notice how this affects storage/display of html w/embedded images<br>
+~
+~cld bld request based off curr..."
+|||"mTbl puts, auto-Revisioning|oldId:201986123613560000000^Task |||"
+"mTbl.put -> which does an immutable repl to the end of the list<br>-> no lookup necc IF we incl a counter in the curr UNID, e.g.<br>xxx_101 <- current<br>xxx_102 <- new<br>no renaming @ all; use Boolean isCurrent to track & filter in dvPreds<br><span
+ style='color: red'>UPDATE 7/28: </span>nix, it'll affect lookups.  Instd, use this:<br>on Creating a datItm, set ver=0<br>on edit; old one saved as *unid_000*<br>new one saved as *unid* w/ver fld set to 1<br>this way the lookups based on unid remain..."
+|||"Add 2 mArt flds: Bool recentlyTagged;  Bool tagVetoed (by user)|oldId:201871712021921654800^Task |||"
+"Set to true for newly Tagged docs.<br>
+~
+~
+~  Workflow is like this<br>
+~
+~
+~-  New view is populated w/recently tagged docs<br>
+~
+~
+~-  Necessary changes are made<br>
+~
+~
+~-  If tag changed;  prompt 'Include doc in next Training?'<br>
+~
+~
+~-  Button..."
+|||"<html><span style='color: blue' >DELETE</span> (Dup)</html>|oldId:201986123613565000000^Task |||"
+"Menu Save option + AutoSave (tmp file ev 10min) -> default key<br>
+~
+~Load w/Diff key -> Pwd Loop y/no (can be used to test 2)<br>
+~
+~All Ser fns shd use def key?<br>
+~
+~20Qns (1word,toLower) Timer begins once app starts, triggered 15min<br>
+~
+~Gen M..."
+|||"new Toolbar button to set options|oldId:20187171202249654800^Task |||"
+"Task List Toolbar new btn 'View Options' allows displ. completed tasks"
+|||"Session mngt - trap exits|oldId:2018717120227654800^Task |||"
+"Since the UI is going to be on a browser, we'll have to trap Page Leaves for session exits.This way we can process the session exit (cleanup, saves, etc) on the Server side.  Ask the user'close the session?/Save Changes?' and do cleanup on the server..."
+|||"import Dict sheet|oldId:201871712021917654800^Task |||"
+"Also a good place for similar placeholders.~2020.03.04 Note ->	stopList (aiEngine)"
+|||"Serialize AllTbls as ONE dat file enc.|oldId:20187171202213654800^Task |||"
+"</div>"
+|||"design/code an autoVersioning System (cld later incl <span style='color: red'>DIFF</span>)|oldId:2018717120222654800^Task |||"
+"DIFF is non-trivial, PLUS has scope for errors: esply since we're working AFTER the fact<br>
+~
+~to reconstruct possible edits.  A better way wld be to track ea. keystroke while it's being made,<br>
+~
+~ i.e., like an Editor, to capture the exact seque
+nce AS it HAPPENS.  <br>
+~
+~Another approach:<br>
+~
+~Since storage isn't an issue;  why not save the whole obj every time (w/a limit, say 50 edits)<br>
+~
+~Use versioning prior ver saved as '^1' + UNID (^ for delta) ~ upto '^50'.<br>
+~
+~Cld impl diff ..."
+|||"Rename/repurpose (resourceTbl?)|oldId:20187171202268654800^Task |||"
+"Same as existing tbl but allows Attachments;  stores fileName & fileType<br>
+~
+~(probed) for lookup.  ONE file per doc;  lookup UNID ref in doc.  Test w/Java PDFs.<br>
+~
+~</div>"
+|||"Remove extraneous mods|oldId:20187171202287654800^Task |||"
+"@markCompleted~Remove stuff not needed by user (e.g. Tagger)</div>"
+|||"Benchmark hammer vs mallet|oldId:2019717173836193000000^Task |||"
+"This item is <span style='color:red'>crucial</span>.<br>
+~<span style='color:blue'>Accuracy:</span>.<br>
+~<ul><li>We expect adding nWords will result in more acc. results.</li><li>Test separately for 2Words, 3~ & 4~ only, to begin with.<br>
+~Note tha
+t 4 will include 2 & 3 as subsets; so diminishing results (e.g. New York Metropolitan Museum)<br>
+~Related Qn: eliminate all 2s contained in 3s?</li><li>The hitCounts will be artificially inflated (say hitnums + 2 for ea occurance for add'l weight.</..."
+|||"Replace Tables w/Grid -> if impl, shld be NOW|oldId:20187171202230654800^Task |||"
+"Impacts possibly much dupl of effort (refresh/filtering/etc)<br>
+~chk Tests for Dojo Server-side data pushes (not only var pushes via script payload)<br>
+~As before, stick to IBM dojo not monkey-supplied Grid (yes, pout and sulk again)<br>
+~Impacts p..."
+|||"Data Import|oldId:20187171202281654800^Task |||"
+"Offer bulk-loading via CSV, json? via Wizard.<br>
+~
+~
+~
+~
+~This WILL need thorough err checking for <br>
+~
+~
+~
+~
+~blank flds/no separators/extra-missing flds<br>
+~
+~
+~
+~
+~<span style='color: red'>chk: how do existing libs handle this iss?</span><br>
+..."
+|||"metaData Update fn.|oldId:20187171202236654800^Task |||"
+"Update the existing fn. which gets metaData from Leads (mAd)<br> to generate a report of matches & counts (poss sep fn)<br>"
+|||"Shell Updates|oldId:20187171202233654800^Task |||"
+"REMOVE dupl toolbars & selFields, use only ONE w/fmt 'mData_UNID'.'<br>
+~Before the req is run, filter array & pipe the results."
+[[["spxClient/Useability" (15 recs)]]]
+|||"createFrm/editFrm: Save btn shd close frmDlg|oldId:202032114616274000000^Task |||"
+"For both create/edit scenarios"
+|||"Impl commentBlock, indentBlock|oldId:20203615337752000000^Task |||"
+"Just replaces selected txt; minor update major relief"
+|||"Switch back to spxClient w/DesktopIcons|oldId:202031012451375000000^Task |||"
+"As a preparatory move before SocketSvr; now we have separate icons for ea dataView"
+|||"mTask: Flag/Row Hilighting|oldId:201910115414420000000^Task |||"
+"@created 2019.12.28~    We need the ability to highlight rows (esp. gd to hilite just a few items)<br>
+~
+~    Check: mA flagged fld; is that in mData? Shd it be moved?<br>
+~
+~    Can offer a menu-based color-chooser (as in swingTut)<br>
+~
+~https://do..."
+|||"Impl support for other fldTypes|oldId:202036145654353000000^Task |||"
+"Impl at least a few for now"
+|||"convert makeCompactGrid to a fn|oldId:202033114734466000000^Task |||"
+""
+|||"Impl docHistory section|oldId:202039121458487000000^Task |||"
+"Collapsible section @ frm bottom displays docRevHist"
+|||"Set default to 2 cols (for now)|oldId:20187171202272654800^Task |||"
+"Shd be relatively easy: other stuff unaffected; just change the baseFn"
+|||"Impl docRev access|oldId:202039121352223000000^Task |||"
+"As decided earlier; if hasPriorVersions = true; allow:~<ul>~<li>access</li>~<li>display/replace curr with old ver</li>~<li>(no editing, they're 'frozen')</li>~</ul>"
+|||"Grid remembers col size updates|oldId:202022612508844000000^Task |||"
+"Eventually this'll have to reside in user settings (ie desktop obj sent from svr on initial handshake)<br>
+~ONE approach is: developer (who designs the dv) sets these & they're fixed<br>~LATER we can offer users the ability to change/override & save ..."
+|||"Useability task ranking/order|oldId:202033121446566000000^Task |||"
+"@markCompleted~In order to better track these; we need to EITHER<br>
+~
+<ul>~<li>allow on-the-fly filtering to show only these (via btn which changes filter); OR</li>~<li>add "Switch View" functionality to pass in a new dV </li>~</ul>~The prior approa..."
+|||"Reinsert autoShow datBtn w/stats for allTbls|oldId:202035132852739000000^Task |||"
+"is it in the spxSvr file?"
+|||"Tooltips: update & use fn cipher.toMimeLen|oldId:202032115730846000000^Task |||"
+"<ol>~<li>Ensure ea TTip trimmed to decent size (currently some of 'em too long)~<br>
+~Note: defMimeLen should probably suffice~<ul><li>Perhaps consider moving the fn alongside textProc fns (escHTML etc)</li>~<li>We need to be able to pass a lineLen p..."
+|||"Custom swing widgets|oldId:201910115414455000000^Task |||"
+"Check "standard" widgets in web frameworks; compare w/Swing.  <br>
+~What's missing?~Impl all key stuff<br>
+~<ul><li>need typeahead~</li><li>need Validation flds~</li><li>need a "mapped comboList" (displ one thing, store another)~</li><li>? need an ex..."
+|||"Reduce steps to launch tkList|oldId:202033122655654000000^Task |||"
+"Instd. of doing ea step manually; Click on "Data|viewTkList" should:~<ol>~<li>chk if allTbls loaded</li>~<li>if not, prompt (jar/ide)</li>~<li>Remove opt to load allTbls (moves to svr)</li>~</ol>~Good opp. to use "compose""
+[[["spxPostCovid/" (221 recs)]]]
+|||"FxObj Impl|oldId:20200324093239001^Task  postCov001|||"
+""Contains fromX/toX etc., + Jcomp Fld Tgt (Lbl, Win etc.)
+~- In Interface FX, Add to Move -> FadeIn, FadeOut, Dissolve, Pause, WipeIn, WipeOut
+~- We need the ability to fluidly chain these, ie, build & run in succession; perhaps Inteface Compose whic..."
+|||"|oldId:20200516093239072^Task  postCov072|||"
+"For internal use-> @Created, Date set+remove line.  Decide fmt of entry OR 1-time srch/repl as before"
+|||"rTpl Impl - 4|oldId:20200721093239219^Task  postCov219|||"
+""We don't need to impl StreamSupp, can pass stuff, convert rTpl to List or Map, and return rTpl e.g., 
+~given a rTpl w/5th recursive, Filter(pred, say 2nd==""true"") can be impl thus:
+~  List L<> = new ArrayList<>();
+~  tailCall(){
+~~  tpl.second==Tr
+ue ? L.add(~) : tailCall (tpl.Fifth);
+~  } ... and then convert L to an rTpl & return.
+~Similarly within scope for lift; Lift (one, two ~) {  two==true ? add~ : ~ }
+~And use maps/treeMaps to sort; stream.ForEa can be impl similar to mTbl.streamAndApp..."
+|||"|oldId:20200516093239078^Task 1* postCov078|||"
+"Tmp attachments store BB dir & embed links in tks?  Poss unnecc & busyWork/Downtime (can always allow lookup updLog)"
+|||"Tree Impl|oldId:20200516093239077^Task 1* postCov077|||"
+""Here's what we CAN do for Tks & Account/Order rel Tbls->
+~If one tk depends/dovetails another; the 1st can be a node; 2nd a leaf.  Similarly account/orders.
+~ADDENDA 05.17->  Abstract Tree has children; if Y toGridRow() renders as Node or as Leaf
+~N
+eeds work.  HasParent() using parentID as before?
+~05.21 ADDENDA->
+~Tk dependencies is an issue (how do outlook/others handle this?)
+~For inst, 1 tk in one categ might depend on another categ.  One wasy way to handle this:
+~IsDependent() & Ttip gets ..."
+|||"RowRenderer|oldId:20200516093239074^Task  postCov074|||"
+"Impl RowRenderer for CompletedTasks w/ html strikethroughs spans (as in color)"
+|||"Reclassify all tks|oldId:20200516093239073^Task  postCov073|||"
+""According to new version map; TgtVersion.  
+~Fmt: ?0.11.22.33 where 11 is yr, 22 mo 33 dt. 
+~If we incorp this in updateLogs, this serves as a versionLocator for CompletedItems & list for major Tasks/Features""
+|||"Ribbon fmt|oldId:20200516093239076^Task  postCov076|||"
+"Ribbon ext Tbar: impl AutoWrapping (OR arrows) Code exists in tabbedPane"
+|||"|oldId:20200516093239075^Task Secure postCov075|||"
+"Impl autoTagging for ?1, build Model/Dict / Optimize for existing mAs."
+|||"RemoteLaunch bugFix|oldId:20200329093239029^Task  postCov029|||"
+""The remote launch likely fakeErr BUT try 
+~- using Fns
+~- using Futures for getURL (can be tested out-of-ctxt)""
+|||"Design Grid|oldId:20200504093239057^Task 1* postCov057|||"
+""For the fixed-fmt DesignGrid, might want to begin
+~Forms, Dvs, SettingsDoc, LookupFlds, Flds, Tbars? DocFlags?
+~Need to support default Dvs etc. (ln-> adding a new fld to frm auto-added to tbl)
+~THEN templates.
+~ToolBars might belong in Grid design.
+
+~For lookupFields, we need 3 checkboxes: *Allow vals not in list *Sort Alpha Asc/Desc
+~We'll probably need to extend JcomboBox for this widget
+~05.21 ADDENDA->
+~DocFlds are a designEl, therefore auto-shareable (not limited 2 one frm)
+~We nd to speci..."
+|||"webCli featureCompat|oldId:20200504093239056^Task  postCov056|||"
+""A few things left (mostly complete but @MBI) to bring the Jclient to feature-compatibile w/ web client ->
+~- row Highlighting (mA)
+~- Img displ in docForm?
+~- ToolBar ops incl quickUpdate
+~- mA, mAd grids
+~- markComplete etc., multiSelect
+~- chk FT ..."
+|||"|oldId:20200430093239043^Task  postCov043|||"
+"The cli shell w/launch & prompt for logIn, & Download the Desktop Icons & Cfg -> @ this time use something like the puff anim"
+|||"|oldId:20200623093239164^Task  postCov164|||"
+""The CalView needs a calDef similar to dvDef but only one configurable via Dlg offering includes (chkBoxes) & a predBuilder.
+~Also user-customizeable colors forEa include.""
+|||"|oldId:20200430093239044^Task Research postCov044|||"
+""How do RSTA etc. Impl Folding, using refExps or that c-tag lib?  It appears c-tags mainly 4 syntax but cld be used for blocks.
+~How do they find the beginning/end of blocks?
+~If blding from scratch (probably a gd idea) build regExps from J Lang Spec..."
+|||"classGen|oldId:20200623093239163^Task  postCov163|||"
+""The dvDef is the point of entry forEa datClass (even if user goes to desGrid, that's a dvDef)
+~Therefore, svrSide first runs func chkIfDatClsLoaded -> if not, run loader -> chk if clsDef changed -> if y, compile newCls; else load existing from desig..."
+|||"Tk ReOrg|oldId:20200430093239045^Task 3* postCov045|||"
+""High-Priority-> Add new obj Beta1Target; incl items necc for min func ver BUT need secure env w/o @MonkeyBastaInt.
+~Comb thro' the tkList & identify candidates.""
+|||"currACL Level|oldId:20200623093239162^Task  postCov162|||"
+""The desktop.dsk nds currAclLvl for uiSide stuff like building TBars.
+~ALL svrSide lookups are independent, so even if an attacker changes the ACL it shd be checked svrSide
+~ALL functions requiring ACL>1 MUST chk userLevel errMsg: attempt 2 aquire hi..."
+|||"dvDefs|oldId:20200704093239183^Task  postCov183|||"
+""For ease in design/impl., we need to first impl dvDefs only SvrSide; whether serializeable or hardCoded
+~CLI chooses by name/dropDown
+~THEN impl serialization and THEN cliSide
+~For now, (check) all four defs differ only in Filter.  This can be expan..."
+|||"DocMngt|oldId:20200430093239041^Task  postCov041|||"
+"The DocMngt Module can exist on TOP of Word/GoogleDocs as a �customized' Deployment a la smc offering unified UI"
+|||"Tag Cloud Filter - 1|oldId:20200704093239182^Task  postCov182|||"
+""Note that correctliy implemented, this has the capacity to replace the Wizard.
+~At some point later we can add a button: AddFilter to bring up the predBldr; which then adds a (chkd)Btn to cloud.
+~Possible also to offer ability to add previously buil
+t filters (show choiceDlg)
+~So all that remains is grouping/sorting  (Default: none, offer access via toolBar?)
+~This might make the cloud huge and therefore make it scrollable; another option is to show predBldr but for flds w < 25 uniqueVals offer ..."
+|||"Forms|oldId:20200430093239042^Task  postCov042|||"
+""We actually NEED 2 different calc fldTypes: Calc on Save & Calc for Display.
+~The former's calc on save; the latter everytime.  So, for e.g., if Sales Tax %age changes, former stays constant & latter re-evals.
+~This is important for AccountDocs""
+|||"Lib reorg|oldId:20200614093239142^Task  postCov142|||"
+""nix abstractions; put common stuff in com.trivedi.common & import for ?0 (curr) & tkTbl reOrg thus->
+~com.trivedi.spx  -   ide only (+glyph later) + crypto.  Save as ~full.spx; ~abbr.spx
+~com.trivedi.cli
+~com.trivedi.svr
+~com.trivedi.common (AI, tre..."
+|||"|oldId:20200614093239143^Task  postCov143|||"
+"If winTitle NOT feasable add txtLbl for title & var"
+|||"|oldId:20200614093239144^Task Research postCov144|||"
+""HardCode a hidden DV for rec (e.g., only toggleOn; import from earlier)
+~Lookup rsch so shift-Click capture/show recDV in List""
+|||"TgtVer fld|oldId:20200614093239145^Task 1* postCov145|||"
+"Add tgtVer fld to cls/grid & add dvCategByTgtVer.  Ths is better'n using only strat/tact, also sub-mods"
+|||"Tbar impl|oldId:20200614093239140^Task  postCov140|||"
+""Add a saveBtn (comboBtn) w/ Save{SaveAs} as well as func. To save def as desEl
+~Chk what happens when too many buttons added to Tbar.  AutoWrap?  Arrows won't work.  LN uses icons only.  We can do a fontSize adj -> 
+~ren superSizer 2 fntSizer; accep
+ts eNum -> getDefaultSizes for sm, med, lg from dojo
+~If that doesn't work; use icns+ttips
+~06.16 ADDENDA-> Chk what happens when too many btns added to TBar.  AutoWrap?
+~Arrows won't work.  LN uses icons only.  We can do a fontSize adj->
+~ren superS..."
+|||"|oldId:20200614093239141^Task  postCov141|||"
+""Impl daily/wkly/monthly/qtrly from widget; chk backup.  Maybe 1 new class for appt/reminder w/opt for recurring.
+~Mon/Qtr esp good for workoutLog, load balancing for genres/cuisine/etc.  B'days from nab w/option to suppress.""
+|||"|oldId:20200614093239147^Task  postCov147|||"
+"Impl for certain flds (eg, tgtVer) a DropDown w/existing choices/ability to add.  Later offer ablity to specify these (possDup) How does JDK impl this?  Customizeable?  Buildable!"
+|||"|oldId:20200614093239148^Task PossDupe postCov148|||"
+""Essential before ?0 to consolidate the codeBase & spend a few days tracking down past/missing forks
+~NOTE: Patch probably v useful to locate missing BLOCKS, so run it against sphinx.spx""
+|||"|oldId:20200614093239149^Task  postCov149|||"
+""At some point, clean up the DAT classes by breaking non-sample-related flds to new external (user) class.
+~This will keep non-sample flds from intruding + gives us a readymade test for the ClassGen module""
+|||"Importing Notes|oldId:20200614093239150^Task  postCov150|||"
+""For XL entry / blk import of these tks
+~- write a func to gen (int) UNIDs to console, imp into XL
+~- for docLinks (tmp workaround) use Fmt docLink: UNID; later we can do a replaceAll
+~06.19 ADDENDA-> Along w/ tgtVer, add new tk fld DependsOn; will h..."
+|||"|oldId:20200626093239173^Task  postCov173|||"
+""( Separate stage for CLI ? ) As with svr, we'll need a handlerMap w <ActionCmd, Func>; proc is as follows:
+~incoming to cli -> inTuple -> lookup handlerMap -> refresh()? -> UNID.isPresent()? -> Update -> isShowing()? Flash() -> anim begins (retain p..."
+|||"|oldId:20200626093239172^Task  postCov172|||"
+""LN Desktop allowed switching betw Windows/Dsk; we're allowing minimization/restoring state.
+~Also offer users a menuOption to switch betw open wins i.e., new win -> addToMenu; closeWin->remFrmMenu.  A convenience.""
+|||"|oldId:20200611093239133^Task  postCov133|||"
+""Since the gridTpl already has > 7 vals, redefine pTpl as ""tpl containing 1 or more tpls"" starting 5th and going up
+~IsPtpl() remains the same coz fifth is the 1st tpl; we have nano, 2nd tpl will be lift13(1, 2, 3, 5, 5) then 17, 21, 25.  Basically
+ increases by 4
+~06.12 ADDENDA->  For now, just add 13 & 17, should suffice really.  Lift too.
+~Design Grid – mTk table
+~~~~~~~~~~~   Created~~ lastModified
+~(+) Tbl Settings
+~(-) Forms
+~~Default Form~~~~~   01-02-03~~03-05-09
+~~Edit Form
+~(+)  DataV..."
+|||"datClass pointers to mAd|oldId:20200611093239132^Task  postCov132|||"
+"mAd stores tableNm mapped to short sysName (userDat#) & assoc datClass pointer.  This allows us to pass in the qualified tblName.  Basically, store a map/List<Tpl> containing all tblInfo/Links."
+|||"Form Design|oldId:20200626093239171^Task 5* postCov171|||"
+"We need to ensure that defaultMode on open is Read & on TBar btn/form dblClick change to Edit"
+|||"Tree|oldId:20200621093239161^Task  postCov161|||"
+""Since we're now providing recursion/depth inside pTpl, we don't need Tree at all ->
+~Final tpl contains non-Dat stuff (e.g., isCateg), rest're rows; impl in tblModel
+~a translation of get[ro][col] as returning Fifth, etc (switch) so:
+~popDat returns
+ List(rows) <Tpl(list<DatOb>)> (+cols+pagin+dvDefTpl)
+~much cleaner (no non-data cols like isCateg)
+~get (ro, co) = List.get(ro).Lift3(get(co))
+~NOTE: in dvDef's lift13, 1st chk getDepth==3 or return Left (or impl as ret Depth>1)
+~After Impl getDepth..."
+|||"rTpl Impl - 6|oldId:20200729093239227^Task  postCov227|||"
+""rTpl.rMap (Func <INmTpl, OUTmTpl> mapF)  Note that this mt lead to memory issues; esp.ly when building list from rTpl; coz it has a cumulative collection.  Therefore better to NOT bld list but return a rTpl.
+~   rTpl inTpl, procTpl, outTpl;  procTpl
+ = inTpl;
+~while procTpl.hasNxt(){
+~   outTpl.add ( mapF.apply (procTpl) );  procTpl = procTpl.5th;
+~} ret outTpl; }
+~for Filter:  in while loop; pred.test(procTpl) ? outTpl.add() : skip;
+~Sort:  For now at least; better to use List (too many options..."
+|||"Tbar impl|oldId:20200719093239214^Task  postCov214|||"
+""Since Tbars are UI & CLIside, it would be better to build em in CLI vs sending pre-built in DSK
+~Certain 'standard' btns can be hardCoded via providerFunctions, 
+~eg a txtDlg showing Left(err) results of an Op needs a copytoClipbdBtn standard.
+~ALL 
+dlgs etc shld similarly be built CLIside since they're UI.  Take care not to use Dat clses.
+~Another poss option is to use a cache for btns/UI els
+~ItemSelectHandler (attached to desGrid) -> switch on itemType:
+~doc? hasPriorVers? add priorVButton (b..."
+|||"Codechk|oldId:20200501093239050^Task  postCov050|||"
+"AFTER new repo setup; use Eclipse/similar to fix & anonymize/streamline codebase; also use pub Domain checkers & build a (limited) test base.  Only minimal; this is a demo, might even be rewritten in alt lang."
+|||"|oldId:20200428093239037^Task Research postCov037|||"
+""Is there a lib to get the text of docs in diff formats (Word etc.?) If so, a huge + for DocMngt purposes & can bld FT Search capability.
+~If not, can't be too difficult to implement @ least for common formats like PDF etc.
+~If we decide to use Googl..."
+|||"Note |oldId:20200501093239052^Task 1* postCov052|||"
+"Keep Dev work frozen until Security sit. Improves; complete all research & ext lib work (e.g., l&f) org CodeBase, recover old vers etc."
+|||"mAd lookup for Obj|oldId:20200501093239053^Task  postCov053|||"
+"Objective needs to move from hard-coded 2 mAd lookup w/ability to add new choices (e.g., b1Tgt).  Needed but not urgent."
+|||"pubKey for sockSvr|oldId:20200501093239047^Task  postCov047|||"
+""Generate a default pubKey for cli-svr communication, only one, internal use only
+~06.19 ADDENDA-> After @secure, just generate ~200 riddles & clrTxt pubKeys.  THis is the key to be used for cli-svr communction too.  
+~On the svr side we'll eventuall..."
+|||"Self-Signed Cert|oldId:20200501093239046^Task  postCov046|||"
+"Create a self-signed cert to launch installer etc., later Verisign"
+|||"Security|oldId:20200501093239049^Task  postCov049|||"
+"Prog.ize the entire runtime"
+|||"spxFmt|oldId:20200501093239048^Task  postCov048|||"
+"AFTER new spx fmt functioning & new pwds impl; move/migrate the codebase, entirely re-saved in new fmt, to github or an alt BB repo"
+|||"SQL Stmts for currVw|oldId:20200518093239400^Task  postCov400|||"
+"Eventual Beta Demo shd show all SQL stmts w/o coding/CRUD. Perhaps split-screen."
+|||"Tag Cloud|oldId:20200619093239157^Task  postCov157|||"
+""The quickFilter design earlier is too much work; here's an easier approach->
+~ADD Proj, Mod 2 Tags & Ob (only ones of interest)
+~This keeps the whole thing modular & portable
+~First run tags.split.add2List ifNotPresent; then ifFlag, add mods/projs, 
+also totals forEa, 
+~THEN streamList for jBtns, show popup forEa btn. add handlers 
+~-> standard: adds tag2Pred,  switch for custom mod/proj -> pipe into gridBldr -> run tblData.refresh() -> populateDat
+~for now, since svrPush notImpl, add filterPara..."
+|||"VersionMap|oldId:20200619093239159^Task  postCov159|||"
+""? 0 -> CodeBase reorg - patch/diff into Sphinx.spx, ready2Fork
+~? 1 -> Import Module (Barebones) using bldbl / fluentMap
+~? 2 -> ESM Scenario Updates (edPane <frm not ide>? pTpl for gridBld)
+~? 3 -> FormBuilder Implementation (patels v. int)
+~? 4 ->
+ Useability Tasks
+~? 5 -> Impl Bldbl / FluentMap for all Mods incl ridDlg
+~? 6 -> dvDefs Impl  (nds pTpl updates)
+~? 7 -> Cal Impl
+~? 8 -> designGrid Impl
+~? 9 -> Tree Impl  (relDb?  MOVE TO 1.5??)
+~? 10 -> HotSwap / genClassSrc Impl
+~? 11 -> Break2L..."
+|||"|oldId:20200619093239158^Task  postCov158|||"
+""To DV class add methods getCurrFilter / getCurrSortOrder / getCurrCategList
+~Filter esp.ly necc in order to add on fly; OR could send the whole currDVDef & actionCmd to alter?  TBD
+~Yeah, need dvDef; add method toDvDef() to DV, returns a Tpl.  CLI n
+eeds this too, so send it.
+~Then cli filters via tagCld -> filter changed -> cli sends pTpl 2 svr -> regen for curr pgPos
+~Here's how to impl this before move to svr ->
+~Impl buildable w pTpl -> popDat calls this (for currDvs hardCoded 2 pTpls) -> re..."
+|||"bldable.finisher|oldId:20200609093239128^Task  postCov128|||"
+""In buildable, only some classes have finishers; so add hasFinisher Bool to buildable and in bld() -> hasFinsher? Return cls.finsher.apply() : return obj
+~Why mess w/bool ? Map over finisher.
+~Q: probs if not exist?  Shoudn't be.  Chk.""
+|||"|oldId:20200609093239129^Task 5* postCov129|||"
+""Incoming reqs sent to Consumers, user notified only if err.
+~Incoming Tpl has: ActionCmd, ConnId, List<Params>
+~Incoming -> Decrypter.accept(connId, Tpl) -> If err, notify user, else -> Tpl added to Process Queue -> ActionMap<strCmd, Consumer<Tpl>>.
+accept(Tpl) -> HasL? NotifyUser, else -> AddToOutQueue -> ForEach ->
+~FuncFindAllInterestedParties(strUNID, Opt<List<ConnId>>)  
+~<- This might not work, coz 200 conns/200 recs = 40k, list too large
+~Instd, map over ea openConn -> HasAffectedUNID? Pu..."
+|||"Ring setup & operation strategies|oldId:20201209093239300^Task  postCov300|||"
+""Jam nds setup 4 recurring Fees/Contingency/Expenses/Mngt Exp
+~BOMs can generate sal (20k) + Exps (Keep reserve or trigger CapGains)
+~2 x rSib -> similar, reserve w/Instr, part dispatch, mngt exp.
+~
+~Opt 1
+~40(JamTR) 
+~40(3 Rs BOMs)  Tr30+cBo+ L-M (n..."
+|||"pTpl constr 2|oldId:20200702093239180^Task  postCov180|||"
+""EVEN BETTER: xtend tpl to dvDefTpl; newInst() returns pTpl 3 depth, easy to attach namedParams in bld So now we have->
+~(Server) genGrid (dvDefTpl) -> cli gets popDatTpl (DatTpl, Cols, Pagination, dvDefTpl) -> Cli changes filter/grping/param
+~-CLI o
+nly uses Dat, dvDef only for changes to config.  Add new methods cli-side to do chgFilter(); setGrping() which'll lift or otherwise update the tpl directly
+~-Svr will need to lift dvDefTpl to generate dat & access all the def params
+~-Perhaps it SHOU..."
+|||"|oldId:20200526093239099^Task  postCov099|||"
+""Before the popDat runs the sort(s), the column Header needs an icon on the Right side indicating asc/desc + sprt# label ico.  Show #?
+~Something like -> FldA?1    FldB    FldC?2
+~05.28 ADDENDA-> nix the #s, they're confusing.  Even the indicators ma..."
+|||"Desktop Icons|oldId:20200514093239068^Task  postCov068|||"
+""Rt-Click on Desktop allows user to add icon -> First choose Tbl/Template -> Choices -> Itself -> DV(ListBox) OR 3 standard icons w/ + signs for Tbl, Templ, DV (Add a ~).  Similarly removal OR Menu/Tbar.  
+~Tabbed View for Desktop not necc.  TBD.
+~If..."
+|||"|oldId:20201209093239213^Task  postCov213|||"
+"Need to update to use Buildable & new tpls, poss return rTpl.  Also config runnable inputs within the build"
+|||"Codebase|oldId:20200506093239063^Task  postCov063|||"
+""@ This point we have Cli/Svr/Grid w forks/Spx.j/Various scraps, Launcher.
+~We need to first consolidate all snippets into spx, THEN setup a formal codebase w/ a fixed # of files.
+~THEN fork all over, incl var obf vers + diff jdk vers etc.  This allo..."
+|||"Predicates|oldId:20200624093239167^Task  postCov167|||"
+"Esp.ly good for later move to Svr -> separate ea Pred (Default) into indiv Preds; e.g. isNotPriorVer/is~, and  hardCode the default as [(NotPrior and NotComplete AND...]"
+|||"FormBuilder|oldId:20200527093239102^Task  postCov102|||"
+"Buildable needs to feed EditMode param; default=False.  EditBtn only visible to appropriate ACLs.  For ea fld; Enabled=False.
+~Also, we need to revisit the actual method using SpringLayout.  Use another?  Redo to allow order change / full-line flds ?..."
+|||"designElements|oldId:20200528093239107^Task  postCov107|||"
+""New class stores designDefs (one doc for all flds)  One for each dv.
+~The data class for the Tbl is built FROM this def + mAd internal flds.
+~Perhaps one field/doc stores the class itself; only regen for changes.  This allows create/apply template, 
+create new, etc.
+~TBD-> Serialize Dvs or dvDefs?  Also forms?
+~Applying this approach leads to NO dataClasses compiled (class retrieved from hashMap) -> 
+~We'll only have a 'shell' w/internal flds, and the rest is built and compiled on demand.  Much ..."
+|||"Tag Cloud|oldId:20200527093239106^Task 3* postCov106|||"
+""WTF happenned to the Tag Cloud Filter port?  If docFlags are impl., (as tags), this wd be tres useful + fun.  
+~FilterByTagButton.
+~Bldbl + Tpl allow setting HitCount Bool so for docFlags no Count; Similarly for assoc icon(grid) + Ability to add
+~Im
+pl using Buildable, could use popupDlg first, later slide below Tbar / show expandeable Tbar / Ribbon impl <btnIcon for expand: two carets, one on top of other>
+~05.30ADDENDA-> Add tagFld 2 form DropDown + Addition, Lookup for choices.
+~DropDown must..."
+|||"Note |oldId:20200527093239105^Task  postCov105|||"
+""We keep arriving at this qn repeatedly, so it must be put down -> Why can't we pass a string and get a Pred?
+~Well, of course, a Pred is a Func. Interface (w/Default meth test()) and there's NO way to errChk, a la regExp PatternSyntaxException, for ..."
+|||"dvTitle|oldId:20200527093239104^Task  postCov104|||"
+"We need a textField (above Tbar?) showing Dv Title"
+|||"Widgets|oldId:20200527093239103^Task  postCov103|||"
+"As far as poss., minimize new widgets.  Just program the feature/capability e.g. to change order of icon in dvWiz, Selecting & hitting up/dn button will reorder val via up/dn button code.  Functional is less classes; more re-useable func.s."
+|||"Filter changes|oldId:20200624093239165^Task  postCov165|||"
+""Since currently an intVar holds dvDefNum (auto-Inc on click) this'll not allow filter modifications: dvDef'll change.
+~Therefore, impl Tpl & modify clickHandler to call w/ intDvDefNum (hardCoded) & commented.
+~Also pass filter back/forth for modific..."
+|||"|oldId:20200624093239166^Task  postCov166|||"
+""Patch:  Keep a log within tk & add comments incl srcDt in spx forEa Patch.
+~First run on srcFiles dated 1st of month, then 15th; should suffice.
+~In log, mark targets for immed inclusion.  To conclude, rebuild jar w/new srcFileSet, marked Alpha0
+~Q:..."
+|||"Request Handler|oldId:20200604093239123^Task  postCov123|||"
+""SocketSvr recieves encOb -> sends to Processor (BiCons<ConnId, Ob>) -> decryptOb<Tpl> -> Get Func from HandlerMap<strCmd, Func> -> BiCons.accept( ID, Tpl ) -> procs, encrypts & sends resp 2 sockSvr OutMap<id, encrObTpl>* -> to CLI
+~* -> OR sends dir
+ectly to sockSvr handler/writer.
+~Modify existing observer/response for HTTPSvr; if we decide to impl http also, we can easily retrofit it.  Since we already have the cmds setup, 'simbly' modfy it.
+~NOTE: The encryption here is lowPri drudgeWork; we ..."
+|||"FormBuilder|oldId:20200604093239122^Task  postCov122|||"
+""We need a Supplier which takes fldType and returns an empty fld of the type for naming/customization; switches over all poss types incl colorPicker, iconPicker, lookup etc.
+~Return type is FIELD, THEN add validation via a func.
+~Basically, buildable..."
+|||"RelDb / Other Classes|oldId:20201209093239009^Task  postCov009|||"
+""For a first min-feature Canned RelDb, call the template something like mAccount ->
+~Cust/Orders or Entity/Account... (Can only create docs from inside the Cust Pg ActionBtn)
+~-> Shows embedded Tbl + Compound View,  Canned""
+|||"|oldId:20200710093239197^Task  postCov197|||"
+""Store desOb as Obj or Definition (tpl)?  The latter, like protoBuf, offers advantages in -> version indep -> easy to edit/update/read.
+~Since we�re trying to keep the CLI dat-cls-free; we shd try to use Defs; forms etc.  Actually need no classes (sw
+ing comps) and this whole approach is also more Func.  & we can pass the def to regen.
+~For inst,. The FrmBuilder accepts: 
+~List<strLabel>
+~List<strColNm>
+~IntNumCols4Layout
+~StrFmtdTxt (new)
+~List<validationFlds> (new)
+~List<validPreds> (new)
+~Conv..."
+|||"|oldId:20200710093239196^Task  postCov196|||"
+""If class def changed, compile new class -> we should at least add a barebones fldName to toString().
+~Do the dat classes have any other methods?  Do we need to update anything else?  Check.
+~Since we�re extending mData to mDesEl, addFld: elType and ..."
+|||"FormBuilder|oldId:20200724093239221^Task  postCov221|||"
+""DropDownValues -> There's no utility in storing these, coz they cld change for every call & therefore nd to be checked; and threfore are prob.ly better built every time.
+~Where the func supplies fldWidgets; do a isDrDnFld ? getDDvals : ~.
+~int unqVa
+ls = tbl.cls.stream().filter(col=uniq).sum().count();
+~uniqVals < 25 ? SupplyTheVals
+~Store this in tblSettings/populateOnInit? or Add2List if notPresent() ? 
+~ADDENDA 07.26-> For popDat/rTpl -> for List<col> use a tpl; this provides typeSafety & inn..."
+|||"rTpl Impl - 5|oldId:20200724093239220^Task  postCov220|||"
+""Function List2rTpl (List<mTpl>, mTpl) { L.reverse().forEa{ ret = new (1st...4th, ret);}}
+~BiFunc rTplAppend (mTpl, rTpl, mTpl) { ret new mTpl (mTpl.1st...4th, rTpl)}  Needs tblLock?  Phaps not
+~TriFunc rTplRepl ( mTpl, Pred, rTpl, rTpl) List L = rTp
+l2List.repl (~) ret.  Basically, chk/add vers forEa listOps
+~mTpl.filter(Opt<mTpl>, Pred) { (supply empty mTpl @ init) 
+~Pred.test(mTpl) ? return mTpl.filter(out.add(1st...4th) : return mTpl.filter(5th)}
+~   needs work.  isLast()?
+~Add rTpl.getLeaf()..."
+|||"new Fld|oldId:20201209093239022^Task  postCov022|||"
+"We need a fld storeAsHtml, defaults to true; devel overrides"
+|||"iconTbl|oldId:20200711093239200^Task  postCov200|||"
+"For iconTbl et al, the gridBldr & popDat should accept a datClass-less version for the population & creation of a generic tbl (cal too).  Need to adapt all relevant funcs to allow this."
+|||"splitAndClear func|oldId:20200711093239201^Task  postCov201|||"
+""We need a new func splitAndClear (strIn, Delim) which splits on delim & then removes the delim (many uses)
+~Proc thus-> splitNclear(in, \r\n) to List vorEa line, feed to spxFmt func to get wrapped, & so on...
+~Poss better-> splitNclr (str, int) for ..."
+|||"Image Embed|oldId:20201209093239032^Task  postCov032|||"
+""1 TBO?  Art � japanese pyrotechnic display w/bridge just pre 3.17
+~2  MotFl call allin
+~3  Mr. Burns evil grin""
+|||"IconCols / DocFlags|oldId:20201209093239031^Task  postCov031|||"
+""@RSCH, @FUN, @FLAGGED � this is probably better than using a Row Highlighter; though we shd offer both.  Class iconCol extends tableCol ?  See #71
+~Rt-Click on row allows setting Icons/Flags to Rec
+~- Also cols for Img & Attachment, autoCalc
+~05.047..."
+|||"Desktop Icons|oldId:20201209093239030^Task  postCov030|||"
+"the Cli needs to incorp both working & failing versions of the DesktopIcons so we can debug & find the cause / point of failure.  This'll poss fix other icon issues as well; unless this is @MonkeyB related"
+|||"StatusBar|oldId:20200727093239224^Task PossDupe postCov224|||"
+""The grid needs a proper statusBar w/hooks to update/reshowLast etc.  
+~For SysCommander, when a systemsOverride is in place; a red marker (icn?) shd show in the statusBar.
+~Impl a generic statusBar & reinsert for context (in desktop/grid/form Window
+s)? TBD.
+~Use buildable & one common func. w/param 'For' (e.g. ForGrid, ForForm)
+~Design note: We can in future break off areas/boxes to right of bar & show grps of en/disabled icns, quick-click to change e.g. showCompleted.  Poss overkill, tgt that ..."
+|||"Snippets Tbl|oldId:20200727093239225^Task  postCov225|||"
+""We shd be able to switch from ide to desktop; launch snippets grid; examine/copy2Clipbd (internal) & switch back to paste.
+~Alt 2-> Impl tbl as a listDlg, on sel/click shows content in Dlg w/TA; ability 2 copy2IntlClipbd.  Use hardCoded refs""
+|||"ACL Impl|oldId:20200727093239222^Task  postCov222|||"
+"Target all Acl-related items for B2, Test w/user & Dev ids (later Admin also); TBars etc. shd show appropriate changes; CLIside 'hacking' shd fail; auth shd be reqd forEa essential functionality"
+|||"imgLinks|oldId:20201209093239038^Task  postCov038|||"
+""06.19 ADDENDA-> jEdPane : Form's docQueryOpen replaces imgLinks w/ (sized) images. 
+~Need to standardize link format & repl existing imgLinks [DocLink:ID][ImgLink:ID]  [tblName:ID]
+~NOTE: the existing images are in a separateTbl; shd be same table e..."
+|||"SysCommand|oldId:20200727093239223^Task  postCov223|||"
+""Add a new ACL level -> SystemsCommander (ie, me)  There are several places where Grid func's useful (e.g. AdminTbl areas) BUT we never want to expose that to devs/admins/anyone.  SysCmd is for that (internal grids etc).  For TBars etc use a Red back..."
+|||"Cal Impl - 2|oldId:20200704093239277^Task  postCov277|||"
+""Note that the prior Cal was in actual use upto 2004 (incl ahd logs, I believe) & definitely 99~.  Way back?  Just a jTbl
+~buildCal (forDate, eNum.TYPE) {
+~if forDate (Mo, Yr) == Today, Flag=True
+~AtomicRef rowNum, colNum
+~intStrm.rangeClosed(1, days
+InMo).stream.forEa ( d -> { 
+~d==1 ? colNum = DOW(Dt1, Mo, Yr) : ColNum++;
+~if colNum == 7 colNum = 1;
+~rowNum++} dat (ro) (co) = d
+~In renderer -> if Flag & d=TodayDate;l <span>red</span>
+~*** in QtrlyView, just add 2 more boxes w/Mo before & after...."
+|||"|oldId:20200717093239211^Task  postCov211|||"
+""Task 163 says: dvDef -> svr -> isDatClassLoaded ? ClassDef change? Etc.; which�s probably overkill for multiple users.
+~Instead, move the trigger to dev -> changeDef -> func runs to load new cls, compiled.  All dat clses loaded on init, as they shd 
+be; i.e., 
+~Dev changes clsDef -> new compile from shell -> succ? -> new cls saved to desEl tblDef
+~Fail? -> nothing happens, left logged, earlier version loads
+~-Must test thoroughly, verify what happens, for e.g., if an existing dvCol removed (shd ..."
+|||"Tbar impl|oldId:20200717093239212^Task  postCov212|||"
+""This assumes that all Tbars are blt CLIside; so DSK shd contain currAcl; all icons etc as before; & svr rechks acl before invoking secureFuncs.
+~Now, we impl buildable & build dynamically forEa instance (avoids show/hide blank placeholders).
+~Inside..."
+|||"Importer|oldId:20200531093239113^Task  postCov113|||"
+""Convert the generic DelimImporter (mT) to a standAlone ver to be used later as the Import Module.
+~Use generic input (fldNames)  Test and refine with these tks / Excel delim output.  Also save sheet/template somewhere to save dupl effort for other i
+mports.  Eventually incorporate into impMod which shd be wizard/buildable.
+~For large datasets (50k � 5M) use procBuilder.
+~ADDENDA 06.06-> Actually no genericDelimImporter exists, we're creating tks one at a time -> so splitNClear crLf; add new tagF..."
+|||"dvDef Flds for pTpl|oldId:20200612093239004^Task  postCov004|||"
+""06.13 ADDENDA->  dvDef fields for pTpl:
+~StrDvName
+~StrTblName (poss redundant.  What purpose does it srv?)
+~datClass<class>  (retrv from mAd? Incl here for ease of use? See 132)
+~filterBy<Predicate/fmtdInputStr>
+~List<Ob> DvOptions
+~List<int> pagin
+ationOptions
+~List<bool> clsCustomOptions (showCompleted, showUnread, etc)
+~List<Renderers> colCustomRenderers (offer @ 1st color etc., ability to assign formulae?)
+~List<strColNames>
+~List<strCategBy>
+~List<strSortBy>
+~List<intColWids>  auto-sized b..."
+|||"rTpl Impl - 2|oldId:20200628093239275^Task  postCov275|||"
+""06.27 ADDENDA->  The tpl class also needs:
+~private mTpl toDatTpl (List<List<ob>>) -> streams 1st list, IN REVERSE ORDER, adds tpl w/intRowNum as 1st, and recurses thus-> (we need 2nd param as newInst())
+~int sz = List.size(); newTpl(sz-1, List.get(
+sz-1_), null, null, 5thTpl(in) OR empty);
+~optTplIn exists ? return toDatTpl(newTpl, TplIn) : return ~
+~ALSO needs outsideVars (isCateg etc) & could ITSELF be a pTpl !  ... in which case lift the darn thing...
+~NEW VER of isDatTpl -> return inTpl.Dep..."
+|||"|oldId:20200709093239192^Task  postCov192|||"
+""Note that the doc here�ll almost always stay in ReadMode.  Another PORT-> Ability to add Ttips/Notes from ReadMode; assoc txt highlighted a la dojo.  
+~Also, ability to highlight text w/o Ttiops, using 1 of 5-6 neons (swing jTbl ex has snippet 4 pic..."
+|||"|oldId:20200709093239193^Task PossDupe postCov193|||"
+"Need LN-like menuOption �Copy as docLink� & assoc icon; places pasteable in clipBd."
+|||"|oldId:20200709093239194^Task  postCov194|||"
+"Various legacy procs need to be ported to Functional equiv.s -> ReconcileDB might not be immed. Useful, but the DupChecker certainly has utility & can be even be used elsewhere."
+|||"|oldId:20200709093239195^Task  postCov195|||"
+"Need to disable docVers for mA since it�s static content w/only highlighting etc. As Edits; shd help size"
+|||"|oldId:20200627093239174^Task  postCov174|||"
+""First update the procBldr to accept funcs (1-> To proc frm delim 2 dat cls; 2->To ret list<dat>)
+~Then test w/increasing dataFile sizes to 1m or more; tpl-ify everything.  This is an exc place to test/improve ErrHandling
+~ADDENDA 06.29-> Incl sysIni..."
+|||"|oldId:20200610093239131^Task  postCov131|||"
+""Eventually we can, and should, get rid of the dv class -> popDat can run off a pTpl & so can everything else, it's just a tbl/def/holder
+~Pre move to Server, impl popDat as Consumer<pTpl> dvBldr; it needs no dvClass & sends output (dat) to server Ou
+tQueue (Dat+Cols+Pagination)
+~INPUT: DatCls / List<Str> colNames ... snip(detailed later)
+~NOTE: we need NONE of these for the designGrid, so break it off to a separate func & call that w/a diff actionCmd: showDesGrid / bldDesGrid / desDVbuiler
+~-> T..."
+|||"spxFmt|oldId:20200628093239202^Task  postCov202|||"
+""Does the spxFmt currently track numBytes clrTxt?  Is that what we're using to compare file in Clipbd?
+~If not, add; append func after decr as verifier.  This tk should fall under Useab coz many outside uses exist.""
+|||"|oldId:20200628093239203^Task  postCov203|||"
+"Fx devel frozen coz @MBI / Blder; but we still need a (non-anim) tester for, eg., Decr success msg"
+|||"SysInit|oldId:20200603093239121^Task  postCov121|||"
+""Desktop Init -> Standard icons added (Settings, Help, Samples) for first hard-coded init.  Thereafter, users additions/changes saved
+~No templates on desktop but available via Dlg (new Tbl/Repl design)
+~For File-Open the sys scans each avail tbl & s
+hows in Dlg
+~ADDENDA-> Perhaps a better approach->
+~Init scans forEach launch and adds icons for ea Tbl?  Prob: if user wishes to hide say a test copy.
+~Better to allow user customization, seom clients may not need/want all the tables to show.
+~We're..."
+|||"SysInit|oldId:20200603093239120^Task  postCov120|||"
+""Note:  This runs before Desktop file sent to CLI; and pre-Compile ->
+~GenDatClassSource � Sys checks each tbl & returns class 
+~-> If classDef has been changed, new cls built (dataIntegChk?), stored in tbl & loaded.
+~LN allows fail w/no errMsg (dev 
+expected to know) Since we're dealing w/neophytes, we shd chk & give a report of failures.
+~Also, as before, rename old cls (how many?) and offer a chance to backout OR they cld call $$upport.  Or retrieve backup.
+~Each user's file exists in a differ..."
+|||"Importer Impl|oldId:20200628093239206^Task  postCov206|||"
+""First ensure XL data in importable fmt
+~-input delim (std) will have a UNID col (for docLinks)
+~-Ensure all datFlds exist - subMod, docLinks etc
+~-funcDelimImporter runs readAllLines & returns split 2 List<tpl>.  This is fed into procBldr, which
+~-T..."
+|||"|oldId:20200628093239204^Task  postCov204|||"
+"Eventually, here's what we want -> Break sRid into segment(s) some usr, some hardCoded - then, and theoretically this shd work - append Bytes to form pubK.  This way we can do integChk/gen clrTxt svrSide forEa pwd"
+|||"new repo|oldId:20200628093239205^Task  postCov205|||"
+"If gitee not avail & appears non-MBI (it probably is) after reconciliation of sphinx.spx, establish a new repo/bkup"
+|||"iconBrowser|oldId:20200427093239036^Task  postCov036|||"
+""Poss not a tk in the system but cld be a dupe: 
+~IconTable Browser (almost completed but @MonkeyBastaInterf)
+~When this is ready, gd BusyWork in picking Toolbar icons etc.
+~05.8 Addenda-> ToolBar nds a quck dlg to add New w/btn to pick, embed mAd""
+|||"rtEd|oldId:20200328093239021^Task  postCov021|||"
+""Mini-rtEditor based on TA (vs EdPane)
+~- extend TA, put all functionality in there
+~- onFocus show ToolBar w/min set of features: Bold/Itgal/Hdings/Font & List Btns Bring up Dlg; take input & insert UL in doc
+~(NOTE that this only edits raw HTML ie,
+ selecting a word & hitting �B' will cause it to repl w [[<b>word</b>]] )
+~- Rather than using huge, kludgy Fx-Type widgets w/Beans & PropListeners, this cld be tiny & useful
+~- Easy to add functionality on demand
+~- Assumes underlying doc is HTML
+~Q..."
+|||"Note |oldId:20200328093239024^Task  postCov024|||"
+"During & after Refactoring, we should focus on Items, even Hand-Coded (vs Automated) which enable us to get the Max Useabilitiy from the Prog; Dev-Side can come later apres @MonkeyFix"
+|||"Images|oldId:20200427093239035^Task  postCov035|||"
+"Note: eventually we'll need to replace all images w/ royalty-free versions"
+|||"|oldId:20200610093239130^Task  postCov130|||"
+"Impl ACLs in v2; default is Full Access (Dev/Admin); everything showing (so that we can continue working w/o tinkering at least for the non)"
+|||"Robot AutoClicks|oldId:20200328093239026^Task Research postCov026|||"
+""To prevent auto-clicking via robots in PwdDlg (& thereby allow unlimited tries) add a couple of buttons to TryAgain & GiveUp; use Random() order & change case.  Bogus buttons can also be titled Bogus, Wassup etc., & displ an infoMsg saying they're f..."
+|||"Note |oldId:20200328093239025^Task  postCov025|||"
+"Why're we using a method for Build instd of a Func? @FakeMBCompErrs?  Move to fn (HigherOrder).  This offers incr functionality & modularity.  TEST."
+|||"Bug in ColSizing|oldId:20200328093239028^Task  postCov028|||"
+"The hard-coded colSizes might not be taking coz BOTH setPrefW & setMaxW reqd"
+|||"Internal Flds|oldId:20200217093239010^Task  postCov010|||"
+""In Data, ea *internal* fld nds to be preceded w/ ""_spx"" eg, rowNum, UNID
+~- So it's there in the model but not in UI / Dat (no hide/show)
+~- We'll need 1 col per level (Categ), otherwise issues w/indentation.  This is a cleaner approach than addin
+g spaces/tabs; coz this approach will auto-indent the leaves too
+~OR use internal table for now (Constants)
+~ADDENDA 06.27-> Hard-code the list of flds in constants; that should be the best place for this.
+~Also note that constants also belongs in co..."
+|||"showCompleted|oldId:20200606093239127^Task  postCov127|||"
+""Add html strikethro renderer for completed, later add ""Show Compl"" toggleBtn for ea current dv; this already exists in the htmlGrid""
+|||"IconCols / DocFlags|oldId:20200720093239215^Task  postCov215|||"
+"How to implement multipleIcons?  Easiest way -> FUnc getIcon returns composite Icon (wider) for recs w/multiFlags; let the default renderer handle the rest"
+|||"|oldId:20200720093239216^Task  postCov216|||"
+"Check SO etc for most efficient way to impl gridMouseOvers w/o excessive repaints.  One way is to simply add a row var (& upd it on mouseOut/In, separately in mouseEvtHandler) & check it during renderer.paintRow()"
+|||"quickUpdate|oldId:20200720093239217^Task  postCov217|||"
+"QuickUpdate & batchUpdate -> this needs the dvBldr & predBldr in place before Impl; coz we need to know the fldType (eg to show & only allow T/F for Bool) ie, an abbreviated validation routine; also list of visibleCols to choose"
+|||"textEditing|oldId:20200720093239218^Task  postCov218|||"
+""Poss best approach to the whole txtEditing feature -> Allow 'active reading' in readMode, i.e., limited formatting - highlights, ttips - and in full-blown editMode (which shd seldom occur) show the raw html, use spans for highlights, translate mouse
+Pos to txtPos & if betw span for the ttip show/trigger ie, bld & show.
+~This may seem cumbersome but shd probably work fine once in place.  WE don't edit.  Worry abt users later, useab~ now.
+~ADDENDA-> For tk btn 'addLineBefore' etc., add buttons to ..."
+|||"Tree|oldId:20200217093239020^Task  postCov020|||"
+""Tree classes lie in root pkg (com.trivedi) to avoid serialization issues
+~@Abstract Tree level, incl isNode / isLeaf / isEmpty to work as caseClass & incl tomTpl()
+~- ReImpl all TblModel methods to access data
+~- Additions (pushed from svr) will sim
+ply call replace(UNID, leaf)
+~- Mods, as before, sent from Form directly to Svr
+~- Svr, in connection class, keeps List<UNID> OpenRecs (chkd for after ea update for PUSH)
+~- The tree will essentially be used ONLY FrontEndUI (The same table cld have w..."
+|||"reduce|oldId:20200606093239126^Task  postCov126|||"
+"Given so much @MBI for .map(), time to lookup .reduce() in jdk.  Snippets.  What other new func stuff in jdk? Teeing? What else?  The monkeys v. Gd @ hiding/obscuring these things"
+|||"DocLets|oldId:20200415093239033^Task  postCov033|||"
+""Q: How would you save a DocLet (MultiDoc Set w/ One Doc for ea Tab)?
+~Can be used to condense / collect priorVersions for diffing
+~05.03 Addenda -> Impl -> Saved in a large spxFmt file w/identifier split saying it's a DocLet + # of Docs + TabTitle. ..."
+|||"Backup/Redundancy|oldId:20200805093239229^Task Research postCov229|||"
+""Impl ASAP.  Found out yesterday that the monkeys've struck again: pwds for yhoo/bitbuck no longer working.  Must find yet another redir site (besides tiny/is) & resave 2019 on links @mugabe, hk etAl just in case.
+~Option 2: Find free websiteURLs & c..."
+|||"|oldId:20200705093239188^Task  postCov188|||"
+""Isn't there a way to independently name mTbls irrespective of type? So allTbls can contain > 1 tbl of same type?
+~If so, high time we impl'd mPanes, snippets & related stuff.  Some of the mPanes'll need working imgLinks or a way to lookup (already e
+xists in legacy code); a REVERSE link exists in the imgTbl but we need the frm to be link-aware and substitute (req jEdPane poss)
+~form queryOpen for mA -> contentFld not TA but jEdPane -> if [imgLink:docID] exists; forEa repl w/img
+~Later tbl settin..."
+|||"|oldId:20200705093239185^Task  postCov185|||"
+""Along w/markRead, add a flag/fld for markToRetain so that in future we can purge readArts
+~For certain tbls, eg FT, might want to retainAll but filter:unRead""
+|||"|oldId:20200705093239186^Task  postCov186|||"
+"need to create mA form w/edPn instead of TA"
+|||"|oldId:20200705093239184^Task  postCov184|||"
+""Also for regular grid w/no dv defined -> in DesGrid, just list a doc w/ (No design Element found)
+~When opening a new Tbl, if no dvDef, display a canned dvDef w/cols as docNum + @Created + @Mod; that's it.  Also open an infoDlg asking to click on bt..."
+|||"|oldId:20200524093239098^Task Secure postCov098|||"
+""Simulator: Stage1: For now, a startup flag makes memComp replace the existing mT class w/altered mT_NEW; compiles & execs
+~Since we're currently using hardcoded flds for the frmBuilder, either upgrade that OR add a switch fn called if fldExists.
+~St
+age2: Flag makes compiler displ wizard; chosen alterations piped into new dynamicallyBuilt class (cld also use ByteBuddy etc) & process as usual.
+~Stage3: Server checks for existence of wizardBuilt cfg file which contains alterations; then process as..."
+|||"Outline & Reconciliation|oldId:20200224093239017^Task  postCov017|||"
+""@ Some pt, dump the spx outline & go thro' repos & CHECK that everything's there
+~( e.g., 2019.08ish ver had PredBldr)
+~IDEALLY, diff ea Prev Outline first""
+|||"|oldId:20200524093239097^Task 1* postCov097|||"
+""Import the step-Wizard and convert to buildable
+~To be used for various tasks incl. HotSwap fld Addition/Removal/Update.  Vital.""
+|||"|oldId:20200524093239096^Task 1* postCov096|||"
+""Are we already saving unencr docLen?  If not, do so.
+~If we use THIS as a pass/fail option, we can ignore tupleLeft for sphinxify.""
+|||"toolBars|oldId:20200524093239095^Task  postCov095|||"
+""The ideal way to impl Alt-Enter is probably via context-sensitive toolBars (they change with ob sel)
+~Impl via buildable; perhaps store Map<Obj, tBar btn> retrieved on build
+~ACL applies via Func similar to Finisher; which removes unnecc frm list.""
+|||"docLinks|oldId:20200521093239080^Task PossDupe postCov080|||"
+"Must impl docLinks, choose tmp icon"
+|||"designElement Props|oldId:20200521093239081^Task  postCov081|||"
+""We need actual forms for each desEl to set props (fonts, colors, dvBackColor, tblBackColor, etc)
+~Flds must have unique names
+~Before display the dv inherits from tbl & overrides""
+|||"SubForms|oldId:20200521093239084^Task  postCov084|||"
+""SubForms not necc @ present, but target v2.  Implement internally on the first occurance of need/duplication
+~The idea here is, features impl internally & tested in production first, THEN unveiled in new ver by merely exposing functionality to user/..."
+|||"FormBuilder|oldId:20200521093239085^Task  postCov085|||"
+"Since we're using mT as a gridFeature tester; we need to incorp ea fldType (Bool/Currency/etc) and auto-translate in FormBuilder.  Add bogus flds w/ init vals if necc; they can be removed later."
+|||"Search|oldId:20200521093239082^Task 1* postCov082|||"
+"Import legacy search functionality from mA to mT"
+|||"|oldId:20200521093239083^Task Secure 1* postCov083|||"
+""Two poss reasons for every occ of MBI & MBFakeCompErr
+~- Bastas pushing own code (eg UNID)
+~- Existing code �failing' coz not working on iOs/Android or w/MB's crossCompiler
+~We need to examine each instance & rectify.
+~As much as poss., EJECT as in ..."
+|||"|oldId:20200629093239177^Task 3* postCov177|||"
+""We'll eventually need 2 types of keys: Pass/Fail w/unlimited Retries, & actual encr keys which have to be correct
+~The latter cld be internally blt by svr using userId hash + params; and use former to auth & use latter.  This offers fault-tolerance.
+  Eventually web serv cld offer:
+~-Encr/Decr files
+~-Encr a single msg - tiny - use in socMed
+~-Encr a grp msg - acls - custom output
+~-stats & userTracking
+~Research: (lowPri) : Custom Algos - pwd recovery/multiKey usage
+~Also, what do c# f# offer? ..."
+|||"|oldId:20200629093239176^Task  postCov176|||"
+""Prog.ing the commons will work only if everything else is incl @ same time; incl jdk libs.  Then the entire runtime can be minimized/optimized; then linked etc.  Worthwhile if @Sec to do this for a small footprint for the runtime.  Note that if the ..."
+|||"|oldId:20200521093239086^Task  postCov086|||"
+""For each existing Buildable, break into sep fns eg Outliner so they can be called by say docCompare Differ w/filtered results
+~We also need a fn which returns [List<itmType, Nm>, Pos]""
+|||"Historical Project|oldId:20201209093239304^Task  postCov304|||"
+""Doesn't have 2 be Jefferson, cld be Franklin/philly/ale as orig. Conceived.  Frankln cld also work as longPc
+~- 2x3 rschr @ 20/hr + share of 10% + citationCreds + T
+~- Also perhaps simult 1x3 on parallelProj.  3Xheh.  X2.  X1.""
+|||"Scenarios|oldId:20201209093239303^Task  postCov303|||"
+""SC1 (TE) -> -> (NC) -> -> SC2 (KINK) POD
+~one: Consider Perm (ea/hkr lvl reed cntry ams)
+~-Consider dual capab
+~-Put notice outside 4 ev1 but esp4 some Potels/Marw/Chirag: �No nuts-no entry' + kikiFern etc.
+~Two: noPc? PortPly + phoneWout+Assume boo
+bToob/NYPL WSP/ comme les deux cites
+~3 stage sys: slng-duff-ll/magic + poss offLoad 2 nc lt (bks), 3d+Magic
+~Else all set; expnd2Fit / runningGear taxWorthy / CampMo HolaB
+~SC1 TE aka BruceW Depuis+WayBack
+~(chk HN for onlineAvail) Sys+F->poss issue..."
+|||"Lookup items|oldId:20201209093239302^Task Research postCov302|||"
+""- Desi music options (B Akhtar etc.)  LPs?  AMZN?  MSFT?  Plyr 4 pubPC?
+~- List of txts used (film apprec; music appr)
+~- Public in/outdr tracks apl
+~- Sub 4:00 (Kipchoge? Splits vs Bannister? Masters? Others?)
+~- Gd compaRevs basic GPS running.  Ph
+n?
+~- Custom #s out-of-state
+~- Why was M Aurelius a stoic? Controlled?
+~- @possRedHerr; SteveJobs relig persu?
+~- Bookshelf/amzn + whatLinksHere for AlecGuiness/Sedaris/Guervez/Horne, Dunne, Dalrimple, Wolfe, Rumi, Rings, Gharrison, nycHist, socHist..."
+|||"Marw. Humor|oldId:20201209093239301^Task  postCov301|||"
+""
+|||"Bildungsroman|oldId:20201209093239307^Task  postCov307|||"
+""Works by Max Beerbohm at Faded Page (Canada)https://www.fadedpage.com/showbook.php?pid=20080603
+~
+~
+~
+~Bildungsroman-books
+~
+~
+~The Mill on the Floss (George Eliot) 1860 
+~This novel deals with passionate and clever Maggie Tulliver who can't fit her
+self in the narrow world of St Oggs but her brother Tom yearns to be accepted and loved. This novel is mainly a melodramatic flood of lust, love, betrayal and petite blonde envy, and serves as one of the good bildungsroman examples in literature.
+~Re..."
+|||"Quips|oldId:20201209093239306^Task  postCov306|||"
+""The Osceola Girls' Basketball Team lost 102-2 to Clearwater (fewer players than cheerleaders)
+~  Their coach, Charles Eddings: �It takes a different (type of) person to come back every day and still smile.'
+~  TBO writer John Romano: �Focus on doing..."
+|||"Miscellany Projects|oldId:20201209093239305^Task  postCov305|||"
+""Omnibus(ing?) in the USA / Veg~ a la Schott/ Hist+Anec+DidYaNo
+~GujProj: No bks avail simTo grk/Roman how they lived, incl details of routine/diet/anecdotes/asides.  Similarly royal anecds.
+~Don't forget:  A PICTURE & 40k WORDS (Art) & DON'T RESENT 
+THE 1% (Self-Help), or livin' la vie a~que
+~'lrn2live like em instd'
+~If @ all poss, use the approach of providing rich, detailed sources/Footnotes incl asides & add'l info/pointers to other sources.  If the rdr took the trouble to turn to the back, ..."
+|||"|oldId:20200605093239125^Task  postCov125|||"
+""RequesterFunc (buildable) & ResponseHandler (simlar) The latter has a finisher which chks if Tpl contains Dat & model refresh.  Likewise push -> red flash + refresh.
+~Add observer / map as on svrSide""
+|||"Tag Cloud Filter - 2|oldId:20200801093239228^Task  postCov228|||"
+""What we need is to preserve selections; ie if user selects ResearchBtn & THEN clicks on Project chkbox (to add projBtns to the Dlg); the dlg shldn't lose the Research selection.  If we're including counts (& why not) xtend jBtn to tagBtn & add fld t
+o store chkBoxRef.  Allows removal of projBtns if chkBox is unselected
+~NOTE that tagCld OKBtn ADDS to currFilter.  Also, use buildable AND on bld store Map<Str, List<str>> for ea chkiBox above w/all poss choices.  This way we have all data avail & d..."
+|||"Closure|oldId:20200429093239040^Task Research postCov040|||"
+"Time for a close gander @ Closure + widgets & Collections.  Are all those libs just recompiles/ports or rewrites?"
+|||"SwingSet3|oldId:20200429093239039^Task Research postCov039|||"
+""https://github.com/sjas/swingset3/tree/master/trunk/SwingSet3
+~chk Lic for Commercial Usage & if Usage OK, we can, for instance, pare down & use the calendar & anim routines etc.  If modification/use permitted, w/citation, slight poss probs w/bugs b..."
+|||"Cal Impl – 3|oldId:20200710093239278^Task Research postCov278|||"
+""calItem extends mData Fields:
+~-ItemType (eNum:Appt, Event, Reminder, Task)
+~-DurationFrom & DurationTo (For Appt, localTime) � needs picker
+~-Repeats (bool)
+~-RepeatFreq(Enum)
+~-GeoCateg (forEntEvt, E/W/Intl)
+~-Genre (A1...I1...E1...) PickList, aut
+oAdd
+~On calGrid/calView open, tks autoPopulated (For tks we shd be able to pipe em into the cal as-is, no new objs reqd � we�re just creating Lbls in the calGrid)
+~.filter (DueDt==@Today).forEa-> create calItm.accept(~)
+~-recover archive & chk freeC..."
+|||"Comment/UnComment Block|oldId:20200327093239005^Task  postCov005|||"
+""This is a HUGE Useability Plus, move up in Priority (Now)
+~Function<String, String> CB = ( strIn -> 
+~   Ret strIn.replace(\r\n\\, \r\n);
+~   strIn.replace(\r\n, \\);
+~)}
+~To avoid revisiting to correct; 1st repl \r\nBR w \r\n, THEN continue""
+|||"DocMngt|oldId:20200327093239007^Task Research postCov007|||"
+""Check Documentum & competitors for Features rel to Doc Mngt
+~Q: Can Diff do 3 docs (Think so).  If #1 checkedOut & Edited; & again by newUser, how to reconcile? (i.e., PATCH)
+~Big Useab. + for DocMngt (Of crse, wld also need support for Attachments)..."
+|||"Gantt Vw|oldId:20200327093239008^Task Research postCov008|||"
+""How difficult to impl Task Dependencies & Gantt View of Proj/Mod ? 
+~Chk Outlook & Google et al for TkList features
+~(Ignore all kankan & agile type stuff, only the basics)""
+|||"tk Graph|oldId:20200728093239226^Task Research postCov226|||"
+""Once narrowed by proj/mod, tks can be plotted to say a scatterGraph w/ttips @ ea point (ttips cld have neon desc.s followed by normalFont content)
+~Probs w/overlay (two/more itms w/same priorityGrade) -> Poss solution-> Like some graphs which show p..."
+|||"docLinks|oldId:20200530093239112^Task  postCov112|||"
+""To separate from LN, use www links, e.g., spxp:--tblNm--docID
+~Then buttons\txt can point to custom URLs.  Install default handlers, perhaps @ desktopWin level?
+~""
+|||"spxV3|oldId:20200530093239110^Task  postCov110|||"
+""We can also incl flds w/ no custom input; e.g., simple Alg Ops on # < 10, an img (color/animal/thing/glyph), also encrypted.
+~Users to use Qns w/multiple options: 1st Date w/Sue/Ann/Beth.
+~But if so, only clearly deciph ones w/one-word answers -> kn..."
+|||"Live checking|oldId:20200530093239111^Task Fun postCov111|||"
+"in the sRiddleDlg, it might be worthwhile to install a keyList and check for each entry; show a tiny thumbs-up icon if pass.  Huge shock-awe value"
+|||"|oldId:20200707093239189^Task  postCov189|||"
+""We need to build parsers for known source types. The proc'll be->
+~Item in -> Known type? -> YES -> Send to Paresper Fn for Type -> Parse known params (Dates, imgs etc) < - > Add�l formatting -> Gen tuple -> (*)
+~-> NO -> Tpl.newInst() -> Fall throu..."
+|||"rTpl Impl - 3|oldId:20200703093239276^Task  postCov276|||"
+""Converting [][] or List<ob> is kludgy & no good, must directly update popDat to bldRtpl.  Since we're storing rowNum, order (reverse) irrelevant.  At the point where we're pushing into Dat[][]; instd call
+~TriFunc addToDat(rowNum, List<ob>, List<par
+am>)
+~-> Keeps an atomicRef to mTplIn & rowNum, defVal empty
+~-> If empty() add null @ end, else call add2Dat(5 params) 
+~newTpl.of(rowNum, UNID, tpl<colOb>, tpl<Param>, tplIn)
+~  contains rowNum/unid coz they're most accessed.  Other params et.c. is..."
+|||"|oldId:20200202093239016^Task  postCov016|||"
+""ToggleBtn � TypeAhead � Validation
+~Chk ea ""standard"" widget in Dojo et al
+~Determine which're reqd
+~Port/Reimpl
+~- Mapped Combo fromList (Displ, Store)
+~- Expandable Section (TA � animate later)  Show one line if collapsed (w/arrow)""
+|||"RowRenderer Cache|oldId:20200202093239012^Task  postCov012|||"
+""Build a memoized cache of RowRenderers -> Map<Pred, Renderer>
+~Stream inside Paint() & apply for ea row
+~NOTE: This overrides COLUMN renderers; so we may have to:
+~- Get Renderer (*** just return HTML)
+~- Apply Fn w/Add'l Options (e.g., ( x -> x.Bac..."
+|||"|oldId:20200505093239058^Task Secure postCov058|||"
+"Low Priority but dg for downtime/@MBI -> We need Exps for each block type - Outline � Chk JavaLangSpec"
+|||"txtFmt|oldId:20200711093239198^Task  postCov198|||"
+""Txt format for BR, \r\n-> Note that current formatting targets not a TA or edPane; not even the form (will have to later), but TTIPs, which is bogus.  To fix:
+~-Change spxFmt func to accept opt<int> & move to UI
+~-Both TA & edPane have autoWrap so n
+eed only \r\n
+~-Ensure all curr <br>s are stripped, retain <p>s.  Use much care & retain for mA archive
+~-for Ttip, add funcCall to fmtForTtip(new func), which gets screnWid x .6 & fontMetrics; forEa line adds <br>s, using spxFmt func, then returns
+~..."
+|||"docFlags|oldId:20200515093239071^Task 1* postCov071|||"
+"New designEl docFlag -> allows setting Annotations, @TBD etc.  Shows icon-picker & allows adding icons.  V. Gd for shock/awe"
+|||"txt|oldId:20200515093239070^Task 1* Research postCov070|||"
+""If multiple recs selected & quickUpdate click, show selection predBldr.
+~Later also show for updated txt/data e.g. OtherFld + �'
+~ADDENDA 05.16-> Chkbox � Append to existing content OR Repl. Existing content.
+~This is essentially an SQL Update, so r..."
+|||"|oldId:20200515093239069^Task Secure postCov069|||"
+"Check Yhoo for backups of stuff 05 to 08 incl Timeline.   PDF prog?  Cal?  Mchart?  Others?  Salvage useable stuff.  Mugshots on Dice?  Wayback."
+|||"|oldId:20200715093239210^Task 3* postCov210|||"
+""After libs split; we need to use a DSK or equivalent to store sessionAuthInfo for spx etc. So that the user doesn�t have to login > once.
+~Spx service req for docID -> authChk -> svr delivs clrTxt (after sRids).  
+~Svr Failure?  Sys knows how to sen
+d encTxt (svr Key) & gets.  TBD.
+~This decouples CLI txt w/CLI pwds; so can never be compromised.
+~Also, even if authPwd hacked -> sRid auth has wall.  Impenetrable.
+~******Another option here is no encTxt; only link w/userId & docId.  Sweet?
+~Howeve..."
+|||"inline Ttips|oldId:20200618093239154^Task  postCov154|||"
+"Note: re: inLine ttips, if we can get them to work; the ttips can themselves contain other ttips!"
+|||"Cal Impl - 1|oldId:20200618093239153^Task Research postCov153|||"
+""Forget retrieving bkup; w/new locDate API it's dead easy to impl this.
+~We can use the same func for Widget, Monthly & Wkly views (also Qtrly if impl)
+~Chk Swing widget for sizing/popup positioning.
+~While building array for Tbl for wkly view-> only
+ push to array if row contains currDay
+~Since cells contain jLbls, use HTML for add'l txt / appts/reminders/etc.
+~Use spans forEa srcType to Highlight w diff colors (later user customizeable)
+~   bldCal ( forDate, eNum.TYPE, optFldRef/Pos )
+~    <<~<..."
+|||"priorities|oldId:20200618093239156^Task PossDupe postCov156|||"
+""Given ESM Scenario, the highestPriority shd be in useab itms for self-use, not Devel.  Icns, why not?
+~@ one pt, we had cal & got much util out of it, now full crud encr.  After entering importTks; need to prioritize acc.ly""
+|||"Tag Cloud|oldId:20200618093239155^Task  postCov155|||"
+""Note that the tagCloud can, and should, be a ""QuickFilter""
+~incl mods / tgtVers & onClick, select/show those (Pred)
+~for it to work as a quickFlt, we need non-Tag flds too
+~Hard-code for now: incl Tag:~, Proj:~, Mod:~, Obj~
+~and onClick bld Pred f..."
+|||"testCase for frmBldr|oldId:20200711093239199^Task  postCov199|||"
+""By then, frmBldr will be in place, therefore ideal vehicle to test frmBldr func will be mAd.
+~Also grid & popDat; DON�T impl either until can be used as TestCase.""
+|||"Cartouche Impl|oldId:20200715093239209^Task  postCov209|||"
+""New Encr. Msg from (Diva Sophia) ->
+~Cartouche img w glyphs -> Hyperlink (custom impl spx.msg\xxx or bit.ly\xxxx) -> user auth ->
+~Acl chk -> appropriate msg displayed, logs created, clipBd disabled (so user can�t copyPaste 2 socMedia)
+~Cld impl txt
+2Pic; disable screenShots too; necc. Privacy
+~Spx -> we need an spxDocId & spxUserId.
+~Poss 1st includes hashed 2nd; so with the doc we can lookup owner.
+~Now, suppose @ some pt we impl loginAccess via userId.
+~Subseq.ly can use svrside map 2 store e..."
+|||"|oldId:20200715093239208^Task  postCov208|||"
+""EntEvent has geoSplit & Genre (A1...I1...E1...) for ea geo, grpByGenre & counting to gen Totals; & we have 2 axes and data pts offering, e.g., East -> A2 -> 5.  
+~Later we can generate separate graphs for time periods to see changesOverTime etc. (se..."
+|||"|oldId:20200618093239152^Task  postCov152|||"
+""Poss resolved in predBuilder; but new Build statements for GroupingBy/SortingBy ? 
+~Do these accept preds?  Can they be made totally generic?""
+|||"Genericize classRefs|oldId:20200618093239151^Task  postCov151|||"
+""Since dvDef has datClass; convert all explicit refs (especially casts) to implicit.
+~Run a global srch to verify that tkRefs exist only in class-specific funcs""
+|||"FormBuilder|oldId:20200522093239087^Task PossDupe postCov087|||"
+""Next for buildable-> FrmBuilder; and we need to cache the created form Object in the Template.
+~Input: # of cols; Flds in Order; Props incl color/font etc.; ReqdFlds (nds validationMod); Title; Slugs; DescTxt for display(fldType); img(s)?  For txt a..."
+|||"|oldId:20200712093239207^Task  postCov207|||"
+""Pipe in rTpl with form stuff + paramTpl containing # of cols, etc. DatCls, frmNm
+~As before, just build the tpl & keep adding as we go along, later we can put it in order.
+~FrmDefTpl/frmDatTpl will contain:
+~IntRowNum, strLbl, strColNm, opt<ValidPre
+d>, opt<WidgetType>
+~StrColNum: ifNotPresent() assume lbl contains DisplayTxt (prob: see task 197 re: colspan etc.  So poss opt<List<ob>> containing str, int, int.  & poss span4Font)
+~WidgetType: ifNotPresent() decide based upon fldType (datClassLook..."
+|||"Note re: monkeyInterference|oldId:20200522093239088^Task  postCov088|||"
+""re: @MBI, the BEST way to prevent interference is to work on stuff of no practical use to monkeys (no grid/ide, and of course continue w/no ai etc)  IF they continue to throw fakeErrs, rsch/shift.  See how planning threw em off, we can continue to t..."
+|||"System Settings|oldId:20200522093239089^Task  postCov089|||"
+""Gear icon system settings / stored in mAd
+~Incl default Colors, fonts, validation / txt / color (for fld border).
+~This icon will reside 1st pos on desktop.  
+~Create a basic form & keep adding flds/settings as we go on, save map to mAd.
+~1st sectio..."
+|||"popDat tpl Impl - 3|oldId:20200701093239178^Task  postCov178|||"
+""Chk custom funct. collections, see how they impl strmSupp etc.  Do any of them use recursion to locate/return lookups?  Resource usage?  StackOverflows?  The UI-side can be implemented, no probs, coz:
+~-The data's already filtered/sorted/grped (svr 
+push)
+~-We don't need to stream it or update it (only replaces)
+~-Only 100, 200 or (maybe) 500 recs, so speed irrelevant
+~-isRtpl() should return isPtpl() && 1st==int && 2nd==List<ob>
+~FOR NOW, update popDat thus: 
+~(later bld spc for rTpl, which act..."
+|||"pTpl constr 1|oldId:20200701093239179^Task  postCov179|||"
+""For pTpl costr, e.g. for dvDef, here is a fluent(ish) approach ->
+~tpl.to3tpl() -> first calls newInst() and then procs params - here, List<ob>  However, there's still a prob w/param classes; so a manual build might be better; let's try it and see
+~
+BETTER-> tpl.to3tpl(FIR fir, SEC sec, .... THIR thirteen){
+~return new mTpl(F1, F2, F3, F4, new mTpl( ~ new mTpl(~) )); }
+~This allows a clear, birds-eye view of the type params; OR
+~tpl.build ( t -> t.1st = F1 .... t.5th = mTpl.of(F5 fifth))} 
+~AFTE..."
+|||"|oldId:20200628093239175^Task  postCov175|||"
+"Really, must impl SubMods ASAP.  Recover old fund @MBI + add new ones for these tks.  This'll also be the first use of > 1 categs, therefore a must to test/verify gridBldr functionality"
+|||"freeze ide|oldId:20200522093239094^Task  postCov094|||"
+""Vital -> Break off IDE to separate module w/ icon launch / desktop.
+~Freeze devel on the IDE.  This helps clean the base repo files & setup forking""
+|||"new DV request|oldId:20200522093239090^Task 1* postCov090|||"
+"create new DV: docFlag == @Research.  Vital."
+|||"Importer|oldId:20200522093239091^Task Research postCov091|||"
+""For data import, Research online delimited converters, suggest a few to users? (THEY take care of err output)
+~Pipe into spx  Eventually nd module Target v1""
+|||"Fmt|oldId:20200522093239092^Task  postCov092|||"
+""In spxFmt we need a param for objType to be used when deSerializing objects (eg docLets, maps)
+~The default could be ascii, switch over val possibs before load to IDE.
+~Cld be very useful for legacy encrypted files.""
+|||"Desktop.spx|oldId:20200522093239093^Task  postCov093|||"
+""The Desktop.spx file contains Map < serverName, pubKey >
+~THIS is the key used for encrypted communication.  
+~Since it's stored serverSide, we can update it when any new server is added.
+~Stored in equiv of NAB / ldap userDir
+~Consider using non-pb..."
+|||"inline Ttips|oldId:20200502093239054^Task Research postCov054|||"
+""For Dlgs, it's easy to include labels/help buttons, but what if you wanted inline txt in TA/EdPane to show a Ttip?
+~Also, within Dlg only for one word of several?
+~RSTA does this (similar): Get Location of desired txt, paint over it, leave space for
+ �decoration' within txt
+~OR have a mouseOver listener which chks for ttip & shows ifPresent().
+~RESEARCH: in EdPane Demo, how're images inlined?  Programatically?  Can you use a getImg() or similar for mImgTbl?  If we use an imgUrl a la ttipImg, how..."
+|||"numHits|oldId:20200502093239055^Task  postCov055|||"
+""We need a generic Func which takes ANY pred & spits out # of Hits + Details, (e.g., �contains @Created') ie FindAllRecs
+~Eventually this can be piped into Filter/DV""
+|||"|oldId:20200602093239116^Task  postCov116|||"
+""Modify grid docOpenClickHandler-> if desGrid, check elType & open appropriate Frm from mAd.
+~For flds, will read map & populate form
+~Offer options to add/del/modify etc., copy/paste to stepWizard.
+~The designGrid is fixed & can be hard-coded to mAd
+
+~To the DV add a fld: isDesignGrid(Bool) defaults to F; modify popDat to launch Func to populate.
+~Need to provide default els (dv cld use @Created, etc.) OR (tbd) add bogus Leafs saying 'No rec exists' and on Open -> Create.
+~The createButton (or N..."
+|||"GridBuilder, FormBuilder|oldId:20200602093239117^Task  postCov117|||"
+""Note:  We can, and should, do away with Bldable classFields like dlgType -> Change Funcs & consolidate thus: 
+~Bldable newInst() 0> assign 1st or 2nd as type -> call Applier -> switch on type -> return needed/proc'd item.
+~Cleaner, more functional. 
+ This applies to all buildables.  The dlgs can use fewer funcs/flds.
+~Do away with isOutline etc.  Use a pTpl if necc to proc many params
+~06.19 ADDENDA: FormBuilder: Note that this is UI-related, all reqd stuff is in Swing, so it'll be built cli-sid..."
+|||"|oldId:20200602093239118^Task Secure postCov118|||"
+""Perhaps worthwhile to move tuple/buildable to a new lib com.t.jFunc or similar.  FX too.  This'll be a bonus when using Jlink & signing jmods (since MBI, it's hurting)  Obf it and incl in launchBase.
+~Com.t.abstractions?  & importStatic? Incl Tree""
+|||"|oldId:20200602093239119^Task  postCov119|||"
+""Add tk saying it's frozen for now, repl by new mod ""GenClassSource""""
+|||"for Importer|oldId:20200602093239114^Task  postCov114|||"
+"Needs to include Buildable +mTpl to handle > 1M recs.  Test.  Prepare standard imp. Dataset for B1Target"
+|||"|oldId:20200602093239115^Task  postCov115|||"
+"Though work is paused on this @MBI, we can still convert to Buildable/tuple/func., and should.  Also, theoretically, the tagger shd work on mTs as well, incl Categs"
+|||"|oldId:20200508093239064^Task Research postCov064|||"
+""Move all rsch itms to tkList, some'll go under rec.  Add:
+~-List of Java libs by popularity
+~-Blogs w/ java+func.
+~-What links Here for T Nurk, N Frd, Venkat to find similar 
+~-What links here for covey, docMngt, Grids, vaadin
+~-Spring competitors/s
+imilar prods; get a macro view of the entire subIndustry
+~-****Flex.  Must have.  X-func w jdk?  Download egs
+~-Feature comparisions for tkMngrs
+~-List o Features (openSrc Grids) for ideas
+~-Does Closure compile2JS fr Swing? Maybe that's the missingL..."
+|||"FormBuilder|oldId:20200625093239170^Task Research postCov170|||"
+""Vital to find (try SO first) ref to screenGrab of even non-Visible jComps.  Here's how to approach this:
+~First layout the default, show w/frmDesign TBar which also has a previewBtn (or dynamicUpdates? tbd)
+~- Change fld Order / font, insert space/t
+xt, Default, etc.  Also cld grab dblClicks on any el to bring up designOpts (move up/down, chng font)
+~- For multiLine flds offer short/long display.  All're placed @ end but moveable
+~****For ESM we don't offer frmDesigner, canned only + (maybe) abi..."
+|||"Flex interop Swing|oldId:20200508093239067^Task Research postCov067|||"
+""Can we use Widgets IN Swing using Flex (Ribbons? Tbars? Panes w/anim?) If using the lib; why not offload ALL anim/Fx to lib?  Rsch flex interop allowing regular/normal Java widget behavior
+~Note: UI work best left for later BUT good to rsch.  Find e..."
+|||"Property picker|oldId:20200508093239066^Task Research postCov066|||"
+""LN of crse had alt-enter propPicker.  What can we offer?  Move func fr rtEc (fx) fonts?  How to differentiate?  
+~Cntrl-Icon(Gear) button brings up dlg for one control?  How do VB/netBeans handle this?  Ribbon?
+~Ribbon style promising.  Copyright is
+sues?  Rsch -> Who else uses ribbon style/similar?
+~Addenda->  Ribbon ext Tbar, clicking on each icon changes attached RichTBar below OR new, dismissable TB slides in on top.
+~Also, RichToolBar ext Tbar, bigger buttons with dividers.  Could work as a..."
+|||"docFlags|oldId:20200508093239065^Task 1* postCov065|||"
+""Do a one-time srch-repl of all occurances of RSCH to add docFlags & icons
+~ADDENDA 05.18->  Use Tags for docFlags!!
+~ADDENDA 06.03-> First gen a report of all recs containing tag.  Note unids, if necc.  Separate the tag to its own line (in future be..."
+|||"colorSettings|oldId:20200625093239168^Task  postCov168|||"
+"Forget dvLevel color settings, that's too much & will lead to confusion: just have SystemLevel & Tbl-level; shd suffice"
+|||"rTpl Impl - 1|oldId:20200625093239169^Task  postCov169|||"
+""Eventually (0) offer upto 25 cols; but for now code for 9, 13 -> on genGrid/popDat side chks # of cols & splits to list for Tpl constr (4x+5) e.g 15 cols -> x=3 remainder=3, so last two are null params.
+~On the constr side, ignore null params (alrea
+dy assigned empty)
+~ADDENDA-> Nix, using a List<col> much easier, simpler.  So popDat supplies a 3-param Tpl:
+~Dat (List<List<ob>>), Col (List<col>), Pag (List<intOb>) + Filter.
+~06.21 ADDENDA->  Instead of Dat -> List<List<Ob>>, we still need List<L..."
+|||"dvWizard|oldId:20200526093239100^Task  postCov100|||"
+""Forget a new class, just save a map of params to mAd to regenerate a DV.
+~Will contain Cols, List<Fld>, Categs, SortOrder, Title, Filter
+~Generate from Wizard & fed to buildable dvBuilder.  Dump existing class? (no, bldbl needs latest)""
+|||"dvWizard|oldId:20200526093239101^Task  postCov101|||"
+""Note:  Requires/uses Validating Fields -> which can be as simple as 
+~(class) vFld ext fld w/a Pred; since nulls don't exist anyway, (!)/isEmpty could be 0 -> num, trim(fld) == ' ' for txt, @earlier for dateFds; Do we actually need null for true/fal
+se?  It's a valid value!!
+~In the Wiz, ea step has an associated Pred so when Len(Fld) > 3, the NEXT button will be enabled.
+~Since the dvWiz is internal, we can hard-code the validationPreds to show the nxtBtn & proceed
+~For class vFld only / Defaul..."
+|||"tk LowPri items|oldId:20200529093239109^Task  postCov109|||"
+"For items moved to LowPriority (eg ide) use Neon Blue Span for devFrozen."
+|||"Desktop|oldId:20200529093239108^Task  postCov108|||"
+""The current Desktop goes to v2.  
+~New desktop w/sys settings, help, samples + place for 10 custom Dbs.
+~No grids, no other icons (use Tbars). Removes the need for tabs/scrolling/UI issues""
+|||"Note |oldId:20200505093239061^Task 5* postCov061|||"
+""~    @MBI ==> FREEZE DEVEL
+~If we return to work & DON'T have a secure/private env., it is imperative to:
+~-Introduce more abstractions (Tree etc) before continuing to add features (impl Buildable)
+~-Add features WHEN abstractions are in place so th
+e monkeys get bonus work + falls apart
+~-Continue working on non-essential work (eg, no updates to crypto until buildable+tuple in place & operating)
+~-Revisit list & introduce more spanners
+~-Bottom line: @ Every point they shd have absolutely NOTHI..."
+|||"|oldId:20200505093239060^Task Secure postCov060|||"
+"We need to chk all prior fake srchResults + HN etc. For bizPlans & details of Corp struct & offerings + LnFs + Widgets + GWT/Java + libs.  Much possibly missing"
+|||"docHistory|oldId:20200518093239079^Task  postCov079|||"
+""To offer immutability, it's crucial to show working docHistory w/ priorVers
+~Another poss: instd of buttons to retrieve priorVers; embed individual btns in docHist fld (requires edPane)""
+|||"Pagination|oldId:20200612093239134^Task  postCov134|||"
+""If recCountTotal < 200 (e.g., design) Add option to automatically hide the paginationBar ? Or, popDat sends 0, chk in bld
+~06.15 BETTER->  ServerSide as usu, cli'll get rec count <=200; if so noShowPagBar
+~06.19 ADDENDA-> WHY?  What's wrong w/showin..."
+|||"designElement|oldId:20200612093239136^Task  postCov136|||"
+"New fld: Definition(mTpl) -> stores def.  No Serialization.  Recreate.  This is also vital for acls: one def cld've multiple impl.s (show/hide)"
+|||"Tbar impl|oldId:20200612093239135^Task  postCov135|||"
+""We DO need a class, if only to impl buildable/moveable
+~ButtonDefs hardCoded (enums?) w/minACL; bld() adds ONLY visible ones for ACL.  This avoids issues w/hiding/empty blocks.  Each Tbar also gets standard stuff incl collapseBtn/moveable (v2?)
+~Upd..."
+|||"|oldId:20200612093239138^Task  postCov138|||"
+""Allow user-level settings (eg dvColWid, colors)
+~Save in DSK in a Map<desEl, Map<strSettingName, Ob>>""
+|||"|oldId:20200612093239137^Task  postCov137|||"
+""In order to remove classes (dv etc) and still impl interfaces, ADD a new class (builder) which implements bldbl/moveable and trigger the build there.  So the actionMap'll trigger Builder.buildDv.accept(tpl)
+~We shd do this for each buildable.  Try o
+utliner first, see if issues.  We'll need to pass in a param to workaround newInst().  @ first, just return a builder.
+~Note that all the bools/classProps'll become tpl vars.  ListDlg.isOutline'll become a var; all this is hardCoded and as we go alon..."
+|||"|oldId:20200612093239139^Task Research postCov139|||"
+"Svr push -> we need to store, cli side, curr jTbl scrollPos and restore after ea serverPush."
+|||"jMod recompile|oldId:20200505093239059^Task Secure postCov059|||"
+""Compile to latest Jmod signed/sealed/ w/dependencies -> tougher to monkey with.
+~Maintain codebase @ jdk8 & if adopting new switch etc., start developing in parallel
+~THIS is the pt where we need to consolidate teh codebase into forks, eg. For jdk14..."
+[[["rec/List" (2 recs)]]]
+|||"Bookshelf|oldId:201986123613563000000^Task |||"
+"John Singleton (Boyz in the hood*) also made<br><ul><li>Higher Learning</li><li>Baby Boy</li><li>SnowFall (TV - FX)</li></ul>* led to hood movies-><ul><li>Juice</li><li>Menace II Society</li><li>Above The rim</li><li>Fresh</li><li>South Central</li><..."
+|||"Bookshelf|oldId:201986123613568000000^Task |||"
+"Stefan Zweig, a recently encountered ref said: <br>
+~@ 1 point he was #1 novelist in the WORLD just before WWII<br>
+~Zweig was a Stoic & *his works relfect that*~List item # 2"
+[[["spxServer/Notes" (4 recs)]]]
+|||"imgDb Impl notes|oldId:201712141158904^Task |||"
+"	Lookup Expected img types<br>
+~
+~RegExp srch:	  http:||~|~.ext (.*?)  &lt;BR&gt;   (.*?)  &lt;BR&gt;<br>
+~
+~&nbsp;&nbsp;&nbsp;&nbsp;(If grp(0).len < 10, grp(1) is the caption)<br>
+~
+~&nbsp;&nbsp;Replace w/mBox HTML (<- needs width fix)<br>
+~
+~&nbsp;..."
+|||"UI: Guidelines for using spxDlg|oldId:201910115414434000000^Task |||"
+"@created 2019.11.03~<ul><li>need to verify that the dlg gets gc'd after dispose()~</li><li>make sure dlg created as a weakRef~</li><li>ensure ALL cypher proc inside dlg so that it gets gc'd~</li>"
+|||"Spawn Notes (proxy et al.)|oldId:202034133033819000000^Task |||"
+"We have a 'cleanly decoupled' system @ this point; with ~<ul>~<li>NO dataClasses clientSide</li>~<li>updates only on the Svr.</li>~<li>Client's only getting dataObs gen FROM dataClasses</li>~</ul>~<i>This means we don't need to implement proxies for 
+HotSwapping dataClasses.</i>~<ul>~<li>Dev adds fld (prompt for defaultVal)</li>~<li>Svr recompiles new dataClass</li>~<li>Lock acquired on All mTbls in the dev's system</li>~<li>Svr switches class</li>~<li>New refreshes are built from new dataClass</..."
+|||"Add TagChk field to mArticle|oldId:201802140432040^Task |||"
+"Set to true for newly Tagged docs.<br>
+~
+~
+~  Workflow is like this<br>
+~
+~
+~	-  New view is populated w/recently tagged docs<br>
+~
+~
+~	-  Necessary changes are made<br>
+~
+~
+~	-  If tag changed;  prompt 'Include doc in next Training?'<br>
+~
+~
+~	-  Bu..."
+[[["spxClient/New Feature" (21 recs)]]]
+|||"Tag Cloud filter for Grid; UI (dlg)|oldId:2020226125252987000000^Task |||"
+"(impl first in listDlg)<br>
+~
+~Note @2020.03.08-> might be worthwhile still retaining taggable (for tbls w/formal tagFld)~<br>
+~AND using it ad-hoc for situations w/no formal tags.~<hr>~Note that this is no longer connected w/ poss interface taggable
+<br>
+~
+~as in the quasi hierarch. tree; we can model a taggable without tags<br>
+~
+~eg, as a Filter for the taskList DV, the tags automatically become selected flds<br>
+~
+~& user has the ability to filter what's showing by selecting categs/flds AS ta..."
+|||"Allow user to insert txt|oldId:202036145415921000000^Task |||"
+"Allow user to insert any txt (Lbl) & any blank lines anywhere in the form<br>
+~
+~
+~Related:<br>
+~
+~
+~allow them to change the backColor/font/UI stuff"
+|||"Design: Tree|oldId:202032114414187000000^Task |||"
+"Implementing a custom UI-side treeDataModel is still the way to go;<br>
+~
+~
+~
+however with the foll. caveats:<br>
+~
+~
+~<ul>~<li>Not a real tree; a List&lt;Leaf&gt; therefore dead easy to impl TblDataMod</li>~<li>Use a List to hold the tree; so we can
+ stream w/o implementing StreamSupport<br>
+~
+~
+~(plus have access to filter etc.)</li>~<li>popDat sends List&lt;Tree&gt;</li>~<li>no Empties, only Nodes/Leaves</li>~<li>no List&lt;Leaf&gt;, each one is a separate line (traversable)</li>~<li>model wil..."
+|||"Allow switching fld positions within the Form|oldId:202036144833508000000^Task |||"
+"Keep bottom content fixed (tA + editHist) ?? <br>
+~spinner for switching order ??<br>
+~Another option is to use a list of elements with two arrowBtns that move<br>
+~the selected item up/dn."
+|||"on-the-fly feedback in dV predBldr|oldId:201986123613551000000^Task |||"
+"In the Wiz's 1st screen for predBuilder, insert an AUTO-UPDATING<br>
+~
+~
+~
+(need UI logic to impl) line on bottom: 'x,xxx of x,xxx recs selected'<br>
+~
+~
+~
+Ea time the user adds a criteria to the builder, the line shd update<br>
+~
+~
+~to reflect the n..."
+|||"Poss add iconToolBar for common Fns|oldId:202038132947677000000^Task |||"
+"@ this pt we have enough menuItems to call for an icon ToolBar..."
+|||"impl regExp src/repl|oldId:2020225122452710000000^Task |||"
+"@created 2019.11.15 partiallyCompeted; questionable utility~    - replaceAll can use String.replaceAll; otherwise ~    two ways to impl this: ~~   - line-by-line basis (stream & use a scanner) or "real" regexp ie, ~~   - take the whole string & store..."
+|||"Qry Builder|oldId:20187171202275654800^Task |||"
+"No need to check for exceptions;  we'll only allow valid construction based upon fldTypes<br>
+~
+~note: ea qryParam has option to be negated (chkbox)<br>
+~
+~note: button -> 'add qry criteria'<br>
+~
+~<ul><li>Lookup Fld -> fetch & pop dropDn for choice<..."
+|||"Create & Impl a dataView builder 'wizard'|oldId:201871712022104654800^Task |||"
+"FILTERS & SORTING (Preds) will be a part of the builder<br>
+~
+~
+~	Impl a Filter Wizard;  used in conjunction w/DV blder<br>
+~
+~
+~	<ul><li>Auto-saves prior choices</li>	<li>Only allows valid choices</li>	<li>Offers examples bott of screen</li>	<li>Add..."
+|||"Design Notes|oldId:202033131018734000000^Task |||"
+"The ideal place for these to reside is in the mTbl; in a new List&lt;designObj&gt;<br>
+~
+~NEW CLASS designOb; dvGrid et al extend; stores name, lastMod etc. etc. used to build designView<hr>~Poss create a new class: designOb to hold extra params??<br
+>
+~
+~We need to store/access:~<ol>~<li>Forms</li>~<li>Table-level Settings</li>~<li>dVs</li>~<li>LookupItems (for flds/formulaTranslation; key-val)</li>~<li>Some place to save EXPRESSIONS (filter/pred/reuse)??</li>~<li>user UI elements (icons etc.) s..."
+|||"Add reqd flds logic|oldId:20187171202290654800^Task |||"
+"Allow adding validation individually to flds (via PredBldr)~Legacy note (??) :-<br>
+~
+~note that this also affects data imports after spawnSetup"
+|||"<html><span style='color: blue' >DELETE</span> Duplicate Design: Tree</html>|oldId:202032114333794000000^Task |||"
+"Implementing a custom treeDataModel is still the way to go;<br>
+~
+~
+~however with the foll. caveats:<br>
+~
+~
+~<ul>~<li>Use a List to hold the tree; so we can stream w/o implementing StreamSupport<br>
+~
+~
+~(plus have access to filter etc.)</li>~<li>po
+pDat sends List<Tree></li>~<li>no Empties, only Nodes/Leaves</li>~<li>no List<Leaf>, each one is a separate line (traversable)</li>~<li>model will access simply by List<row(idx)>; col mapped via lookup</li>~<li>model recieves ALL flds, tbl only shows..."
+|||"Modularize View Generation|oldId:20187171202252654800^Task |||"
+"<ul><li>Create a new fn accepting all config opts as params</li><li>@ the end we want a Fn where we can pass in something like:</li><li>FldChoice1, Sorted - PreDef Order (sys shd chk wh this is avail., or throw err)</li><li>FldChoice2, Sorted - Alpha
+ - Desc</li><li>FldChoice3, sorted - Alpha - Asc w/Custom TTip contents (usr provided, cld be fld)</li><li>FldChoice4, calculated fld (usr set)</li><li>FldChoice5, System value (e.g. DtCreated)</li><li>and recieve the View exactly as currently hard-c..."
+|||"Unread Marks|oldId:20191011541449000000^Task |||"
+"- Unread IDs need to be in Lists connected to UserID; perhaps in desktop.DSK equiv~- 1 list forEa Tbl OR map w/tableID~- PostOpen Tbl -> Update marks; offer func to MarkAllRead/Un~ & overrides"
+|||"Before genericizing tKFrm, Add Form Func to mAd|oldId:20187171202256654800^Task |||"
+"Edit|AdminDoc is a good place to add fn.ality for Forms: <br>
+~
+~
+~
+~This is a diff. type of form::~<ul>~<li>for icons, e.g., it shd show toolBar allowing replacing</li>~<li>
+Editing a sortKey, e.g. , shd automatically bring up a pg w/btns for choosi..."
+|||"<html><span style='color: blue' >DELETE (merged w/another task)</span></html>|oldId:2020226124835443000000^Task |||"
+"@created 2020.02~~TaskName: Add user-selectable row hightlighter<br>
+~Essentially a rowRenderer; offer dropdown of say 5 standard "highlight" colors (bkgrnd)~This offers a better way to highlight items in a tasklist than flag icons"
+|||"Max-node depth (6) test w/date|oldId:202033124739318000000^Task |||"
+"If/when any categFld is a date it shd auto-split to 2 Nodes <br>
+~
+~( Yr / Mo spelled out ) & group accordingly<br>
+~
+~Easiest curr way to test this is with created/modified<br>
+~Later we want to be able to offer users the ability to specify grouping..."
+|||"Q: Where to store design Els?|oldId:201986123613541000000^Task |||"
+"Update @ 2020.03.09:~<ul>~<li>mTbl contains all designEls, but they're system-use-only (not accessible by dev)</li>~<li>dev creates a "db-design-copy" from existing db</li>~<li>System offers to copy some /all data for testing</li>~<li>Makes changes t
+o 'template', applies to production db</li>~<li>This is also much cleaner from the HotSwap perspective in terms of conflicts</li>~</ul>~<HR>~<span style='color: red'>UPDATE: </span><br>
+~
+~
+~
+~Well, if Domino has miniTemplates, separate, <br>
+~
+~
+~
+~..."
+|||"New classes for designElements|oldId:202039122914375000000^Task |||"
+"<ul>~<li>We'll need a set of classes for design elements, serializable.</li>~<li>Begin w/dvGrid</li>~<li>Need flds to store config</li>~<li>We shd be able to instantiate a fully-realized design Obj from serialized ver</li>~<li>Note: chk portability i..."
+|||"Indicating invalid input (reqdFlds)|oldId:202032155836184000000^Task |||"
+"For form validation the <b><i>ideal</i></b> way to indicate reqd/incorrectly filled flds wd be to use formFld borders that (say) glow red with invalid input~<br>
+~
+~
+~
+
+
+~Looking @ below & dwelling on the Qn., ttips are a no go.~Some ideas exist on <
+br>
+~
+~
+~
+
+~https://stackoverflow.com/questions/9522475/custom-java-tool-tip-with-swing-components-as-content-does-not-show-up~https://java.databasedevelop.com/article/11487840/multiple+tooltips<br>
+~
+~
+~
+~...it may be easier to create and smaller AN..."
+|||"using jEdPane for Outline|oldId:202022512311502000000^Task |||"
+"@created 2019.11.03~<ul><li>~Using this is a good exercise & the code can be reused for the mainTA if we impl formatting<br>
+~(even if the formatting is going to be plain (e.g. only class/func names etc.)~</li><li>~to chk if damaged regions auto-repa
+inted, impl a simple model to translate input to formattedInput</li><li>~if it repaints, fine.  Else impl repaint triggered on change</li><li>~poss Model to impl: List<List<tuple>> ie; a list of line#s; tuple has Opt<Element + Fmt></li><li>~chk stand..."
+[[["spxClient/Good To Have" (3 recs)]]]
+|||"<html><span style='color: blue' >DELETE</span></html>|oldId:202022512266174000000^Task |||"
+"@created 2019.11.15<br>
+~
+~
+~a new Category (auto-added by default) "in-Tray" auto-collects High(est) Imp in a Categ~<br>
+~
+~
+~<span style='color: red'>2020.03.02 note -></span><br>
+~
+~@possRedundant (same func. avail by impl rowHighlighter)"
+|||"Outline code folding|oldId:2020225123014646000000^Task |||"
+"@created 2019.11.22~    Once we have verified the regexp logic to get beg/end brackets of ea class (which the bastas~    are preventing right now by throwing fake compilerErrs) it shd be fairly simple to port it~    to use for ea method/fn etc.; & th
+en use that to add folding to the ide~    Not really necc. (since we have the outline) but good to have & probably improves productivity.~=====================BEGIN LINKS FOR FOLDING============================~https://stackoverflow.com/questions/162..."
+|||"dock the Outline|oldId:2020225122920246000000^Task |||"
+"@created 2019.11.15~    - dock it like a toolBar rather than using a dlg."
+[[["spxServer/Good To Have" (1 recs)]]]
+|||"Relational support|oldId:201910115414417000000^Task |||"
+"- Next for dataEngine~  -> Compound Type (a type w/subForms) using Many-To-One e.g.,~~  Client 	-> Orders~		-> Image(s)~		-> Tasks~  Related recs created FROM parentRec (toolBar btn Create->Order)~- Forget HotSwap for now; Design Change -> Flag -> Re..."
+[[["spxServer/Fix" (3 recs)]]]
+|||"Remove Splash Pane|oldId:20187171202220654800^Task |||"
+"(decide on a Fixed set of panes & open em all on startup<br>
+~This avoids divID conflicts</div>"
+|||"System - Amend getImage() proc to accept Str param|oldId:201711251245510^Task |||"
+" (to run on docSave())"
+|||"Fix weird chars in data corpus before proceeding|oldId:20185312584939000000^Task |||"
+"This opens up a whole can of worms (monkeys?).  The Monkeys use MACs (of crse?) and, apparently,<br>
+~corrupt OUR data when they're evesdropping & save docs using the macs.  Monkeys've damaged<br>
+~enough articles that they can't just be left out;  t
+hey'll have to be fixed.<br>
+~Any attempt at fixing these leads to the primates monkeying with the compiler and interrupting all work.<br>
+~Fortunately we have other things to do;  but we can't really <br>
+~work on the AI Module until the monkeys str..."
+[[["spxServer/To Be Impl." (5 recs)]]]
+|||"<html><span style='color: blue' >DELETE (dup)</span></html>|oldId:20185312584938000000^Task |||"
+"e.g., Modules/Objectives/etc.  stream, get distinct(), store for retrieval into shell.<br>
+~This is URGENT coz we'll need to get this done before implementing things like 'switch view'and 'switch Module|Project' etc."
+|||"Add formatting btns to Article View|oldId:201871712021966654800^Task |||"
+"Toolbar shd have basic fmting functions: Hilight, bkmark, fonts/etc.</div>"
+|||"Update code to use Optional|oldId:201871712021960654800^Task |||"
+"e.g., fnGetAdminString() -> if it doesn't exist or monkey has removed it;  will return null.."
+|||"if using DojoGrid (standard, non-monkey version) decide soon.|oldId:20185312584934000000^Task |||"
+"The longer we take to decide, the more issues will crop up.<br>
+~
+~Also, more wasted effort on FrontEnd<br>
+~
+~Monkeys will always exist. If we DON'T go with DojoGrid eventually, <br>
+~
+~we'll have to provide some of the func. in our 'basic' HTML ver..."
+|||"Impl. creation/population of tbl-lvl vars used in UI|oldId:201871712021951654800^Task |||"
+"e.g., Modules/Objectives/etc.  stream, get distinct(), store for retrieval into shell.<br>
+~
+~
+~This is URGENT coz we'll need to get this done before implementing things like 'switch view'and 'switch Module|Project' etc.<br>
+~
+~
+~<span style='color: 
+red'>5/14: Consider:</span> In a Modular sys, Switch View will switch to either another user-designed DataView, OR<br>
+~
+~
+~usr has opt to Create a new one, which is the ONLY USE CASE for a list of Modules/Projects.<br>
+~
+~
+~We don't need this featur..."
+[[["spxClient/Fix" (3 recs)]]]
+|||"Impl expandCateg|oldId:202039121731151000000^Task |||"
+"Best done after refactoring & after treeImplementation"
+|||"generic fn for mTbl.put/newVer|oldId:202033123937638000000^Task |||"
+"We need a sm generic func to wrap the updating/saveNewVersion stuff (using compose?)<br>
+~
+~
+Something like:<br>
+~	putFn.get( autoVerVarValue ).apply( dataOb )<br>
+~Where Supplier<Fn> putFn = <br>
+~var = on  ? return versioningPut : return regPut<br>..."
+|||"Individually split, 3-way nodes|oldId:202033124453254000000^Task |||"
+"As soon as the @monkeyBastas fix their issues w/the SubModules<br>
+~
+~impl. categorizing by Proj/Mod/SubMod & update code to split to unique nodes<br>
+~
+~(we DON'T have to check for prior existence of nodes because we're streaming)"
+[[["spxServer/New Features" (12 recs)]]]
+|||"Add MarkRead, auto + option to mark so|oldId:201871712021894654800^Task |||"
+"Update @2020.03.08: Not necc for every Tbl; only for tbls containing "docContent"<br>
+~Therefore, off by default (dev can turn it on)<br>
+~
+~
+~<span style='color: red'>2019.5.14: Note:</span> markRead or just opening doc via the 'View' button<br>
+~
+~..."
+|||"docProps convert to dojoRow class|oldId:20185312584947000000^Task |||"
+"we'll need this for front-end showing/hiding of functionality etc.<br>
+~for instance:<br>
+~<ul><li>if a doc HAS prior versions there's a button to view them.</li><li><li>If an article's Flagged/Marked Read, 'unMark' or 'mark Unread' btns available.</..."
+|||"Move all splash/Tbl-level functionality to ToolBars|oldId:20185312584946000000^Task |||"
+"e.g, Ability to, e.g., choose Project/Module/Article Src etc.<br>
+~<ul><li>TASK -> [Choose new Project] (btn brings up dlgBox w/choices)</li><li>ARTICLE -> [Choose new Sources](likewise)</li></ul>LATER -> This wd also be a gd place to allow switching..."
+|||"reassign ProjNames|oldId:201986123613572000000^Task |||"
+"Split System tasks ti datEng, cryptoEng, aiEng & procEng (Qs & related)<br>port & redo dvGeneration logic<br>impl dvWiz in swing<br>Barebones CRUD for mT<br>Look&Feel etc."
+|||"new features|oldId:201986123613570000000^Task |||"
+"Add an auto-incrementing version # in the titleBar<br>
+~
+~Impl sZip access, read 1st & THEN write | ideal for Git access of single file<br>
+~
+~New fn to offer riddles by TYPE (random) say 3 types<br>
+~
+~Impl in saveFn by displaying dlg asking *Do you
+ wish to switch the r..?*<br>
+~legacy stuff::<br>
+~<ul>~<li>Q: Impl a default key?</li>~<li>Menu Save option + AutoSave (tmp file ev 10min) -> default key</li>~<li>Load w/Diff key -> Pwd Loop y/no (can be used to test 2)</li>~<li>All Ser fns shd use ..."
+|||"PaneCfg info|oldId:201871712021973654800^Task |||"
+"We need to track info on a per-Pane-basis on the Server-side;  linked to paneId or something.<br>
+~
+~This will be necess. once we starting pushing back data after every change to ensure we're working on the same wavelength w/client as to TblName, Vie..."
+|||"Implement full functionality in mTask first. (View/Edit/Update)|oldId:20185312584944000000^Task |||"
+"Easiest to test & actually use;  we can then port to other classes.<br>
+~
+~NOT implementing in all is imperative to prevent the monkeys from destroying data.<br>
+~
+~We also need to ensure that the security is working and they're not intercepting keys..."
+|||"Imperative to decide whether we'll allow multiple tables open (same type) in the same session.|oldId:201871712021985654800^Task |||"
+"This impacts many things down the line.  If we allow only one of ea type;  <br>
+~
+~we don't have to worry about idNames clashing <br>
+~
+~(which'd make the webpage crash)<br>
+~
+~FOR NOW it seems the way to go is: allow only 1 of each type.<br>
+~
+~Ther
+e's no clear use case for allowing multiple-opens UNLESS we want to copy/compare from Tbl to Tbl.<br>
+~
+~and even in those sit.s, we can do that in the background without explicitly 'opening' in terms of the UI<br>
+~
+~Multi-open ality can be added la..."
+|||"<html><span style='color: blue' >DELETE</span> (Dupl.)</html>|oldId:201871712021998654800^Task |||"
+"we'll need this for front-end showing/hiding of functionality etc.<br>
+~for instance:<br>
+~<ul><li>if a doc HAS prior versions there's a button to view them.</li><li><li>If an article's Flagged/Marked Read, 'unMark' or 'mark Unread' btns available.</..."
+|||"Keyword Table|oldId:201871712021871654800^Task |||"
+"For the Keyword Table;  incl add (List) Key -> Pub Name(s);  variations thereof    Val -> SRC_KEY Int (mapped to single Str val) eg (\"The Times of ~\", \"Times, the\") -> maps to -> int -> maps to -> \"TOI\"</div>"
+|||"impl Sessions/userIds/accessLevels|oldId:201871712021933654800^Task |||"
+"Setup, test & deploy Sessions in Jetty.<br>
+~<span style='color: red'>Design: </span> Sessions will preserve STATE and be NON-INTRUSIVE (no cookies/client side).<br>
+~<ul><li>A Session record wlll contain the output of the mErr log (so we'll have a w
+ay to chk for errors etc.)</li><li>Since it's saved in Admin it'll have Revision history ie a doc saved for ea session as a 'Prior Version'</li><li>Add an Observer to reqUpdates inside the session Obj to track open windows/panes for restoration of se..."
+|||"Code & impl Async Import Process Queue|oldId:201871712021936654800^Task |||"
+"Sep threads but synchronized.  parse->fmt->proc->run AI tagger module->etc.<br>
+~
+~Certain tasks can run on sep threads, e.g. Tagger;  & retn res to be inc. into doc<br>
+~
+~Others will need to be sequential coz they'll be changing the content<br>
+~
+~..."
+[[["spxServer/" (6 recs)]]]
+|||"<html><span style='color: blue' >DELETE</span></html>|oldId:201910115414441000000^Task |||"
+""
+|||"<html><span style='color: blue' >DELETE</span></html>|oldId:201910115414431000000^Task |||"
+"~2 Riddle Versions @created 2019.12.30 @redundant~    We need two sRiddle versions; (i) for auth (has pKey) (ii) for SPXify (doesn't).~    Possibly change the pKey to an optional?~    For (ii) we can impl buildable & begin to build the logic to creat..."
+|||"<html><span style='color: blue' >DELETE (dup)</span></html>|oldId:20191011541442000000^Task |||"
+"		Thick Client	->	SSL	->	Server~		(jdk8)					(jdk12)~		Only ui & dat classes			Full Featured; all Fns stay here~~- Client authenticates		-> Server sends Desktop + Ad Tbl + Communcation Keys~				-> Secure session established~- Henceforth all the clien
+t does is display dvs|Forms & communcates w/server~- Server sends responses & pushes(Updates) + notifications(Toasts w/Err/Success/Status)~- Two logs (client, svr)~- Update to mAd -> server copy updated -> Server sends client new copy -> Synched.~- I..."
+|||"<html><span style='color: blue' >DELETE</span></html>|oldId:201910115414437000000^Task |||"
+""
+|||"fn.prnEx|oldId:2019101154143990000000^Task |||"
+"@created 2019.12.30; @markCompleted<br>~    Store new List<int> containing OffendingLineNums for ea exception (fr stackTrace)~    mark w/ @Caution BUT necc. to suppress repeated traces e.g. paint method errs.~~ ...} catch (Exception ex) {~~ } catch (
+Exception ex) {~~   List<StackTraceElement> stackL = Arrays.asList(ex.getStackTrace());~~   Function<StackTraceElement,StackTraceElement> getClsNmFo = ( el -> {~	    		System.out.print("\r\nclass: " + el.getClassName() +~~   			   "\t meth: " + el.ge..."
+|||"<html><span style='color: blue' >DELETE</span></html>|oldId:2019101154143992000000^Task |||"
+"remove legacy Actions @created 2019.12.22~    - pretty sure they were removed earlier (at least commented); how come they're back?~    - quite poss the monkeyBastas are using them to launch their stuff.~    - We need to remove them completely; if any..."
+[[["spx/MonkeyFix" (2 recs)]]]
+|||"'mobile' Working dirs|oldId:201871712021910654800^Task |||"
+"Necessary to confuse the monkeys;  shd use new dirs every time.</div>"
+|||"Line up 5-6 tasks in IDE, work in parallel|oldId:201871712021927654800^Task |||"
+"This way when the monkeys mess w/the compiler or files we can continue working seamlessly.</div>"
+[[["spx/New Feature" (4 recs)]]]
+|||"Impl. mockServer|oldId:202031013132599000000^Task |||"
+"Before the socketSvr is ready we need to implement this<br>
+~so that the transition will be cleaner.  We want:~<ul>~<li>A new class (mockSvr)</li>~<li>Split calls to fns within; e.g. popDat.apply(,,,)</li>~<li>THEN impl mockSvr.request(~); it respond..."
+|||"Impl. Access Roles|oldId:201986123613538000000^Task |||"
+"Major impact on ToolBars, not much else if immutable<br>
+~
+~@ a minimum:<br>
+~
+~<ul><li>Anonymous -> View only</li><br>
+~
+~<li>User -> View, Create(append)</li><br>
+~
+~<li>SuperUser-> Can batch-update a Tbl</li><br>
+~
+~<li>Dev -> View, Create, Update..."
+|||"Scala|oldId:201986123613558000000^Task |||"
+"Using it would be a MAJOR boost in security<br>
+~
+~Plus pt # 2 : functionality (zipping, tuples etc.)<br>
+~
+~InterOp w/java seems to be good<br>
+~
+~However, must not REACT to the monkeys, either way<br>
+~
+~The compiler doesn't really care whether you..."
+|||"Barebones app security|oldId:2019101154143999000000^Task |||"
+"@created 2019.11.03~    - we need to eventually impl at least basic-lvl security & SecurityManager~    - create standard policy w/ allow/denys & then debug/modify it to allow stuff to run "
+[[["spxClient/Note" (3 recs)]]]
+|||"populateDat|oldId:20191011541446000000^Task |||"
+"@markCompleted~Note @2020.03.02  -> No longer relevant (redoing w/trees)<br>~The only thing unique about the webSide popDat is the Hash for path;<br>~which is good but offers limited func (since we're ensuring svrSide that ea<br>~categPath is unique.
+<br>~@created 2019.12.30<br>~    We need to pull up the latest httpServer version of populateDat and ENSURE that<br>~    it is the same used in the spxClient.  There should be only one fn called on the<br>~    serverSide to gen both dataSets.  Also a..."
+|||"<html><span style='color: red'>Everything here is LOW PRIORITY</span></html>|oldId:2020226123512479000000^Task |||"
+"The only reason we messed w/ the ide in the 1st~place is because the bastas wouldn't let us use eclipse or any other REAL ide.<br>
+~
+~
+~So really, except for stuff which makes life easier for us (given that the bastas will continue to mess things up)..."
+|||"Design: populateDAT cfg|oldId:2020226133257707000000^Task |||"
+"<ol>~<li>svr sends whole rec</li>~<li>cfg includes List<String> naming all visible (user-selected) cols; OR</li>~<li>other/internal flds ren to "spx_~" svrSide before populating</li>~</ol>~This allows us to ignore em (unless explicit access reqd) WIT..."
+[[["spx/Notes" (6 recs)]]]
+|||"<html><span style='background-color: gray' >ChangeLog</span></html>|oldId:2019101154143984000000^Task |||"
+"	03.10->	(GridTester) created new comparator & sorting fns for tkPriority~		  (as suspected, @monkeyBastaInterf w/earlier formulae)~	03....->	allTbls-tkList updates~	03.07->	(GridTester) monkeyBastas disallow changes (subMod etc.);~		 so updated defa
+ultPred to ignore deletes & markCompl.s~		  also minor updates to fix allTbls dataBtn/toolBar ~		  + new menuItems under Test to chk snippets (for tagCloud)~	03.06->	(GridTester) Changed Bool switch below to Int for a 3rd choice; ~		  added fn.TkPrio..."
+|||"Design: SocketSvr overall|oldId:202034122449455000000^Task |||"
+"Thick Client	->	SSL	->	Server<br>
+~
+~
+~
+~(jdk8)				(jdk12)<br>
+~
+~
+~
+~Only ui & dat classes			Full Featured; all Fns stay here<br>
+~
+~
+~
+~<ul>~<li>Client authenticates<br>
+~
+~
+~-> Server sends Desktop + Ad Tbl + Communcation Keys<br>
+~
+~
+~-> Secure s
+ession established</li>~<li>Henceforth all the client does is display dvs|Forms & communcates w/server</li>~<li>Server sends responses & pushes(Updates) + notifications(Toasts w/Err/Success/Status)</li>~<li>Two logs (client, svr)</li>~<li>Update to m..."
+|||"TaskList / org alternatives to GTD|oldId:20203512838571000000^Task |||"
+"~https://www.quora.com/What-alternatives-are-there-to-Getting-Things-Done-GTD-by-David-Allen-It%E2%80%99s-very-ingenious-but-very-complex-to-set-up-What-are-some-possible-supplements-that-add-ease-and-value~<br>~...So my grand planning tool is a mind
+ map. My weekly planning tool is a kanban board. My daily planning tool is a to do list (one column of the kanban board) and my calendar....~<br>~...From David Allen's Getting Things Done I learned that my brain is for processing, not storage. Most o..."
+|||"<html><span style='color: blue' >DELETE</span></html>|oldId:2020226125136451000000^Task |||"
+"(this item has been inc. into another existing task)~- chk: does the bean stuff need a no-arg constr? if so, ensure compliancy (or otherwise)~- Once mTuple ready (params etc) dump in fatty so it can be used by both cli/svr~- Continue porting cypher t
+o buildable~	- pass mTuple.empty if, for instance, using from svr or non-state env~	- after new keys are ready; add to new ver~	- spxV3 should use some of the new features by choice (embedded salt/iv; embedded prov etc)~- Before converting the dvGrid..."
+|||"Avoiding 'final var might not be assinged|oldId:201997161156980000000^Task |||"
+"a better way to avoid the compile err: "final var val might not be assigned"<br>
+~	is to not use the var @ all ; e.g.:<br>
+~	try{<br>
+~		... <br>
+~		... <br>
+~		return Optional.of(~)<br>
+~	} catch (Exc e) { <br>
+~		... <br>
+~	return Optional.empty();..."
+|||"<html><span style='color: red'>Notes for refactoring</span></html>|oldId:20187171202260654800^Task |||"
+"<span style='color: red'>Notes:
+</span>~<span style='color: white'>Since the bastas are interfering so much;<br>
+~
+~
+ let's use the time to do some planning.<br>
+~
+~
+(They allow it, feel they'll have something useful/helpful.<br>
+~
+
+good luck with th
+at you motherEffers!)~</span>~<ol>~<li>Port lineNum to buildable</li>~<li>Port fx to buildable~<ul><li>@monkeyBastaInterf., BUT we need riddleDlg for security; so even tho work has begun on cypher; postpone that.</ul>~</li>~<li>Port cypher to buildab..."
+[[["spxClient/" (3 recs)]]]
+|||"<html><span style='color: blue' >DELETE</span></html>|oldId:201910115414466000000^Task |||"
+""
+|||"General: interface moveable al.|oldId:201910115414448000000^Task |||"
+"@created 2019.12.22~    - Using parameters (for startPos, endPos) could get complicated because of all the possibilities~    - Use built-in options for animType (fade/dissolve/ dropRt/dropCtr for dlg)~    - Opt<animMethod> will trigger alt. method in
+std of show() if method.isPresent()~    - for proc guidelines lookup w3sch impl of toasters/drops~2020.02.26->~	- This is actually the perfect use-case for the functional style;~	- there is a one-liner in the very middle which does all the work (setX..."
+|||"<html><span style='color: blue' >DELETE</span></html>|oldId:201910115414458000000^Task |||"
+""
+[[["spxServer/Tagger" (2 recs)]]]
+|||"Tagger - we have enough data;  Tag existing articles|oldId:201871712021889654800^Task |||"
+"&nbsp;&nbsp;&nbsp;&nbsp;Missing from Tag Keywd list: Theatre, Opera, Desi, DesiNYC, Amuse (basti edit?)add new object : mDataView<br>
+~
+~
+~ -> implement Abstract;  Factory<br>
+~
+~
+~  -> For ea. sort param;  <br>
+~
+~
+~~ ->chk mAdmin for sortKey<br>
+~
+..."
+|||"Tagger POA|oldId:201871712021940654800^Task |||"
+"-&gt;  NOTE: Test the keyDb against the corpus before working on this;  it may suffice;  if it does, we're done with this.<br>
+~
+~-&gt;  If not;  we shd 'learn from the data' ie., NaiveBayes & using custom Map/Reduce<br>
+~
+~-&gt;  The maps can be opt
+imized later IF NECESSARY (if they just lie on a server they don't need optimization for size)<br>
+~
+~-&gt;  Build custom module for this rather than using off-the-shelf;  it's simple enough.  <br>
+~
+~Use a 'pipeline' like Mallet/Stanford/et al, but ..."
+[[["spxPostCovid/BugFix" (2 recs)]]]
+|||"Bug in Form|oldId:20201209093239023^Task  postCov023|||"
+""Every open adds a <BR>, coz we're replacing \r\n w/ \r\n<BR>
+~Instead, repl w/o return & feed""
+|||"diff bug|oldId:20200418093239034^Task  postCov034|||"
+"The diff Dlg to choose Docs shows Incorrect Pane Titles (perhaps grabbing from the wrong place � Init)"
+[[["spx/Useability" (7 recs)]]]
+|||"Fix UNID fmt (spaces)|oldId:202035133755763000000^Task |||"
+"Update @2020.03.08->~The clever effing monkeyBastas apparently have been using fakeCompilerErrs<br>
+~for quite a while now:<br>
+~The mGetUNID fn has been backported to a method not using a DateTimeFormatter<br>
+~(probably conflicts w/their crap)<br>
+~Anyway, the result is this:  We need to~<ul>~<li>Repl the methd w/Fn using Formatter</li>~<li>Fix legacy IDs (diff lens) by padding to uniformLen</li>~<li>Ensure all priorDocVers are also updated</li>~<li>Store for poss reuse w/other legacy data</li..."
+|||"<html><span style='color: red'>Notes for USEABILITY taskItems</span> |oldId:20203312942518000000^Task |||"
+"These items take precedence over the refactoring<br>
+~which will be delayed until these're complete/deployed."
+|||"Add spx snippets to allTbls snippets|oldId:20202261257483000000^Task |||"
+"Since the archive is encrypted anyway;<br>
+~ this shd be a good place for all old snippets<br>
+~ tag em w/"spx"<br>
+~include stuff like the legacy jetty svr, the custom handlers etc.<br>~This is essential before we continue work on the tagCloud~"
+|||"SuperSizer|oldId:202031012413315000000^Task |||"
+"apply to all remaining snippets (launcher/other dlgs)"
+|||"virtual fattyLoad|oldId:20203312811718000000^Task |||"
+"Impl loading via urlClassLoader (poss @monkeyBastaInterf., but try)~<ol>~<li>port getUrlTxt to fn</li>~<li>launcher (phaps usuing ethereum) copies fatty to mem</li>~<li>then launches</li>~<li>MIGHT be able to move updates to static webSite (instd of ..."
+|||"Updates to launcher (sRiddle displ)|oldId:20203311504583000000^Task |||"
+"internalLoad (either enStrComp / launcher) needs to be updated-> <br>~(after pkg/cls prompt) -> <br>~"Please enter key & click OK:" (no ridQn)<br>~<br>~quick fix; reduces hassle"
+|||"Reimpl virtual drive|oldId:202022612594671000000^Task |||"
+"Worth doing; the actual code is so tiny it can be safely inc into fatty.jar.<br>
+~
+~
+~Keep it as a menu option to play w/for times when <br>
+~
+~
+~the bastas are being especially difficult <br>
+~
+~
+~<span style='color: red'>(or is that all the time? :..."
+[[["spxServer/Feature" (2 recs)]]]
+|||"Business Case Logic for SaveProc|oldId:201871712021885654800^Task |||"
+"Note @2020.03.06 -> this prob'ly refers to a now-defunct legacy(web) reqmt<br>
+~As of now, we don't need to set any of this<br>
+~<b>NOTE however, that to impl a user-settable sort order</b> (a la legacy web)<br>
+~this is necc.<br>
+~mTask Business Cas..."
+|||"mImage Table|oldId:201871712021882654800^Task |||"
+"<span style='color: red'>(NOTE 2020: This is similar to the iconViewer already worked on)</span><br>
+~
+~import images;  Explore java API for thumbnails/compression<br>
+~
+~Import all image refs<br>
+~
+~Create fn to scan mArt post-Create & do the fetchi..."
+[[["spx/Maintenance" (3 recs)]]]
+|||"Design: HUUUGE cli/svr Refactor|oldId:202022512192122000000^Task |||"
+"@markCompleted on 2020.03.10 (some items completed, others become new taskItems)~@created 2019.12.22~    ORDER OF REFACTORING:~    (1) Using incrementalSaves (monkeyBastaInterference) reapply prnEx & prnOut fns~    - this time add logLevels~    - Bef
+ore applying add simple keybdMacro capability to ide; ie, pastes catch st w/prnEx or prnOut~    so that we can insert in code w/o using clipbd all the time (also bastas have messed w/that)~    - This has to be done now because we'll have to use the l..."
+|||"After refactoring, Scan all spxUpdates|oldId:2019101154143996000000^Task |||"
+"@created 2019.11.15~<br>
+~@ some pt we need to thoroughly scan the spxUpdates ~<br>
+~& interim files (mfs2 thru mfs5) to~<br>
+~ensure that no prior work is left out.~<br>
+~    ** Essential BEFORE implementing refactored client/svr."
+|||"test temp|oldId:202031013173078000000^Task |||"
+"test"
+[[["spxClient/notes" (1 recs)]]]
+|||"Notes|oldId:2019971611579000000^Task |||"
+"incl. snippet w/Colors & links to 99Colors etc."
+[[["spxServer/Maintenance" (1 recs)]]]
+|||"PoA|oldId:2019717173836191000000^Task |||"
+"incorp pipeline trigger into hammer & @override<br>
+~
+~AFTER 1st run of the basic proc we'll run a <span style='color:blue'>nWordEngine.getNwords(int, String)</span><br>
+~
+~Return padded nWord e.g. "WordOnezzzzzzWordTwo<br>
+~
+~Note that we'll have to..."
+[[["spxClient/Maintenance" (1 recs)]]]
+|||"General: listDlg et al.|oldId:201910115414451000000^Task |||"
+"It doesn't.  @markCompleted~@created 2019.12.22~    - For dlg; chk if adding icon via dlg.icon=XXX auto-shows the icon when calling dlg.show()"
+[[["spxClient/Notes" (2 recs)]]]
+|||"Form Design Notes|oldId:201986123613543000000^Task |||"
+"Update (2020.03.09)-> ~<span style='color: red'>VERY low priority, tho higher than IDE</span>~<ul>~<li>On reconsideration, HTML forms are a nix: We can do ALL that, and more (borders etc) in swing</li>~<li>In the absence of a good existing option (Ne
+tBeans is overkill) we might have to design a custom one</li>~<li>Look thro oracle's Layout stuff if we can repurpose something</li>~<li>We cld design a basic form & then allow customization</li>~<li>Row-based, allow insertion/deletion/repos</li>~<li..."
+|||"Other desktopSettings are stored Map<mTbl, List<Settings>>|oldId:202035121324123000000^Task |||"
+"Update @2020.03.08: Rethink loc of desktopSettings<br>
+~
+~Svr space cheap; why send stuff back/forth?<br>
+~
+~Impl only if freq access puts too much svr load; Weigh alts<hr>~The Desktop will have a Map w/ mTbls as keyVals<br>
+~
+~
+~There are certain ot
+her things (besides UnreadMarks) <br>
+~
+~
+~which need to be stored on a per-user basis; e.g. <br>
+~
+~
+~in the mT table users might have "highlighted" several tasks<br>
+~
+~
+~This info stored in a fld ("highlightPriority") or whatever, ALONG<br>
+~
+~
+~w..."
+[[["rec/Notes" (2 recs)]]]
+|||"FL Corp statutes|oldId:201986123613548000000^Task |||"
+"<span style='color: blue'>Fl. Corp. Statute 607.0621</span>: Issuance of shares<br>5) The corp may place in escrow shares issued for a ctontract for<br>future services/benefits or a promissary note, or... restrict the txfr of shares<br>...UNTIL the s
+ervice is performed/note paid/benefits recd.<br>If NOT recd/performed, the shares escrowed/restricted may be CANCELLED in whole or part<br><span style='color: blue'>Fl. Corp. Statute 607.0626:</span> Share Certs not reqd unless bylaws require 'em<br>..."
+|||"FL Corp requiremts|oldId:201986123613546000000^Task |||"
+"<ul><li>A good expl. of FL law on piercing the corp veil is contained in the Fl Supreme Ct Case<br>Dania Jai-Alai Palace, Inc. v. Sykes 450 So. 2d 1114(1984)</li><li>In Fl, if a Corp fails to file an Annual Rpt on 5/1 it's automatically dissolved.</l
+i><li>In NV, NM, one other state -> for LLCs, *no owner* allowed</li><li>Fl Secy of State @ sunbiz.org (Srch for Corp. name, Fict names)</li><li>Fl taxes ONLY C corps @ 5.5%, all income > 5k</li><li>Money can be left in a corp & taxes saved; fringe b..."
+[[["spxServer/new Feature" (2 recs)]]]
+|||"Redesign mA.search() using pipeLine|oldId:20199716115711000000^Task |||"
+"After DVs impl & working; revisit the mA srch fn & retool it to:<br>
+~
+~
+~
+~	- srch all docs in DV for term;<br>
+~
+~
+~
+~	- show results in a new DV with 1 matchedDoc on ea row<br>
+~
+~
+~
+~	- hoverTTip shows matches in context sep by {hr}s. (chk->are J..."
+|||"Better Naming (subModules)|oldId:2020225121724990000000^Task |||"
+"@created 2019.12.28 @completed~    We need a new fld (SubModule) for better org~    Split all Tks to ~    Proj~~  Mod~~  SubMod~    spxSvr~~DataEng~   mAd~    spxSvr~~HttpServer~css related~    spxCli~~UI~~   dvBldr~    System~~cryptoEng~ fileFmt spx..."
+[[["spxPostCovid/Fix" (1 recs)]]]
+|||"Outline RegEx fix|oldId:20200327093239006^Task  postCov006|||"
+""Wrute a sm func to chk for classes/methods NOT grabbed by Outline RegEx & Fix (or do manually)
+~If, for example, Falls through because of missing space, rectify the regex NOT the typo
+~ADDENDA 05.15->  First we need to tinker w/Outer RegExp Until we
+ grab EA block e.g., (\r\n\r\n)\s.
+~Then highlight ones NOT in outline, this gives us all poss missing blocks; then Diff or manual.
+~Running this on prev spx versions gives us a list; PIPE that into urlRdr selectables w/chkBoxes, THEN manually compar..."
+[[["spxPostCovid/New Feature" (3 recs)]]]
+|||"Virtual Dr|oldId:20200202093239014^Task  postCov014|||"
+"reImport (if necc) Virtual Drive (is it JDK8?) & Bld Jar in Mem (Pro?)"
+|||"Fld for Attachments|oldId:20200202093239013^Task  postCov013|||"
+""Optional<List<Byte[]>Attachments
+~05.17 ADDENDA-> new cls for Attachments w/Name, Type, Size.  
+~Then mData'll have Optional<List<Attachment>>
+~Later offer OLE-type launch-by-extension, perhaps?  Embed map of extension-Application in mAd?
+~Note: now..."
+|||"Snippets Tbl|oldId:20200202093239015^Task  postCov015|||"
+"Since the archive's encrypted anyway, the Snippets Tbl can contain all useful stuff from Repos (archives too) for accessibility"
+[[["spxServer/mData" (1 recs)]]]
+|||"'Compact'|oldId:202038141541317000000^Task |||"
+"In certain sits w/ docVersioning on dbSize might incr v fast<br>
+~
+~Offer users the ability to 'compact'<br>
+~
+~<li>Offer devs the ability to compact (remove all prior versions)</li>~<li>This auto-archives pastVersions to a separate DB (allows lookup..."
+[[["spxServer/Version Fixes" (1 recs)]]]
+|||"mNotes/mBoxes|oldId:201871712021875654800^Task |||"
+"@markCompleted~read/resolve and import Links & mBoxes from ShellQn: consolidate Tables?<br>
+~
+~<span style='color: red'>5/14: Note:</span> this offers an exc opportunity to test modular deployment when we do impl it since they're diff docTypes (esp B..."
+[[["spxServer/Useability" (1 recs)]]]
+|||"make mTbl generic for datType|oldId:202033123534830000000^Task |||"
+"CRUCIAL to do this & test before proc with refactoring<br>
+~
+~because it'll save some recoding later, considering how we're hardcoding mT everywhere"
+[[["spxServer/Research" (1 recs)]]]
+|||"Data Import - json|oldId:20187171202284654800^Task |||"
+"Chk jdk json import/proc libs.</div>"
+[[["Brij/Server" (44 recs)]]]
+|||"Auto-Updating dzClients||||"
+"~~   ~~   How do we do this?~~   For v1 we cld simply run a chk on login & show dlg: ~~   "Updates r avail.  Pls. upd8 yr cli when you get a chance." or ~~   "Yr cli *seriously* out-of-date.  Please upd8 now"~~   ~~   The thing about the cli updating
+ itself is full of issues:~~   - Once the cli is loaded we can't overwrite the libs coz they're already in use.  ~~   - If we use a 'shell' to launch the cli _after_ updates the cli will run *inside* the shell; is that an issue? Memory? MainThread is..."
+|||"WebHooks + Logging + Analytics etc.|v1|||"
+"~~   ~~   @ToDo: Determine which specific events 2 track + allow hooks into.~~   ~~   The correct way to do this wld be to use monadic wrkflow.~~   Since the server's already running req.s async, using the asyncMonad wd be overkill/redundant.~~   Use
+ something simple, e.g. the ContMonad (even if it's just {handler (id)}}).~~   BUT (important) reImpl the monad as a new one, say svrHandlerMonad.~~   This allows us 2 modify the bind to add fns to hook/log at will w/o hacking away at anything else. ..."
+|||"Usr Analytics|v1|||"
+"~~   ~~   Note: This is (@TBD) and the webCli can be v2+ (poll users 2 rank features they wish to see)~~   ~~   @ToDo: Determine which specific events 2 track.~~   ~~   dzCli: We track a set of events (udpateable @ will) and, instd of pumping em out,
+ we write to State.~~~  At close of session we process this into a sort of report (a record actually) and pump2Svr.  ie, all proc is done cliSide.  Which means cliCrash will lead 2 lost info but so what?~~~  On the svrSide an AdminTbl cohort will col..."
+|||"tbdb: cmp.fs runCmd fn|@Recon src:code_embded_tbdb|||"
+"~~   Note: Bien Sur, most of the tbdbs have been caused by compiler monkey-biz~~   If priorities allow: poss useful to have handy (is there another sml prod here? a util? Too much on the plate...)...~~   <code><pre>~~   #if tbdb~~~  let runCmd() = ~~
+~~ List.map (fun x ->~~~~~~   let (ar1, ar2) = x~~~~~~   Cmp ar1 ar2) (["DOTNET_ROOT", "C:\Users\inets\Documents\mike"; ~~~~~~~~~"PATH", "C:\Users\inets\Documents\mike;%PATH%";~~~~~~~~~"DOTNET_MULTILEVEL_LOOKUP"; "0";~~~~~~~~~"C:\Users\inets\Document..."
+|||"tbdb:loggedUIRunnerAM.fs|@Recon src:code_embded_tbdb|||"
+"~~   Note: Bien Sur, most of the tbdbs have been caused by compiler monkey-biz~~   This file contains type સાદુ_પાન_Jan which runs in slug4clickHandler:~~   <code><pre>~~~  | "DesignDV" -> ~~~~ tibbie "This is the ver using the NEW Masalas; tbdb"~~~~..."
+|||"tbdb: loggedUIRunner.fs mockaroo|@Recon src:code_embded_tbdb|||"
+"~~   Note: Bien Sur, most of the tbdbs have been caused by compiler monkey-biz~~   ~~   There exists a toolStripBtn labelld "Mockaroo" to gen/create કલકતી_પાન_Nov8 4 MockarooDV~~   ~~   "
+|||"tbdb:coreAux.fs categByFiscalQtr fns|@Recon src:code_embded_tbdb|||"
+"~~   Note: Bien Sur, most of the tbdbs have been caused by compiler monkey-biz~~   This mod contains fns ~~   let loadMock() =~~   let genDox (inL:(string * '_a) list) =~~   And 3 fns to autoCateg by Year, monthNm + FiscalQtr (settable via cPnl)~~   ..."
+|||"tbdb: coreAux.fs boids scrambled|@Recon src:code_embded_tbdb|||"
+"~~   Note: Bien Sur, most of the tbdbs have been caused by compiler monkey-biz~~   The boids nd to be impl scrambled.~~   "
+|||"tbdb: core.fs  tryOfL ext|@Recon src:code_embded_tbdb|||"
+"~~   Note: Bien Sur, most of the tbdbs have been caused by compiler monkey-biz~~   ~~   This is a new fn below 'let tryOf f x ='; obv. nd.ed.~~   ~~   <code><pre>~~   #if tbdb~~~  let tryOfL f li = ~~~~ let res = List.map (fun x -> tryOf f x) li~~~~ ..."
+|||"tbdb: brij.fs BrijTy getDefault|@Recon src:code_embded_tbdb|||"
+"~~   ~~   Note: Bien Sur, most of the tbdbs have been caused by compiler monkey-biz~~   Note also that tho these're redundant; we nd getDefaults for the type (for newTbls etc.)~~   ~~   <code><pre>~~   type BrijTy<'t when 't :> ITblMarker>~~   ...~~ 
+  #if tbdb~~~  static member bld (id:string) (tit:string option) (cont:string option) (tg:string option) = ~~~~ BrijTy([CoreMod(CoreM(DocUNID(id), now(), now(), ઓર  tit "-", બાઇટ |>| ઓર cont "", ઓર tg "", ""))], "", CustID_Trivedi_AdminTbl())~~~  sta..."
+|||"tbdb: brij.fs tkDatK pickT|@Recon src:code_embded_tbdb|||"
+"~~   ~~   Note: Bien Sur, most of the tbdbs have been caused by compiler monkey-biz~~   ~~   <code><pre>~~   let tkDatK s = ~~~  ``⍲`` {~~~  ....~~~  Note: res0 is Some(Task([CoreMod(CoreM(DocUNID(tick.ToString() + "^Task"), crDt, ...))))~~~  // This
+ value is not a function and cannot be applied.~~~  let pickT = ~~~  res0 ~~~  |> flatten~~~  |> lim (fun s n -> ~~~  let (Task(m, project, moduleNm, subMod, objt, imp, urg, parnt, compl, complOn, TgtVer(tgtVer), docLinks, tblTy)) = n~~~  let (CoreMo..."
+|||"tbfo: diff UI w/Brij|@Recon src:code_embded_tbfo|||"
+"~~   There are some dupl itms in Brij/UI; nd 2 ensure resolved or there'll be issues w/callStck, here's an example (UIAux)~~   <code><pre>~~~  let openDes =~~   </pre></code>~~   "
+|||"tbfo: UIAux.fs default CM|@Recon src:code_embded_tbfo|||"
+"~~   ~~   We nd to impl this + ensure that newDb adds a default.~~   [As decided earlier; a la LN but a 'real' dzItm w/cols frm CoreMod]~~   ALSO nd 2 ensure the same for other necc dzItms (frm?)~~   ~~   <code><pre>~~   type CalcuttiMasaloAux<'t whe
+n 't :> ITblMarker>~~   ...~~   #if tbfo~~   static member getDefault() = ~~~  let tkColHdrs = ["Title";"Objective";"Importance";"Urgency";"TgtVer";"Tags"]~~~  let tDef = SaadoMasaloAux("Task Tbl", tkFldList(), brijLogo, TaskTbl())~~~  CalcuttiMasalo..."
+|||"tbfo: BrijServer.fs+UI.fs કલકતી_પાન_Svr type|@Recon src:code_embded_tbfo|||"
+"~~   g.CellMouseMove.AddHandler (blds ttip) has more than one open issue~~   ~~   NOTE THAT the l8est work on this issue is in ty કલકતી_પાન_Aux in the file UIAux_Dec20_tkDv.fs~~   "
+|||"tbfo: BrijServer.fs કલકતી_પાન_Svr type|@Recon src:code_embded_tbfo|||"
+"~~   ~~   NOTE that the reason "we may not nd this drpDn anymore" is pro'lly ctxt; ie alr covered in tBar no nd in g; but chk~~   ~~   <code><pre>~~~  type કલકતી_પાન_Svr<'t when 't :> ITblMarker>~~~  ...~~~  let tumbaaku =~~~~ printfn "in કલકતી_પાન t
+umbaaku..."~~~~ match dvTy with~~~~ | DVType.Dt  ->~~~~~...~~~~~//@tbfo deferred for bldCtrl since we may not nd this drpDn anymore~~~~~//let swDV = new ToolStripDropDownButton(Text = "Switch DataView...", DropDown = (bldCtrl (getDropDnItms (getDVsFo..."
+|||"tbfo: Brij.fs choono...handlers|@Recon src:code_embded_tbfo|||"
+"~~   ~~   Done: kathoHandler~~   Left: chunoHandler; supariHandler; lovelyHandler~~   ~~   Also really shd convt the calling fn to use activePattMatching (F#9 returns bool)~~   ~~   Finally, the callingFn catchall match nds 2 be addressed (raise/thro
+w? mt req opt)~~   ~~   Calling fn:~~   <code><pre>~~~  let svrReq = ~~~~ fun cmd categ def ->~~~~~match cmdTy cmd with~~~~~| "chuno" -> chunoHandler cmd categ def (paanTy cmd)~~~~~| "katho" -> kathoHandler cmd categ def (paanTy cmd)~~~~~| "supari" -..."
+|||"tbfo: Brij.fs openDes|@Recon src:code_embded_tbfo|||"
+"~~   <code><pre>~~   module Gullo =~~   ...~~~  let openDes =~~~~ fun (tblTy:'a) ->~~~~~tibbie "Brij.Gullo.openDes -> circ. refs to Aux etc. arising from @MBI"~~   #if tbfo~~~~~match dTy with~~~~~| AdminTbl -> ~~~~~    let dFrm = new Form(Text = "DzD
+V")~~~~~    //dzDV btns refer to state~~~~~    ...~~~~~    dFrm.Show()~~~~~| _ ->~~~~~    //@ToDo 10.10: Modify to make FileNm to be Fully Qualified Title (tbl is internal)~~~~~    //addenda: get frm SaadoMasalo<'t>~~~~~    let tblID = (tblTy.GetType..."
+|||"tbfo: Brij.fs Cit/Tbl type|@Recon src:code_embded_tbfo|||"
+"~~   <code><pre>~~   type Cit<'t> = | Cit of dat:Dat * url:string * src:string * tblTy:'t with~~~  override this.ToString() = "tbfo"~~~  ~~   type Cfg<'t when 't :> ITblMarker> = | Cfg of string * tblTy:'t with~~~  override this.ToString() = "tbfo"~~
+   ~~   ...later (remmed)~~   type Tbl<'t when 't :> ITblMarker> =    | DatDoc of tblTy:'t~~~~~~~~~~   | AdDoc of cl:Ad<'t>~~~~~~~~~~   | CfgDoc of cf:Cfg<'t> ~~~~~~~~~~   | TblDoc of tblDef:TblDef<'t> with~~~  static member getAll = fun mtpl (ty:Typ..."
+|||"code_embedded_ToDo Brij.fs Types|src:code_embded_ToDo|||"
+"~~   type Mod =  | CoreMod of CoreM~~~~~| DocVersionModule~~~~~| DocEditHistoryModule~~~~~| DocImgModule~~~~~| DocRelationModule~~   - @ToDo: #2 + #3 poss nd consolid8n~~   - @ToDo: DocAttachmntModule exists, nds 2 be added to ty~~   ~~   DocImgModul
+e of string * list<string * string * byte[]>~~   let (nm:string, typ:string, contnt:byte[]) = x~~   //@ToDo: nd to conv typ to Enum~~   ~~   type DocFld = ...~~~  member this.getBoxedGenericVal() =~~~~ let (DocFld(fldTy, _, _, _)) = this~~~~ match fl..."
+|||"code_embedded_ToDo Brij.fs brijLogo|src:code_embded_ToDo|||"
+"~~   ~~~  let brijLogo = ~~~~ let logo = Bitmap.FromFile("C:/Users/inets/Documents/mike/src/Data/images/brij.png")~~   @ToDo: ALL local refs nd 2 be removed; this has to come from Admin tbl~~   ~~   "
+|||"code_embedded_ToDo Brij.fs openDes|src:code_embded_ToDo|||"
+"~~   ~~   mod Gullo~~~  let openDes =~~~~ fun (tblTy:'a) ->~~~~~tibbie "Brij.Gullo.openDes -> circ. refs to Aux etc. arising from @MBI"~~~~~match dTy with~~~~~| ...~~~~~| _ ->~~~~~    //@ToDo 10.10: Modify to make FileNm to be Fully Qualified Title (
+tbl is internal)~~~~~    //addenda: get frm SaadoMasalo<'t>~~~~~    let tblID = (tblTy.GetType().ToString()).Substring((tblTy.GetType().ToString()).IndexOf(".")+1) ~~~~~    let fil = Path.Combine(@"C:\Users\inets\Documents\mike\bin\", (tblID + ".bdf"..."
+|||"code_embedded_ToDo Brij.fs pcDat() |src:code_embded_ToDo|||"
+"~~   ~~~~ //**@DEPR: This dataset is already in tk.dat~~~~ //@ToDo: Chk for completeness~~~~ let pcDat() = ~~   ~~   "
+|||"code_embedded_ToDo Brij.fs tabIdx |src:code_embded_ToDo|||"
+"~~   ~~   type કલકતી_પાન_Svr calls this (the fn doesn't exist elsewhere):~~~  //@ToDo: chk & update to remove tabI param + refs~~~  let getTSButtonSvr txt imgNm tabI tt optF :ToolStripItem =~~~~ /// no image so altered to txtOnly~~~  ...~~~  this fn ..."
+|||"code_embedded_ToDo loggedUIRunr.fs state |src:code_embded_ToDo|||"
+"~~   ~~~  [<EntryPoint>]~~~  [<STAThread>]~~~  let main ag =~~~~ printfn "main:1"~~~~ let f = (new Form(...~~~~ ...~~~~ !!^ ["wld", (box x)] (f)~~   //@ToDo: dzDV btns refer to state from f; nd to update all calls to dsk~~   ~~   "
+|||"code_embedded_ToDo loggedUIRunr.fs CSV |src:code_embded_ToDo|||"
+"~~   ~~   type મીઠૂ_પાન<'t when 't :> ITblMarker> (ctorDef:SaadoMasalo<'t>, own, સ્તિતિ) as f =~~   ....~~   tBar.Items.Add (getTSButton "Import CSV file..." "delImg.jpg" (Some("Auto-Import field definitions and data from a Comma-delimited CSV file")
+) (Some(new EventHandler (fun sender e -> ~~~  let linkLi = "see:" + crlf + "https://stackoverflow.com/questions/53956462/get-column-in-haskell-csv-and-infer-the-column-type" + crlf + "https://deephaven.io/blog/2022/02/23/csv-reader/#:~:text=Type%20i..."
+|||"All handlers||||"
+"~~   We're currently using paanTy+cmd to handle matches; poss b8r approach to use combined PhantomTys (e.g. paanTyCmd()) since all extant types are known @ compileTime + mbi:hkt.s~~   "
+|||"Diagnostic Logs| src:gfx_tkLi_Addenda|||"
+"~~~  ((Based on an idea from karmakaze in HN Thread: <b>"It's not stupid if it works"</b>))  <br>~~~  That dev (trading app) took an ascii scrnsht of the desktop by walking the tree of Swing els; now if users complain of fill price he asks 'em to do 
+Menu|ViewLog; the price fld is logged...<br>~~~  Collect + Maintain beauc. State data every session (cliSide) incl <br>~~~  - Open Tbls<br>~~~  - Actions (i.e., UIevents)<br>~~~  - incl timeStamps<br>~~~  Then, optional storage: onError sendToSvr els..."
+|||"categBy List Fld||||"
+"~~   Cover the eventuality of usr choosing a list fld 4 grpBy (show the itm in both?If so, what happens to the totals?  WILL ND BYPASS)~~   "
+|||"OpenTbls param|cr8d:Dec24|||"
+"~~   All reqs from dskCli append a new param OpenTbls so we know (no double-sending dzDox etc.)~~~  AFAIK not necc on webCli (@chk)"
+|||"Updates|cr8d:Dec24|||"
+"~~   We nd to update it thus: instd of returning a LinqExp, it shd return a tuple: (LinqExp, jsScriptExp).  See mBox 'Compiling Expr to JavaScript' for options; or just manually code the js side stuff using snippets from the fltrBldr (shd cover most 
+if not all cases).~~   This is needed for auto-translating from desktop to webCli. (NOT all useCases but some)~~   SEE ALSO the ms js engine; it might suffice.  Try to avoid Fable etc.~~   @rsch also js TO Linq; cld be useful to allow clis to add ext..."
+|||"Cli-Svr Split|cr8d:Dec24|||"
+"~~   (This tk follows consolid8n) Addenda:~~   - we nd to split ALL the dataTys to a sep lib so that there are no issues with persistence cli/svr.  Ensure to ONLY incl tys nded cliSide~~   - Most stuff in UIAux will go to svr, again graft stuff piece..."
+|||"Font sel (all els) AFTER cssImpl|cr8d:Dec24|||"
+"~~   Add a lookupLi to AdminTbl consisting of all curr googFonts; use 4 select/dropDn.~~   Tell dev "We've sel these 2 (primary/sec).  If you wish to apply custom fonts, we have 1735 goog font families to choose from."~~   To apply, just subst in the..."
+|||"Before testing/impl|cr8d:Dec24|||"
+"~~   Basically the BM is used in 3 scenarios: brij/desktop/Web ~~   Some matches will apply _only_ internal e.g. we're using the fontPanel w/btn in brijSettings to allow diz to config the app.  Others will apply to ONLY dizCli; OR statically used by ..."
+|||"HlpDlgContents|cr8d:Dec24|||"
+"~~   Some notes exist on the HlpSys diz, BUT we're better off associating ea img w/opt<title, txt>; stored under unid in AdminTbl.  Bld the imgs in the same way we did for the D3 hlpPanel; store as PSDs so easy to update.~~~  Note that we can use the..."
+|||"Add docLvl Trigger Points|src:Nov24_Notes|||"
+"~~   - Any sophisticated workflow nds triggers on Save/Create/CronTime~~   - e.g. consider eBay like bids requiring (i) Deadline (ii) Rules~~   - @ deadline the Agent runs & applies rules~~   - @ Save rules applied (e.g. Reserve Price)"
+|||"DzDocs|src:Nov24_Notes|||"
+"~~   - We nd to convert all DzDocs to docId refs~~   - CustId + TableID (say max 100 Tbls)~~   - Cld use CustId ctor returns Pty to pass ev.where~~   - CustID is SEPARATE from UserID (1 - many; Cust is Tenant)"
+|||"Earlier Agent Notes|src:Repo_Gist|||"
+"~~   Impl MessageBox queue to proc~~   Will run as Indep svc full-time on svr~~   Will def nd 2 offer users ability to trigger on Save/Update~~   Offer some canned fns e.g. sendMail aka transactional emails~~   Offer triggers 4 onEvent|manualRun|hour
+ly|daily|wkly|monthly~~   We have sketched out the types for this elsewhere (@ToDo: loc8) what's key is LastRunOn and LastRunStatus; the currRn will collect docs/filter based on these flds.~~   The assoc dox 4 dbFuncs will go into the AdDb (nd to imp..."
+|||"mainAdTbl|src:Repo_Gist|||"
+"~~   We can pro'lly use a 'MainAdTbl' which's a storehouse 4 stuff like cliInfo/Keys (no outside access); & this cd host the dbFuncDocs If there're too many can be isolated per case."
+|||"Initial Notes|src:Repo_Gist|||"
+"~~   Attachments	Img/Attachment hndlrs 4 svr: modify staticHndlr to recv docId: url/img/docId/nm.ext & pull from relevant doc. This shd work whether or not we use a specific imgTbl"
+|||"Computed Fields (v2?) @tibbie|src:Repo_Gist|||"
+""
+|||"LookupDocs @tibbie|src:Repo_Gist|||"
+""
+|||"various itms||||"
+"~~   - 1st DV is deflt (?@tbd); ability to set in CalcDef: checkBoxes ~~   - new TSBtn ""Create Copy"" for dzDox ~~   (upd Sept18_23: No, just allow access transparently via normal tbar Cut/Cpy/Paste btns)~~   Modify st.Bind to call >!> * ? {let x = ..."
+|||"Aux var|src:Repo_Gist|||"
+"~~   Do amish 4 3 lists; 1st all 8 & 2nd half-ish if (1) elif (2) elif (3)...~~   NO existing replaced 4 now~~   After in place mt be a good time to clean mods & move new Core fns in since we now have a working dll set."
+|||"Brij.Expr|src:Repo_Gist|||"
+"~~   The only place we act'ly nd dyComp is after types change in ???~~   The rest can/shd be handled via exprShape~~   @ToDo test embedding exprs within others (shd work)~~   @ToDo find best way to store these~~   @ToDo determine whether a sep expr i..."
+[[["Brij/UI" (33 recs)]]]
+|||"tbdb: UI_Jan18.fs ty windowType|@Recon src:code_embded_tbdb|||"
+"~~   Note: Bien Sur, most of the tbdbs have been caused by compiler monkey-biz~~   Perhaps another name/setup? move this snippet _in situ_ 2 hlp w/reconcil. ~~   <code><pre>~~   #if tbdb_possMBI~~   //we p'haps dont nd this ty anymore...~~   //error ..."
+|||"tbdb:UI.fs addRange fns|@Recon src:code_embded_tbdb|||"
+"~~   Note: Bien Sur, most of the tbdbs have been caused by compiler monkey-biz~~   UI.fs contains this one tbdb 4 addRange (surely there must be more.)~~   We know what it was caused by.~~   Decide whether it's worthwhile to reImpl and change all cal..."
+|||"tbdb:UI.fs ty icnPnl|@Recon src:code_embded_tbdb|||"
+"~~   Note: Bien Sur, most of the tbdbs have been caused by compiler monkey-biz~~   UI.fs contains this type:~~~  type icnPnl<'t> (icnNm, tblT:'t, slug, dsk) as icnP =~~   This has l8r been addressed BUT was that a workaround?  Distinctly remember a @..."
+|||"tbdb:UI.fs pichaak|@Recon src:code_embded_tbdb|||"
+"~~   Note: Bien Sur, most of the tbdbs have been caused by compiler monkey-biz~~   In this file's fn ફોરમ_પીચાક, the ~~   frmTBar.Items.Add ~~   for "Font" and "Fields" is remmed; CHK (tho pro'lly covered, right? Or is this loc no longer in employ? D..."
+|||"tbfo: UIAux.fs genExpr, predConds|@Recon src:code_embded_tbfo|||"
+"~~   (AFAIK This delta poss only in the file: UI_Jan18.fs)~~   This file also has a predConds(Map<fldTy, li<strCond>) which is called frm numerous sites. That nds 2 be impl as well~~   <code><pre>~~~  let genExpr<'t when 't :> ITblMarker> (o:'t) fld ..."
+|||"tbfo: UIAux.fs kathoHandlerAux|@Recon src:code_embded_tbfo|||"
+"~~   (AFAIK This delta poss only in the file: UIAuxDec20_FrmDz.fs)~~   ~~   <code><pre>~~   let kathoHandlerAux =~~~  fun cmd categ def paanTyp ->~~~  ...~~~  let newCats = ~~~~ match cmd with~~~~ | "kathoCalcuttiCategExpando" ->~~~~~match exSt with~
+~~~~| eAll ->~~   #if tbfo~~~~~    (getDatAux tblDef fldLi)~~~~~    |> peru (fun ~ ~ ->~~~~~~~~ let ro:list<_> = r~~~~~~~~ let isC:bool = unbox r.[(ro.Length) - 2]~~~~~~~~ match isC with~~~~~~~~ | true -> Some(unbox r.[(ro.Length) - 1])~~~~~~~~ | _ -..."
+|||"tbfo: UIAux.fs કલકતી_પીચાક|@Recon src:code_embded_tbfo|||"
+"~~   The snippet below PLUS l8r in same fn:~~   catBtn.Click.AddHandler~~   sortBtn.Click.AddHandler~~   (fix 2 rem debgHanlr frm) cancelButton.Click.AddHandler~~   ~~   <code><pre>~~   let કલકતી_પીચાક =~~~  fun (ક્વિમામ:option<_>) (d:Form) ->~~~~ ..
+.~~   #if tbfo_Dec30~~~~ colBtn.Click.AddHandler(new EventHandler(fun (sender:obj) (e:EventArgs) ->~~~~~let tblFlds =~~~~~    List.filter (fun itm -> ~~~~~~~~~let (DocFld(t, slg, isInt, nm)) = itm~~~~~~~~~isInt = false) usrFlds~~~~~    |> lim (fun it..."
+|||"tbfo: UI.fs cliHandlr|@Recon src:code_embded_tbfo|||"
+"~~   This fn called from var sites; e.g. pgSize change.  Nds to call svr.~~   <code><pre>~~~  let cliHandlr (req:string) (g:DataGridView) =~~~~~//@ToDo: Placeholder; move to comm module l8r~~~~~tibbie "Req recd: " req~~   </pre></code>~~   "
+|||"tbfo: UI.fs grid dvLi |@Recon src:code_embded_tbfo|||"
+"~~   ~~   This is probably complete; re-check after Reconciliation/diffing phase.~~   ~~   <code><pre>~~   //Stateless @tbfo~~~  let getToolStripDVList =~~~~ let getDropDnItms dvList = List.map (fun dvNm -> getTSButton dvNm "imgNm" (Some ( fun e -> t
+ibbie "getDropDnItms" ))) dvList |> List.toArray~~~~ let getDVsForTbl tblName = ["DataView one"; "DataView two"; "DataView three"] //@tibbie; hardCoded for now~~~~ //toolStrip.items.add dropdownBtn~~~~ let drpDn = new ToolStripDropDown()~~~~ drpDn.It..."
+|||"tbfo: UI.fs ફોરમ_પીચાક|@Recon src:code_embded_tbfo|||"
+"~~   ~~   These are probably complete (twice, eh?) but chk.~~   <code><pre>~~~  let ફોરમ_પીચાક =~~~~ fun (ક્વિમામ:option<_>) (d:Form) ->~~   #if tbfo~~~~ //For now, add ability to ~~~~~add/remove flds from FldDef li~~~~~re/order flds~~~~~add validati..."
+|||"Time Picker ctrl| src:gfx_tkLi_Addenda|||"
+"~~   Note Dec_11_24: This wid exists on the webCli; we nd to add it svrside/dskCli~~   Jun10_24:~~   - Time picker (no dt, time only) .net <a href='https://learn.microsoft.com/en-us/dotnet/desktop/winforms/controls/how-to-display-time-with-the-dateti..."
+|||"code_embedded_ToDo UI.fs icnColor |src:code_embded_ToDo|||"
+"~~   ~~   This fn not used but _shd_ be:~~   //@ToDo: nds tinkering, cleaner approach than painting (curr~~   let getImgInNewColor = ~~~  fun (baseImage:Image) (oldColor:Color) (newColor:Color) -> ...~~   ~~   "
+|||"code_embedded_ToDo UI.fs Ad.imgNm |src:code_embded_ToDo|||"
+"~~   ~~   //@ToDo: update getButton w/param for imgNm~~   let getImg nm = ~~~  let imgContent = (getAdDoc nm).content()~~~  ...~~   ~~   "
+|||"code_embedded_ToDo UI.fs Ad.imgNm |src:code_embded_ToDo|||"
+"~~   ~~   //@ToDo: update getButton w/param for imgNm~~   let getImg nm = ~~~  let imgContent = (getAdDoc nm).content()~~~  ...~~   ~~   "
+|||"code_embedded_ToDo UI.fs state |src:code_embded_ToDo|||"
+"~~   ~~   Note Dec24: this ty already updated BUT the userOverrides may not have been addressed here/elsewhere~~   ~~   module Dlg =~~   ....~~   //@ToDo: nd to lookup userOverrides, if any~~   //~  nd to set c,r,o props/tgs~~   type ફીલ્ડ_પેનલ (nm, ..."
+|||"code_embedded_ToDo UI.fs state |src:code_embded_ToDo|||"
+"~~   ~~   let ફોરમ_પીચાક =~~~  fun (ક્વિમામ:option<_>) (d:Form) ->~~~  ...~~~  let p5 = (ફીલ્ડ_પેનલ  ("InfoBox1", FldInfoBox, "Pls note that each of the settings above can be overriden for any particular cell in the Cell Definition Settings (@ToDo)",..."
+|||"code_embedded_ToDo UI.fs tBar |src:code_embded_ToDo|||"
+"~~   ~~   let ફોરમ_પીચાક =~~~  fun (ક્વિમામ:option<_>) (d:Form) ->~~~  ...~~~  d.Controls.Add(tBar)  //@ToDo: poss nd to remove existing tBar if autoAdded~~   ~~   "
+|||"code_embedded_ToDo UI.fs handlr |src:code_embded_ToDo|||"
+"~~   ~~   Note Dec24: Poss just a shim to not have to address lib ver conflicts...~~   let cliHandlr (req:string) (g:DataGridView) =~~~  //@ToDo: Placeholder; move to comm module l8r~~~  tibbie "Req recd: " req   ~~   ~~   "
+|||"code_embedded_ToDo UI.fs cfg |src:code_embded_ToDo|||"
+"~~   ~~   Note Dec24: Poss addressed BUT chk~~   ~~   type કલકતી_પાન<'t when 't :> ITblMarker> (dvTy, own, def:DVDef<'c, 's, 't>, dat) as g =~~   ....~~   let chuno =~~~  printfn "in કલકતી_પાન chuno..."~~~  ////do procDef df g; runK ...~~~  //@ToDo: ..."
+|||"code_embedded_ToDo UIAux.fs types |src:code_embded_ToDo|||"
+"~~   ~~   UIAux.fs: (itms prez in UI.fs excl.)~~   //@ToDo: nds SEVERE cleaning up; esply tagging (earlier we were using this to store roSpan etc; defunct now.~~   type ફીલ્ડ_પેનલ_Aux (nm, fTy, slg, સુપારી, tabI, cTorFldVal:option<_>)  as p = ....~~ ..."
+|||"code_embedded_ToDo UIAux.fs defs |src:code_embded_ToDo|||"
+"~~   ~~   let baseTkDatAux = ~~~  fun (def:SaadoMasaloAux<'a>) fldLi ->~~~~ //@ToDo: curr this is using Saado; nds to be conv to Calc~~   ~~   "
+|||"code_embedded_ToDo UIAux.fs types |src:code_embded_ToDo|||"
+"~~   ~~~  [Dec_24: var versionx of this exist, incl કલકતી_પાન_Nov]~~~  [Diff + Consolid8]~~   ~~   type કલકતી_પાન_Aux ~~~  ...~~~  let chuno =~~~  ...~~~  g.ColumnCount <- visCols~~~  //-------------------~~~  //@ToDo: repl w/ categBy~~~  let categBy..."
+|||"code_embedded_ToDo UIAux.fs fontColr |src:code_embded_ToDo|||"
+"~~   ~~~  [Dec_24: pro.lly addressed via separate wid+fldTy def; but chk]~~   ~~   let બનારસી_પીચાક_eoy =~~~  fun (ક્વિમામ:option<_>) (d:Form) ->~~~  ....~~   let goolkand() =~~~  ...~~~  hdrLbl.Click.AddHandler(new EventHandler(fun (sender:obj) (e:E
+ventArgs) ->~~~  ...~~~  //@ToDo: font btn also records color change; return tpl?~~~  let currDefLblFontBtn:Button = (!!~ "Label Font" p1).Value~~~  let currDefDataFontBtn:Button = (!!~ "Data Font" p2).Value~~~  let currusrDefForeColorBtn:Button = (!..."
+|||"code_embedded_ToDo UIAux.fs types |src:code_embded_ToDo|||"
+"~~   ~~~  [Dec_24: VERIFY that the stuff below nds 2 go; if so remove before unifying vers.~~   HOPEFULLY that's not an ironic comment :-) ]~~   ~~   #if tmpRemmed~~~  //Jan25: remmed? REMMED? no, this has to go.  Delete in a coupla days.~~~  //@mbi 
+w/generics on ફીલ્ડ_પેનલ_Aux ctor lastParam.~~~  //  (works on Fable, tested)~~~  let કેટ_બાય_પીચાક =~~~~ fun (ક્વિમામ:option<_>) (d:Form) ->~~~~ ...~~~~ let getResult() =~~~~~lim (fun s idx ->~~~~~~   let cBtg = "Category" + idx.ToString()~~~~~~   /..."
+|||"code_embedded_ToDo UIAux.fs types |src:code_embded_ToDo|||"
+"~~   ~~~  type કેટ_પેનલ  (fldL:string list, midP:TableLayoutPanel, d) as this =~~~  ...~~~  midP.Controls.Add(this)~~~  midP.SetColumnSpan(this, 3)~~~  !!^ [("Row" + currRow.ToString()), box (this)] d~~~  !!^ ["exprRows", box (currRow + 1)] d~~~  //!
+!^ [("RowT" + currRow.ToString()), box (currRow.ToTpl())] d~~~  ~~~  //@ToDo: Currently userCond is a TextBox; nd to autoUpdate it to widget~~~  //Perhaps extend the FldType panels for these?~~~  //@ToDo: "oneOf" shd automatically layout multiline tx..."
+|||"code_embedded_ToDo UIAux.fs types |src:code_embded_ToDo|||"
+"~~   ~~~  type કેટ_પેનલ  (fldL:string list, midP:TableLayoutPanel, d) as this =~~~  ...~~   member this.Render() =~~~  let inf:TextBox = (!!~ "categTxt" d).Value~~~  let rs = ((!!~ "exprRows" d).Value)~~~  match rs = 0 with~~~  ...~~~  | _ ->~~~~ //@
+ToDo: Update to Tpl; lope off last connector in fold~~~~ //~  (also needed 4 toExpr())~~~~ inf.Text <- (lifo (fun s r ->~~~~~~~~ let ro:કેટ_પેનલ = (!!~ ("Row" + r.ToString()) d).Value~~~~~~~~ s + crlf + ro.toTxt() ) "" [0.. (rs - 1)])~~   member this..."
+|||"CSS gradients|cr8d:Dec24|||"
+"~~   Nix all gradients, label output files as such (both css/less)~~   Nds extra caution w/plugins + dojox~~   "
+|||"FldDef Ty changes||||"
+"~~   @Chk: FldDef nds defaultVal + handler based on ty ~~   Also, frmDz unAuth access needs BOTH ~~   - Blank val + Disabled cell (whole thing)~~   "
+|||"DnD Impl|src:Repo_Gist|||"
+"~~   Dynamic bld (completed 10/11/23)~~   bld operational, tested (completed 10/11/23)~~   Monadic state upd8t on DnD"
+|||"Wireframes Tabbed PropBox|src:Repo_Gist|||"
+"~~   reimpl frm w/declarative|domConstr~~   New Tys 4 tabbedPgs~~   New Tys 4 PropBox (bld via above)~~   New Ty incorp8ing all propParams >> dzEl~~   Make ctxtMenus modular, test w/curr setup~~   Reuse/reImpl 4 other els~~   Use ResX for assets"
+|||"Wireframes WebCli|src:Repo_Gist|||"
+"~~   Impl/test Grid. See <a href=""https://trivedienterprisesinc.github.io/CP_Logic.txt"">Notes</a>~~   Impl barebones working test ver w/all func necc.~~   [_] Refactor code to accept direct defs~~   Refactor code to accept dat in more or less simil..."
+|||"Validation Rules|src:Repo_Gist|||"
+"~~   on Compose: see if we can use the ?ing Form Funct w/fns (for hlp popup)"
+|||"var UI itms|src:Repo_Gist|||"
+"~~   Note module Form uses Task etc. types from Brij; consider moving entire mod to a separate fork~~   ~~   recr ty / basic frame; add pointLess, fix w/Dirs, no comb~~   new tag/tpl/st single runC in ea Mod~~   sketch out basic data + popDat~~   bur..."
+[[["Brij/winCli" (1 recs)]]]
+|||"tbfo: loggedUIRunnerAM.fs winRef|@Recon src:code_embded_tbfo|||"
+"~~   This file (Dec_22/Jan_23; no others) has a skeleton structure for the idea of tracking openWindowHandles in state, see 2nd snippet below~~   The 3rd snippet below adds this feature to ctxtMnu etc.~~   Note: There exist apparent helperFns too, di
+ff/port wholesale.~~   ~~   Here's the calling site:~~   <code><pre>~~~  type સાદુ_પાન_Jan ~~~  ...~~~  let mutable openWins:BrijWin list = []~~   </pre></code>~~   ~~   Here's the def/decl etc.:~~   <code><pre>~~~  type BrijWin = | BrijWin of id:Doc..."
+[[["Brij/Core" (3 recs)]]]
+|||"tbfo: CodeServices|@Recon src:code_embded_tbfo|||"
+"~~   Nd to pull this mod outside Core since we've put it on the backBurner~~   @chk New entry in EagleEye?~~   <code><pre>~~   module CodeServices~~   ...~~~  let loadBldInstr doc =~~~~ readFromDoc //nd. ability to modify from ide~~~~ |> instrToState
+~~   ~~~  let genPortable doc =~~~~ getHeader |> getBldInstr |> encInst~~~~ doc~~   ~~~  let loadDocLet =~~~~ loadModList~~~~ |> loadComments~~~~ |> loadCompDirs~~~~ doc~~   ~~~  let saveDocLet doc =~~~~ stripComments~~~~ |> stripCompDirs~~~~ |> genP..."
+|||"tbfo: List extns|@Recon src:code_embded_tbfo|||"
+"~~   Need to reconcile (or separate, @tbd) all existing ext.s; there are two which nd tbfo in the src, as shown below~~   <code><pre>~~~~ //ચાર_આંગળી_છે_પણ_આ_નઈ~~~~ static member સિવાય_ઉપર_જુઓ = ~~~~~fun x i -> if i = 0 then x.[1..len-1] else (x.[0....."
+|||"code_embedded_ToDo mBox search |src:code_embded_ToDo|||"
+"~~   ~~   From mbox "Full-Text-Search"~~~  ~~   Exc. resource <a href='https://www.mongodb.com/resources/basics/full-text-search'>here</a> goes into fairly deep territory incl binary search index theory.~~   ~~   Main takeaway:~~   - MongoDb fullTxt 
+is sufficient~~   - In either case we don't nd 2 bld/impl from scratch~~   - IF we go via MongoDb idx, still nd to allow usrs the ability to index/rebuild/optimize (size) etc.~~   - HOWEVER we don't nd this: our tenants are isolated and we can handle..."
+[[["gfx/Server" (15 recs)]]]
+|||"Initial Notes| src:EagleEye|||"
+"~~   ~~   These are the initial notes from EagleEye (Dec '23)~~   ~~   <ul><li>Extn pros: intuitive useCase; offline capab.; alwOn~~   </li><li>cons: Managed curr.; debg hassle; decide l8r~~   </li><li>PoA: v1 impl Canned -&gt; v2 refactor Blazor out
+ -&gt; v3 refactor Dojo in -&gt; v4 refactor 2 Fs -&gt; v5 refactor 2 sqlLite -&gt; v6 customize~~   </li><li>pro.ly nds / can use biz (e.g. res98)~~   </li><li>unids for treeModel autogen after ea chng to preserve order~~   </li><li>top ranked featu..."
+|||"Interlude: Parsec| src:gfx_tkLi_Addenda|||"
+"~~   ~~   Nd a quick 2-way parse from treeModel 2 jsOb to avoid dealing w/JSON etc.~~   - HardCoded order (if model changes code will nd updates)~~   - Ensure linewraps OK~~   - Use widgetRefresh code from one of the gridx examples (basic; whch swaps
+ dataSrc)~~   - CliSide only sends (no updates from Svr)~~   - So all changes on cliSide get sent as str 2 svr -> parsec -> replInDb~~   - EACH update will have to go thru the whole ser seq (in case of disconnects etc.)~~   - Next full Refresh or reI..."
+|||"Wasm/Interop Notes/Links| src:gfx_tkLi_Addenda|||"
+"~~   ~~   [0] Chk this NEW dotnet doc: https://learn.microsoft.com/en-us/aspnet/core/blazor/javascript-interoperability/call-javascript-from-dotnet?view=aspnetcore-8.0~~   ~~   [1] try this <a href='https://stackoverflow.com/questions/75166466/net-7-
+jsexport-a-task-in-experimental-webassembly-tool'>example</a> of a method returning Task being (auto)translated to a javascript promise~~   ~~   [JSExport]~~   public static Task<string> GetDummyStringAsync(){~~~  return Task.FromResult("Hello world!..."
+|||"Notes/Links Wasm Updates| src:gfx_tkLi_Addenda|||"
+"~~   ~~   <br><hr><br>~~   (0) <mark>Wobbly (4 TreeModel etc.)</mark>~~   <br>~~   ~~   - NO json.  period.  Use webObs.  See if we can cast in Fs & populate an exposed/exported var cliSide~~   - So the type method nds 2 be Depr & the prev one reinst
+ated~~   - Re the Dnd ops we nd 2 either determine specific ops svrSide or parse the whole thing and do a repl with regExp (cd use fparsec; ovkill? pls that wld force us back to json, which we're closing: coz the parser wd nd to be rewritten for ea d..."
+|||"Wasm Impl Overview/tkLi| src:gfx_tkLi_Addenda|||"
+"~~   L Wasm - Docker/VM - brijCsvTsv - brijImpExp - gfxImpExp~~~  x [as of now, accts not necc.]~~~  x chk functionality~~~  x Focus on features: missing from gfx/goodToImpl~~~  - (googKeep/Obsid) @rsch also the issues wikis 4 ea for featureRequests~
+~~  "Users don't like change.  They'll only move to your app if is 10x better... (a founder)"~~~  VMs-Dockr-Vendors~~~  x Consider wCompnts for encapsulating webSide (React/Vue/Ang)~~~  - Consider porting existing wid 2 comp 4 walkthru/testImpl~~~  -..."
+|||"gfx Tree Dnd| src:gfx_tkLi_Addenda|||"
+"~~   - Check that onClick works for lbls, not only expandos (see <a href='https://dojotoolkit.org/reference-guide/1.10/dijit/Tree-examples.html#dijit-tree-examples'>this</a>)~~   - Consider allowing users to use richTxt lbls? (see link above >> mt be..."
+|||"rtEd Impl/Notes| src:gfx_tkLi_Addenda|||"
+"~~   ~~   * Where is the definitive list of rtEd plugins we've decided to keep?~~~  x LOCATE for porting~~~  - Some of em have issues w/incompat~~~  - We nd 2 also add at least one/two custom ones and/or adapt others (CODE, DocLinks, ??)~~~  - Conver
+t the header drpDn to txt (nonIllustrative) and add custom _Named_ styles w/span; CPnl opts to (1st only 10, l8r unlim) define these.~~~  - There is also confusion in the icons with at least two btns: ViewCode/InsertCodeBlock~~~  - rtEd inlining (las..."
+|||"| src:gfx_tkLi_Addenda|||"
+"~~   ~~   "
+|||"FrmManager| src:gfx_tkLi_Addenda|||"
+"~~   Note Dec_11_24: Mostly compld but _chk_~~~  _Given_~~~~ - We have access to all vars in blding svrSide~~~~ - We can call _specific_ hardCoded validation methds~~~~ - Add/Build to an obj which is the res~~~~ - Order unknown @ callTime, params kno..."
+|||"gfxDlg Notes/tks| src:gfx_tkLi_Addenda|||"
+"~~   Note Dec_11_24: Mostly compld but _chk_~~   ~~   - Consider using faux Dlgs (no popup, w/in pg via TPanes)~~   - gfxDlg nds new versions for~~~  - windowed Ps: P, Pr, (x)Pi, (x)Pri (nd ver for longTxt?)~~~  - Crd (which nds more member funcs to ..."
+|||"TagBldr issue| src:gfx_tkLi_Addenda|||"
+"~~   Jun12_24:~~   TagBldr test in wwwroot\index.html: the dev\Misc link loads a test page with tgCLoud; issues w/parsing -> chk <a href='https://github.com/dojo/dojox/issues'>this</a> repo issue~~   "
+|||"Cal Impl (v2?)| src:gfx_tkLi_Addenda|||"
+"~~   Jun03_24:~~   - Cal~~~  Parameterize calNames 4 dynamic population in dropDns~~~  x Look for other/earlier versions of the demo b4 customization~~~  See mbox 'Google Cal features' in Jun for ideas~~   - Allow usrs to specify whether to show opti..."
+|||"Tag Mngt| src:gfx_tkLi_Addenda|||"
+"~~   Dec_11_24: Some work compl., _chk_~~   May16_24:~~   - Tags:~~   Nd to offer ability to rename/manage tags~~   Node in tree labelled 'Tags' (or in CPnl)~~   - either with One Page w/Tps for options, or ~~   - separate nodeChildrn for ea option, 
+e.g.~~~  ViewAll: shows TgCloud w/#s [cd offer select + "Show selected"]~~~  Manage: Rename/ReTag/Remove~~~  ViewOrphans: Shows all orphans; usr can open/edit/assign~~   RELATED: ~~   - nd backend logic for rename nd to propagate to dataItms~~   - @T..."
+|||"SaveLogic Impl| src:gfx_tkLi_Addenda|||"
+"~~   May_03_24:~~   - SaveLogic~~   - NOTHING cliSide, all svrSide~~   - cliSide save flow is~~~  gfxTp.autoSave.add(fun _-> this.Updated = true)~~~  gfxTp.focusLost() -> if this.Updated, svrReq(save)~~   - svrSide use a Monad with this added to bind..."
+|||"rtEd icns| src:gfx_tkLi_Addenda|||"
+"~~   Icons:~~   x Extnd treeWid 4 Settings: ea node gets icn from map(icnNm, lbl) [[[djCfg has the listing]]~~   - Modify rtEd icons to show blue on hover~~   x Color some (start w/dijit corresp) icons in markup~~   ~~   *****Note Dec_11_24: ~~   We 
+pro.lly don't nd all the stuff below, kept 4 ref.  We are now going to address this via the rtEd_autoFmt.ing directives; some oddball sit.s (e.g. list creation) might fail BUT the majority of the crlfs shd work.~~   <br><hr><br>~~   Add xFrm 4 divs: ..."
+[[["Hugh/Server" (1 recs)]]]
+|||"Initial Notes| src:EagleEye|||"
+"~~   ~~   These are the initial notes from EagleEye (Dec '23)~~   <ul>~~~  <li><b>Note</b>: Bizzaro takes precedent, same approach bigger mkt</li>~~~  <li>Drop-in ability 2 add pg</li>~~~  <li>Nd to allow styling the pg (expose set params)</li>~~~  <..."
+[[["Bizarro/Server" (1 recs)]]]
+|||"Initial Notes| src:EagleEye|||"
+"~~   ~~   These are the initial notes from EagleEye (Dec '23)~~~~ <ul><li>To induce atomicity:<br>onTheFlyQry >> sortedD >> head</li>~~~~ <li>Do v nd 2 prov Q 4 par ops?</li>~~~~ <li>1 gd apprch: `ix-restr2wooman+prem-chand-donate`<br>~~~~~    Note: ..."
+[[["Lothar/Server" (1 recs)]]]
+|||"Initial Notes| src:EagleEye|||"
+"~~   These are the initial notes from EagleEye (Dec '23)~~   <br><b>~6m c# devs</b><br>~~   ~~   <ul><li>Curiously v. exceptions</li>~~~~ <li>launch ev 2-4d</li>~~~  <li>can wrk on arbit/gen incl "I'll/my eagle'll ..."</li>~~~  <li>store 5ln @ time; ..."
+[[["Spidey/Server" (1 recs)]]]
+|||"Initial Notes| src:EagleEye|||"
+"~~   These are the initial notes from EagleEye (Dec '23)~~~~ <ul><li>Launches slowly & suddenly spreads web of binClses</li>~~~  <li>ComnUse ver can be quite diff (only1?)</li>~~~  <li>LrgDoc capab can incorp features from other apps (gfix)</li></ul>..."
+[[["brij/Server" (1 recs)]]]
+|||"Winforms contents| src:gfx_tkLi_Addenda|||"
+"~~   ~~   ***Regardez bien: ~~   Often overlooked; many of these mods exist nowhere else.~~   ~~   (From the file hdr) winforms.fs Contains the foll modules:~~   ~~~  GridTester		Ide~~~  Ext (bookmarkPainter/addTreeVwZip/bldPSlideTester)~~~  Cambatta
+ble~~~  deck		~~   Note: Somewhere in Aug '23 the monkeyBastas removed all above mods; reinserted Nov15 in all locs.~~~  perms (combines earlier Base + Red)~~~  Bhojpuri (replaces cPnl, rPnl, etc.; incl new tys)~~~  jimmy			Tokenizer~~~  Folding			Fi..."
+[[["Timpa/System" (1 recs)]]]
+|||"Impl/Initial Notes| src:gfx_tkLi_Addenda|||"
+"~~   Jun03_24:~~   - Timpa (New product)~~~  - Combine + consolid8~~~  - Debug, tree access~~~  - Isolate styles reqd~~~  - Lessify Tims + add new gfx.less files~~~  - Ad-hoc dynamic gen~~   "
+[[["Wwnn/Core" (2 recs)]]]
+|||"code_embedded_ToDo Wwnn.fs scramble |src:code_embded_ToDo|||"
+"~~   ~~~  NOTE_Dec_24: F#9 has some new shuffle fns 2; tho' prob.ly not a scramble like we do.  It's best to impl this coz we mt. nd it in the future.~~   ~~~  //@ToDo:07.12 -> This nds to be genericized for all arraySizes [3..7] overkill?~~~  //Note..."
+|||"code_embedded_ToDo Wwnn.fs tbfo |src:code_embded_ToDo|||"
+"~~   ~~   tbfo in pgnProc ->~~   ~~   module PgnProc =~~   ...~~~  //in order to generate Li<Moves> to feed to fenGen (verses earlier + mov)~~~  //@ToDo: AFTER list ready, chk for dupl positions etc., also run numbers for approximation~~~  let getEaP
+os = ~~~~ fun toPl gm ->~~~~ //1st strip off the game res~~~~ //regexp for splitting ea move -> (\d{0,3}\.\s)((.*?)\s)((.*?)\s)~~~~ //access via: num: $1 w: $3 b: $5\n (3-tup)~~~  **note that this exp DOES NOT get half-moves~~~  we're stripping off t..."
+[[["gfx/UI" (16 recs)]]]
+|||"code_embedded_ToDo gfx.fs rtEd |src:code_embded_ToDo|||"
+"~~   ~~   rtEd~~~  NOTE~~~  that it's not necc to proc \n to <br> etc.; just opening it in the ed & resaving will fmt <<@ToDo: how to automate this?>>~~   ~~   "
+|||"code_embedded_ToDo gfx.fs CSV |src:code_embded_ToDo|||"
+"~~   ~~   @ToDo <a href='https://xcellerant.wordpress.com/2015/01/22/gridx-in-xpages-27-exporting-to-excel/'CSV_Export</a><br>~~   ~~   "
+|||"initFrm: Find hooks to upd rec x to y of zz (not sel; tots) [@Minor]|AffectsBrijsrc:gridx_Styling|||"
+"~~   (Pls. see the gridx repo <a href='https://trivedienterprisesinc.github.io/ui/2024/form/gridx_Styling/gfxGridx.html'>pg</a> for ctxt)<br>~~   <ul>~~   <li><input id='categRowSelect' type="checkbox" checked>&nbsp;selectedRows / chkboxes for categR
+ows<br>~~   <br>~~   <mark>Oct29</mark> Quasi-impl y'day, @mbi BUT the UnSel mod does this precisely PLUS autoCorrects the Totals (bonus!)<br>~~   As usu., found a cleaner impl: modified treeNestedGen to create a ob of categIds for eventual push 2 gr..."
+|||"qEd + frmValid8n [@EffortWorthy]|AffectsBrijsrc:gridx_Styling|||"
+"~~   (Pls. see the gridx repo <a href='https://trivedienterprisesinc.github.io/ui/2024/form/gridx_Styling/gfxGridx.html'>pg</a> for ctxt)<br>~~   <ul>~~~  <li>Begin by Impl.ing a placeholder dlg</li>~~~  <li>Note that the dat already has the cols</li
+>~~~~ <li>~~~~~<h3>Validation</h3>~~   ~~   <details><summary><mark>Oct31</mark>&nbsp;Approach #3</summary>~~   <mark>Nov01</mark>&nbsp;There are edge cases where this can't be all cliSide:~~   <ul><li>~~   If the cli selects recs from diff pgs (e.g...."
+|||"widCoverage [Requires SaaduP upd8s]|AffectsBrijsrc:gridx_Styling|||"
+"~~   (Pls. see the gridx repo <a href='https://trivedienterprisesinc.github.io/ui/2024/form/gridx_Styling/gfxGridx.html'>pg</a> for ctxt)<br>~~   ~~   <details>~~   <summary><input type="checkbox" name="" value=""> <mark>grid.dat updates</mark></summ
+ary>~~   <ol>~~   ~~   <li>Impl. Push Updates~~~  <ul><li>For this, 1st apply cliSide updates to chk everything works as expected.<br>~~   <input type="checkbox" checked>, <mark>Sep09</mark> see [update Row#1] btn above the grid.<br>Note: this snippe..."
+|||"CannedWids [@EffortWorthy]|AffectsBrijsrc:gridx_Styling|||"
+"~~   (Pls. see the gridx repo <a href='https://trivedienterprisesinc.github.io/ui/2024/form/gridx_Styling/gfxGridx.html'>pg</a> for ctxt)<br>~~   ~~   <p id='CannedWids' style="margin-left: 40px"><input type="checkbox">&nbsp;<b>Canned Widgets</b><br>..."
+|||"ModifyFrm5 [@Minor]|AffectsBrijsrc:gridx_Styling|||"
+"~~   (Pls. see the gridx repo <a @Chk <a href='https://trivedienterprisesinc.github.io/ui/2024/form/gridx_Styling/gfxGridx.html#whaaat'>this</a> (backported @mbi?)~~   "
+|||"mockDeltas|AffectsBrijsrc:gridx_Styling|||"
+"~~   (Pls. see the gridx repo <a href='https://trivedienterprisesinc.github.io/ui/2024/form/gridx_Styling/gfxGridx.html'>pg</a> for ctxt)<br>~~   ~~   [These are all demo data anyway; wait for adeq. dataSet (tk?)]~~   <p id='mockDeltas'>~~   <ul><li>
+~~   <input type="checkbox"> Expand (mapFn?) existing pvDat to add Add mock deltas to pvDataSet.  We probably want <b> reverse</b> order: ie, newest on top</li>~~   <li><input type="checkbox" checked> <mark>Sep21</mark> Add mock fetch fn 2 provide pv..."
+|||"csvExport [@Minor]|AffectsBrijsrc:gridx_Styling|||"
+"~~   (Pls. see the gridx repo <a href='https://trivedienterprisesinc.github.io/ui/2024/form/gridx_Styling/gfxGridx.html'>pg</a> for ctxt)<br>~~   See <a href='https://xcellerant.wordpress.com/2015/01/22/gridx-in-xpages-27-exporting-to-excel/'>this</a..."
+|||"persistMod [@Minor]|AffectsBrijsrc:gridx_Styling|||"
+"~~   (Pls. see the gridx repo <a href='https://trivedienterprisesinc.github.io/ui/2024/form/gridx_Styling/gfxGridx.html'>pg</a> for ctxt)<br>~~   <details>~~   <summary id='persistMod'><input type="checkbox" name="" value="">: Persist mod</summary>~~
+   <ul>~~~  <li>Maintaining Grid <a href='https://xcellerant.wordpress.com/2015/01/13/gridx-in-xpages-21-maintaining-grid-state-between-sessions/'>State</a> Between Sessions<br> (gridx saves by id which we can push to userid.cfg)</li>~~~  <li>  saves..."
+|||"btnTtips|AffectsBrijsrc:gridx_Styling|||"
+"~~   (Pls. see the gridx repo <a href='https://trivedienterprisesinc.github.io/ui/2024/form/gridx_Styling/gfxGridx.html'>pg</a> for ctxt)<br>~~   <p>~~   ~~   <details>~~   <summary><input type="checkbox">&nbsp; btnTtips</summary>~~   gridx css rules
+ show abbrv ttip; nd to change or remove to show real one<br>~~   @TBD: Poss utility in extending widBase and attaching ttip based on class OR using a universal handler thus: qry(.hasTtip) &gt; forEa (attachTtipRnner(nd))<br>~~   <mark>Sep20</mark> g..."
+|||"priorVer Phase II [@EffortWorthy]|AffectsBrijsrc:gridx_Styling|||"
+"~~   (Pls. see the gridx repo <a href='https://trivedienterprisesinc.github.io/ui/2024/form/gridx_Styling/gfxGridx.html'>pg</a> for ctxt)<br>~~   <ul>~~~  <li id='pvPhase2'><input type="checkbox"> <b>PriorVers Phase II</b><br>~~~  <ol><li>~~~~ <b>No 
+qry</b> for pvs, in rec w/pointers (string fld <i>docHistory</i> "||VerNum|updBy|updOn|fldsChanged|_unid||"). <br>~~~~ This is <u>known</u> data/fmt, no chances of parsingErrs.  All hardCoded.<br>~~~~ Also see <a href='#editHist'>this</a> prior tk in..."
+|||"PromoteBtn|AffectsBrijsrc:gridx_Styling|||"
+"~~   (Pls. see the gridx repo <a href='https://trivedienterprisesinc.github.io/ui/2024/form/gridx_Styling/gfxGridx.html'>pg</a> for ctxt)<br>~~   <b> [Best compl in conj w/SaaduP upd8s 4 testing]</b><br>~~   ~~   <ul>~~   <li><input type="checkbox" c
+hecked> <mark>Sep21</mark> Add logic to show/hide appropriate PV btns in frm5~~   ~~   <p id='PromoteBtn'>~~   <input type="checkbox"> Add logic to show/hide Promote btn (see below)</p>~~   Change initBrijFrm() to incorp foll.:~~   <details><summary>..."
+|||"populatePriors [Follows tk.btnTtips]|AffectsBrijsrc:gridx_Styling|||"
+"~~   (Pls. see the gridx repo <a href='https://trivedienterprisesinc.github.io/ui/2024/form/gridx_Styling/gfxGridx.html'>pg</a> for ctxt)<br>~~   <ul>~~   <li id='populatePR'><input type="checkbox"> Add logic to populate frm w/pv<br>~~   dblClick on ..."
+|||"Add 'Copy' button 2 pvDlg [@EffortWorthy]|AffectsBrijsrc:gridx_Styling|||"
+"~~   (Pls. see the gridx repo <a href='https://trivedienterprisesinc.github.io/ui/2024/form/gridx_Styling/gfxGridx.html'>pg</a> for ctxt)<br>~~~~ <i>Since the frm is Disabled, what if the usr nds 2 access a fld val (say longText) <b>within</b> a spec
+ific priorVer?</i><br>~~~~ Click on "Copy" &gt;&gt; toaster "Copied 2 clipboard"<br>~~~~ Copies whole obj in format: [fld1DisplayNm:]\n fld1Contents\n ...fld2...<br>~~~~ Add FM func <i>getDisplayFieldNm(internalFldNm:str)</i> &gt;&gt; returns userLbl..."
+|||"var. misc|AffectsBrij|||"
+"~~   (Pls. see the gridx repo <a href='https://trivedienterprisesinc.github.io/ui/2024/form/gridx_Styling/gfxGridx.html'>pg</a> for ctxt)<br>~~   ~~   The file linked above lists some other remaining tks (e.g. RTL Impl) not in the `top` list.  ~~   "
+[[["gfx/Core" (2 recs)]]]
+|||"code_embedded_ToDo mBox D3 |src:code_embded_ToDo|||"
+"~~   ~~   From mbox "D3 notes + tkLi"~~   ~~   This <a href='https://www.d3indepth.com/hierarchies/'>link</a> shows how to use D3 tree methods, rollup etc., & calc values by grouping etc.~~   - srch also for 'layout functions'~~   ~~~  <a href='https
+://github.com/ColinEberhardt/d3-wasm-force/blob/master/README.md'>d3-wasm-force</a>: A drop-in replacement for d3-force, using WebAssembly~~   ~~   D3 @ToDo~~   - decide on basic grph 2 use~~   - nd zooming (see https://d3-graph-gallery.com/interacti..."
+|||"code_embedded_ToDo tree state |src:code_embded_ToDo|||"
+"~~   ~~   From "tree_State.html"~~   ~~   [Verify completed/no longer necc]~~   (i)  @ToDo: address this (Compl 5.28; see code)~~~~ state 4 DnD ops/rearranging nodes: ~~~~ problem with this particular model/tree: ~~~~ move to diff order within same b
+ranch doesn't take (node disappears!)~~   ~~   (ii) state 4 expanded:~~~~ Will work *with* or *without* lang.extend (just set persist)~~   https://github.com/dojo/dijit/blob/8ab4cdc2e4bb03d1bca6e76a2a9179dc8c5d846a/Tree.js#L1692~~~~ _state: function(..."
+[[["gfx/CSS" (1 recs)]]]
+|||"code_embedded_ToDo css icons |src:code_embded_ToDo|||"
+"~~   ~~   editorIcons.css ~~   .dijitDisabled .dijitEditorIcon {~~~  background-image: url('images/editorIconsDisabled.png'); ~~   /* editor icons sprite image for the disabled state ~~   @ToDo: CHECK: do we need these?  ~~   Let's leave off right no..."
+[[["Brij/General" (1 recs)]]]
+|||"code_embedded_ToDo notes.txt var |src:code_embded_ToDo|||"
+"~~   ~~   Note_Dec_24: These're from plnk notes.txt ~~~~ - Address them AFTER reconciliatn.~~~~ - Cross em off~~~~ - Ensure they don't exist elsewhere~~   ~~   CheckedLBDlg ->  Some( box (ચેક્ડ_પીચાક  ક્વિમામ d))~~   frmSetupDlg ->  Some( box (બનારસી
+_પીચાક  ક્વિમામ d))~~   tblDefCSVDlg ->  Some( box (સી_એસ_વી_પીચાક  ક્વિમામ d))~~   tblDefSetup ->  Some( box (મીઠૂ_પીચાક  ક્વિમામ d))~~   dvDefSetupDlg ->  Some( box (કલકતી_પીચાક  ક્વિમામ d))~~   dvCatByDlg ->  Some( box (કેટ_બાય_પીચાક  ક્વિમામ d))~..."
+[[["ccFam/Demo" (1 recs)]]]
+|||"Var fixes/upd8s||||"
+"~~   x Update ccF prop to add instr~~~  https://brijuser2.github.io/ccFam/assets/SysAdminPortal.html~~~  TP: In Viol~~~  add "Please click on the screenShot below to see details of the violating Facility" above the link to the img -~~~  https://githu..."
+[[["gfx/System" (1 recs)]]]
+|||"In-Mem|cr8d:Dec24|||"
+"~~   gfx can go InMem w/edits + btn 'downloadDeltas'"
+[[["Brij/Marketing" (3 recs)]]]
+|||"Top 100 reasons||||"
+"~~   ready 2 begin anytime..."
+|||"Ebay/Rbay Demo |cr8d:Dec24|||"
+"~~   The CardVw has a HUGE wow factor [CpType -> Tree|Crd]~~   Dz + autoDefault.  Make it so."
+|||"Freemium tk addenda|cr8d:Dec24|||"
+"~~   "You spent 60 mins to set up your tbls.  Wld you consider spending 10 mins on a survey to save having to do that effort again?" ~~   [MUCH more concise txt]"
+[[["Brij/webCli" (1 recs)]]]
+|||"goog Lit|cr8d:Dec24|||"
+"~~   Test 1st w/Cal or other wid THEN grid~~   To prevent lock-in and non-reliance look @ output & determine if we can ~~   'templatize' the creation.~~   We DO NEED to use this, however, in order to ensure compat/standardiztn."
+[[["Brij/general" (1 recs)]]]
+|||"Revert content fldFmt|cr8d:Dec24|||"
+"~~   We nd 2 revert the content fld to txt~~   In order to enable mongo-Side FTIdx.  Just run a map fn on the dat.  [Poss alr exists as part of Ttip bldr: ReImpl this`]~~~  @TBD: Revert in BrijBaseTy.s?"
+[[["Brij/Support" (1 recs)]]]
+|||"Fix mermaid flowcharts 4 Templating|cr8d:Dec24|||"
+"~~   The Templating section has numbered els, as below (1. & 2a.)  Remove the numbers, mermaid now sees them & throws "Unsupported: list" see below:~~   ## Templating~~   ### Brij flow using ρ setup ->~~   ```mermaid~~   flowchart LR~~~  A[1. Table] ..."
+[[["Brij/var" (1 recs)]]]
+|||"-dskCli alw fullAuthAcc-|cr8d:Dec24|||"
+"~~~~ This is HUGE, nds 2 go into archFlowCh somepl.~~~~ Note that the dskCli has _NO Auth for data access_ since all usrs are dzs -- The svr is 'dumb', only sends bare data (localState) OR dats (web) which's validated svrSide~~   Earlier notes:~~   -
+ The idea is: these users will alw be Designers by default (otherwise they can use another cli)~~   - The server is 'dumb'; only sends bare data to richCli (>> stateLocal) OR Dats to webCli~~   - Validation for forms/single entry occur cliSide~~   - ..."
+[[["Brij/Client" (1 recs)]]]
+|||"feature-parity|src:Nov24_Notes|||"
+"~~   Note that some winCli features DO NOT have equiv webCli equivs.~~   Ensure all features are present in both~~   See brijLog23 entry 4 Jul 22  Mod test/winFrms.fs"
+[[["Brij/Prod" (5 recs)]]]
+|||"Freemium|src:Nov24_Notes|||"
+"~~   - By default all features available PLUS 3 full working demo dbs to tinker with, copied to user's new acct.~~   - Free ver allows no saving data.~~   - For the 1st 10 times, IF user chooses Save to CSV >> prompt ""We can save all your data/defs 
+if you complete a short survey""~~   - This is a win-win: saves you time to reimport/setup and gives us feedback~~   - Flag turned on - userCateg ""FreemiumWithSave"" + track no. of saves/etc.~~   - After 10 saves/surveys do a hard sell OR move to CS..."
+|||"Research setup act/Medium|src:Nov24_Notes|||"
+"~~   - Chk if it remains The best for free usage~~   - Prod info articles etc."
+|||"Sups @ [hindAltPoplar] Tot|src:Nov24_Notes|||"
+"~~   can begin anytime"
+|||"Demo Dbs|src:Nov24_Notes|||"
+"~~   - Give em 3 full examples~~   - One cld be tkL with customization e.g. only Mods w/Prog Widgt + some custom (ALL WITH WALKTHRUS)~~   - One with 1M+ recs (as designed)~~   - One like CraigsList/similar/idea with `Motorbikes for $20 (free meter if
+ you spend 1k+)`~~   Earlier Notes:~~   Poss utility in separate demos 4 scenarios~~   ReddHat~~   Find online src 4 canned order frm; use/reImpl~~   Canned Db example (v2?): Need one with 'Orders' embedded (n.b. 32M limit so no go for blogs CMSs etc..."
+|||"Pricing Per Tenant Svr|src:Nov24_Notes|||"
+"~~   - So the link which embeds the webCli DVs shd reside on a single svr~~   - This allows separation by, say, venture~~   - For certain clis we'll need to offer ability to use an IP mask"
+[[["Brij/Infra" (1 recs)]]]
+|||"dotNet Bundle Reqmts|src:Repo_Gist|||"
+"~~   Nd to chk bundle reqmts 2 run dotNet in new env. ~~   (Note that other tasks e.g. Svr depend on this task)"
+[[["Brij/System" (2 recs)]]]
+|||"Import Module|src:Repo_Gist|||"
+"~~   We nd an export mod too; the main task here is to determine which internal flds to expose (Pros: easy rebuilding of cli backed-up dbs; Cons: exposure) Basic func only (also nded for ReddHat)~~   Impl/test; just basic func will do this is the las
+t major mod left to complete~~   File|New >> 'Do you have a data dump (CSV) file? 'hlp:what is this?' ie, yes/no dlgBoxes; no wizardLike stuff.~~   Ideally use continuationMonad to terminate if errors > preset %age limit of totalInputSz i.e., determi..."
+|||"DbClipboard Impl/test|src:Repo_Gist|||"
+""
+[[["Brij/User" (1 recs)]]]
+|||"Setup Client Downloads|src:Repo_Gist|||"
+"~~   AutoDownload (cli+dsk) on 1st login"
+[[["Brij/Research" (2 recs)]]]
+|||"Myers/Briggs & current updates|src:Repo_Gist|||"
+"~~   How 2 best ask pointed Qns/gather info?~~   Tailored decision trees per user ty?~~   Taking Kiersey further (farther?) @rsch motivation: prompts, what kind nded when, application, results."
+|||"Mongo Realm|src:Repo_Gist|||"
+"~~   Mongo realm/ roll-yr-own (lk 4 c#) must accomodate webTkns~~   look also @repl/GitH setup on their repo"
+[[["Wwnn/Research" (1 recs)]]]
+|||"Filter on ELO rating?|src:Repo_Gist|||"
+"~~   ELO rtng: how 2 filtr (utils exist?) (3 lvls; determine which; filter out bottom)~~   How 2 use existing bd for this?~~   2 btns: 1st shows next, 2nd shows curr~~   Nd beaucoup articles/refs/lit: publicDomain, embed. All of CM is evidently pd (c..."
+[[["gfx/General" (2 recs)]]]
+|||"Various|src:Repo_Gist|||"
+"~~   For rtEd; find an appropriate widget to embed & see before/after parsing results in all modes. Consider regExRepl 4 customEls, p'haps w/props exposed for advanced usrs to edit in-place~~   Flatten types of content to just one; simpler overall~~ 
+  @rsch bookmark fileFmt 4 all browsers~~   No ver capab 4 now, v2+~~   Random pnlHdr colors assigned based upon last of differentiators; customizeable by usr~~   TopPnl shd incl srchBtn offering ftSrch capab; sorted by count (as b4); ttip in ctxt ->..."
+|||"Mermaid/Chart support|src:Repo_Gist|||"
+"~~   b.html update: nd to embed all flowcharts using mermaid b4 Notes.md can be retired.~~   Nd to program ability to embed via extension + Button"
