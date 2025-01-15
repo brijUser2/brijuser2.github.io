@@ -14,6 +14,7 @@
   Updated Jan 9th 4 glot
     to filter4Brij + add subMod, output in z_PseudoDV_Categs
 
+   This ver used to output ser Addenda.dat via Bolero
 *)
 
 namespace Trivedi
